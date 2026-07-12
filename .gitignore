@@ -43,3 +43,8 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+
+# This is a package (not an application); package lockfiles should not be
+# committed. The example app's lockfile (example/pubspec.lock) is
+# intentionally NOT covered by this rule and remains tracked.
+/pubspec.lock
