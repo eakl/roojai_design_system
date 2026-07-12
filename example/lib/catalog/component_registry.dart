@@ -1,4 +1,5 @@
 import 'component_showcase_spec.dart';
+import 'specs/button_showcase_spec.dart';
 
 /// Maps a component's display name to a function building its
 /// ComponentShowcaseSpec. Kept as a function (not a pre-built spec) so
@@ -6,4 +7,6 @@ import 'component_showcase_spec.dart';
 /// New components are registered here, one line per component, keyed
 /// alphabetically for readability (iteration order in CatalogHomePage
 /// sorts explicitly, so registration order here does not matter).
-final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {};
+final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
+  'Button': buildButtonShowcaseSpec,
+};
