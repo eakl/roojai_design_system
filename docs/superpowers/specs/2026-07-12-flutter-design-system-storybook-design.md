@@ -47,8 +47,6 @@ roojai/
         semantic/
           semantic_colors.dart          # canvas, surface, content, border, status groups
           semantic_typography.dart      # displayMd..footnote scale
-          semantic_spacing.dart
-          semantic_radius.dart
       theme/
         app_tokens.dart           # InheritedWidget exposing semantic tokens
         app_tokens_scope.dart     # widget that installs AppTokens at the app root
@@ -110,9 +108,46 @@ roojai/
 
 **Primitives** (`lib/src/tokens/primitives/`): plain Dart classes with
 `static const` fields holding raw design values — color swatches
-(`AppColors.blue500`), spacing scale (`AppSpacing.space4`), radius scale
-(`AppRadius.radius8`), type scale (`AppTypography.textSm`), elevation/shadow
-definitions, motion durations/curves. No semantic meaning, just raw values.
+(`AppColors.blue500`), type scale, elevation/shadow definitions, motion
+durations/curves. No semantic meaning, just raw values.
+
+The spacing and radius scales are fixed, value-named primitive scales (not
+semantic aliases — the name *is* the pixel value):
+
+```dart
+class AppSpacing {
+  static const double spacing0 = 0;
+  static const double spacing2 = 2;
+  static const double spacing4 = 4;
+  static const double spacing6 = 6;
+  static const double spacing8 = 8;
+  static const double spacing12 = 12;
+  static const double spacing16 = 16;
+  static const double spacing20 = 20;
+  static const double spacing24 = 24;
+  static const double spacing32 = 32;
+  static const double spacing40 = 40;
+  static const double spacing48 = 48;
+  static const double spacing64 = 64;
+  static const double spacing80 = 80;
+  static const double spacing96 = 96;
+}
+
+class AppRadius {
+  static const double radius4 = 4;
+  static const double radius8 = 8;
+  static const double radius12 = 12;
+  static const double radius16 = 16;
+  static const double radiusFull = 9999;
+}
+```
+
+Since these scales are already named by value (there is no separate
+"semantic" renaming layer for spacing/radius as there is for color),
+components reference `AppSpacing.spacingNN` / `AppRadius.radiusNN` directly
+in their resolver functions (e.g. `_resolvePadding(ButtonSize size) =>
+switch (size) { ButtonSize.sm => AppSpacing.spacing8, ... }`) rather than
+going through `AppTokens` for these two scales.
 
 **Semantic tokens** (`lib/src/tokens/semantic/`): classes that map primitives
 to semantic roles. These are what components actually reference — never
@@ -198,14 +233,12 @@ class SemanticTypography {
 }
 ```
 
-Semantic spacing and radius scales are added the same way (flat classes)
-once their concrete names are provided; until then components use the
-primitive spacing/radius scale directly for layout (not colors/typography,
-which are fully specified above).
+There is no separate semantic layer for spacing/radius — components use the
+`AppSpacing`/`AppRadius` primitive scales directly (see Primitives above).
 
 **Token access**: a single `InheritedWidget`, `AppTokens`, holds one instance
-of `SemanticColors` and `SemanticTypography` (plus spacing/radius) and is
-installed once at the app root via `AppTokensScope`. `AppTokensScope` takes
+of `SemanticColors` and `SemanticTypography` and is installed once at the
+app root via `AppTokensScope`. `AppTokensScope` takes
 these token sets as constructor parameters, defaulting to the package's
 built-in default values if not provided — so an app consuming this package
 can supply its own brand's token values, and every component picks them up
