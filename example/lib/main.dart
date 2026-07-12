@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ui/ui.dart';
+
+import 'catalog/catalog_home_page.dart';
 
 void main() {
   runApp(const StorybookApp());
@@ -9,11 +12,11 @@ class StorybookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'ui_storybook',
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(child: Text('ui_storybook')),
+    return AppTokensScope(
+      child: MaterialApp(
+        title: 'ui_storybook',
+        debugShowCheckedModeBanner: false,
+        home: const CatalogHomePage(),
       ),
     );
   }
