@@ -1,4 +1,5 @@
 import 'component_showcase_spec.dart';
+import 'specs/avatar_showcase_spec.dart';
 import 'specs/button_showcase_spec.dart';
 
 /// Maps a component's display name to a function building its
@@ -8,5 +9,6 @@ import 'specs/button_showcase_spec.dart';
 /// alphabetically for readability (iteration order in CatalogHomePage
 /// sorts explicitly, so registration order here does not matter).
 final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
+  'Avatar': buildAvatarShowcaseSpec,
   'Button': buildButtonShowcaseSpec,
 };
