@@ -26,3 +26,7 @@ export 'src/components/button/button_variant.dart';
 export 'src/components/label/label.dart';
 export 'src/components/separator/separator.dart';
 export 'src/components/separator/separator_orientation.dart';
+export 'src/components/skeleton/skeleton.dart';
+export 'src/components/skeleton/skeleton_shape.dart';
+export 'src/components/spinner/spinner.dart';
+export 'src/components/spinner/spinner_size.dart';
