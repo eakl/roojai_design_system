@@ -45,8 +45,16 @@ class _SkeletonState extends State<Skeleton>
   // Spinner's controller.
   late final AnimationController _controller = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 900),
+    duration: const Duration(milliseconds: 1000),
   )..repeat(reverse: true);
+
+  // Eases the raw linear controller value so the pulse settles at each
+  // end instead of reversing direction abruptly — matches the smooth
+  // "breathing" look of shadcn's `animate-pulse`.
+  late final Animation<double> _pulse = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeInOut,
+  );
 
   @override
   void dispose() {
@@ -66,10 +74,10 @@ class _SkeletonState extends State<Skeleton>
 
     // --- Layout ---------------------------------------------------------------
     return AnimatedBuilder(
-      animation: _controller,
+      animation: _pulse,
       builder: (context, child) {
         return Opacity(
-          opacity: _resolveOpacity(_controller.value),
+          opacity: _resolveOpacity(_pulse.value),
           child: child,
         );
       },
@@ -109,9 +117,10 @@ double _resolveRadius(SkeletonShape shape, double height) {
   }
 }
 
-/// Maps the controller's 0.0-1.0 ping-pong value to an opacity range of
-/// 0.5-0.8, so the block never fully disappears (0.5 floor) or reads as
-/// fully "loaded" opaque content (0.8 ceiling).
-double _resolveOpacity(double controllerValue) {
-  return 0.5 + (controllerValue * 0.3);
+/// Maps the eased 0.0-1.0 ping-pong value to an opacity range of 0.5-1.0
+/// — the same swing Tailwind's `animate-pulse` (and shadcn's `Skeleton`,
+/// which is built on it) uses, so the block never fully disappears (0.5
+/// floor) while still producing a clearly visible pulse (1.0 ceiling).
+double _resolveOpacity(double animationValue) {
+  return 0.5 + (animationValue * 0.5);
 }
