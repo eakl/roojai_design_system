@@ -45,9 +45,9 @@ roojai/
           app_elevation.dart
           app_motion.dart
         semantic/
-          semantic_colors.dart
+          semantic_colors.dart          # canvas, surface, content, border, status groups
+          semantic_typography.dart      # displayMd..footnote scale
           semantic_spacing.dart
-          semantic_typography.dart
           semantic_radius.dart
       theme/
         app_tokens.dart           # InheritedWidget exposing semantic tokens
@@ -115,20 +115,117 @@ roojai/
 definitions, motion durations/curves. No semantic meaning, just raw values.
 
 **Semantic tokens** (`lib/src/tokens/semantic/`): classes that map primitives
-to semantic roles — e.g. `SemanticColors.backgroundPrimary`,
-`SemanticColors.textOnPrimary`, `SemanticColors.borderDanger`,
-`SemanticSpacing.componentPaddingMd`. These are what components actually
-reference — never primitives directly — so retheming means changing the
-semantic layer only.
+to semantic roles. These are what components actually reference — never
+primitives directly — so retheming means changing the semantic layer only.
+
+The semantic color set (fixed names, from the design system spec) is
+structured as nested groups, each group its own class:
+
+```dart
+class SemanticColors {
+  final CanvasColors canvas;
+  final SurfaceColors surface;
+  final ContentColors content;
+  final BorderColors border;
+  final StatusColors positive;
+  final StatusColors negative;
+  final StatusColors warning;
+  final StatusColors alert;
+  final StatusColors info;
+}
+
+class CanvasColors {
+  final Color base;        // Canvas / Default ("default" is a reserved
+  final Color alternative; // word in Dart, so this group uses "base")
+}
+
+class SurfaceColors {
+  final Color base;        // Surface / Default
+  final Color alternative;
+  final Color inverted;
+}
+
+class ContentColors {
+  final Color primary;
+  final Color secondary;
+  final Color muted;
+  final Color placeholder;
+  final Color onBrand;
+  final Color onBrandMuted;
+}
+
+class BorderColors {
+  final Color base;   // Border / Default
+  final Color strong;
+}
+
+// Shared shape for Positive / Negative / Warning / Alert / Info
+class StatusColors {
+  final Color surface;
+  final Color surfaceStrong;
+  final Color border;
+  final Color ui;
+  final Color uiHover;
+  final Color text;
+  final Color textStrong;
+}
+```
+
+Call sites read e.g. `colors.canvas.base`, `colors.content.onBrand`,
+`colors.negative.textStrong`, `colors.positive.uiHover`.
+
+The semantic typography set is a flat scale, one `TextStyle` per name:
+
+```dart
+class SemanticTypography {
+  final TextStyle displayMd;
+  final TextStyle displaySm;
+  final TextStyle h1;
+  final TextStyle h2;
+  final TextStyle h3;
+  final TextStyle h4;
+  final TextStyle bodyLg;
+  final TextStyle bodyMd;
+  final TextStyle bodySm;
+  final TextStyle labelLg;
+  final TextStyle labelMd;
+  final TextStyle labelSm;
+  final TextStyle captionMd;
+  final TextStyle captionSm;
+  final TextStyle overline;
+  final TextStyle small;
+  final TextStyle footnote;
+}
+```
+
+Semantic spacing and radius scales are added the same way (flat classes)
+once their concrete names are provided; until then components use the
+primitive spacing/radius scale directly for layout (not colors/typography,
+which are fully specified above).
 
 **Token access**: a single `InheritedWidget`, `AppTokens`, holds one instance
-of each semantic token class and is installed once at the app root via
-`AppTokensScope`. Components call `AppTokens.of(context).colors.xxx` etc.
+of `SemanticColors` and `SemanticTypography` (plus spacing/radius) and is
+installed once at the app root via `AppTokensScope`. `AppTokensScope` takes
+these token sets as constructor parameters, defaulting to the package's
+built-in default values if not provided — so an app consuming this package
+can supply its own brand's token values, and every component picks them up
+automatically since components only ever read from `AppTokens.of(context)`
+and never hardcode values.
+
+Each component binds local aliases once at the top of `build()` rather than
+repeating the full lookup at every call site:
+
+```dart
+final colors = AppTokens.of(context).colors;
+final typography = AppTokens.of(context).typography;
+// ...later in this build(): colors.canvas.base, typography.bodyMd, etc.
+```
+
 Built as a plain custom `InheritedWidget` (not `ThemeData`/`ThemeExtension`,
 per explicit preference) so it composes independently of `MaterialApp`/
 `CupertinoApp` theming. Kept as a single light theme for now, but the
-`AppTokens` shape (one token set object) means a second (dark) instance and a
-switch mechanism can be added later without touching component code.
+`AppTokens` shape (one token set object per group) means a second (dark) set
+and a switch mechanism can be added later without touching component code.
 
 ## Component pattern
 
@@ -158,17 +255,18 @@ Each component folder (e.g. `components/button/`) contains:
      ```dart
      // Semantic tokens used by Button — change these bindings to restyle
      // the component without touching layout/behavior code below.
-     final tokens = AppTokens.of(context);
-     final backgroundColor = _resolveBackgroundColor(tokens, variant, state);
-     final textColor = _resolveTextColor(tokens, variant, state);
-     final padding = _resolvePadding(tokens, size);
-     final borderRadius = tokens.radius.radiusMd;
+     final colors = AppTokens.of(context).colors;
+     final typography = AppTokens.of(context).typography;
+     final backgroundColor = _resolveBackgroundColor(colors, variant, state);
+     final textColor = _resolveTextColor(colors, variant, state);
+     final textStyle = _resolveTextStyle(typography, size);
+     final padding = _resolvePadding(size);
      ```
      This block is the single place to look to see (and edit) exactly which
      semantic tokens a component depends on.
   2. **Resolver functions** — whenever a size, variant, or state must be
      mapped to a concrete token/value, this happens in a named, private,
-     pure function (e.g. `_resolveBackgroundColor(AppTokens, ButtonVariant,
+     pure function (e.g. `_resolveBackgroundColor(SemanticColors, ButtonVariant,
      ButtonState) -> Color`), not inline in `build()` and not via scattered
      ternaries. One resolver per resolved property. This keeps every
      decision point named, testable in isolation, and easy to scan.
