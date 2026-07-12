@@ -3,6 +3,7 @@ import 'specs/avatar_group_showcase_spec.dart';
 import 'specs/avatar_showcase_spec.dart';
 import 'specs/badge_showcase_spec.dart';
 import 'specs/button_showcase_spec.dart';
+import 'specs/label_showcase_spec.dart';
 
 /// Maps a component's display name to a function building its
 /// ComponentShowcaseSpec. Kept as a function (not a pre-built spec) so
@@ -15,4 +16,5 @@ final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Avatar Group': buildAvatarGroupShowcaseSpec,
   'Badge': buildBadgeShowcaseSpec,
   'Button': buildButtonShowcaseSpec,
+  'Label': buildLabelShowcaseSpec,
 };
