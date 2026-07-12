@@ -14,6 +14,7 @@ export 'src/theme/app_tokens_scope.dart';
 
 // Components.
 export 'src/components/avatar/avatar.dart';
+export 'src/components/avatar/avatar_group.dart';
 export 'src/components/avatar/avatar_size.dart';
 export 'src/components/button/button.dart';
 export 'src/components/button/button_interaction_state.dart';

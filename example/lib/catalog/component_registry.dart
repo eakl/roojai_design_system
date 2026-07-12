@@ -1,4 +1,5 @@
 import 'component_showcase_spec.dart';
+import 'specs/avatar_group_showcase_spec.dart';
 import 'specs/avatar_showcase_spec.dart';
 import 'specs/button_showcase_spec.dart';
 
@@ -10,5 +11,6 @@ import 'specs/button_showcase_spec.dart';
 /// sorts explicitly, so registration order here does not matter).
 final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Avatar': buildAvatarShowcaseSpec,
+  'Avatar Group': buildAvatarGroupShowcaseSpec,
   'Button': buildButtonShowcaseSpec,
 };
