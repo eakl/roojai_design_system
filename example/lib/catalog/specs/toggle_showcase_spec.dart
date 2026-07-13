@@ -60,17 +60,15 @@ ComponentShowcaseSpec buildToggleShowcaseSpec() {
         onPressedChange: null,
         disabled: true,
       ),
-      Toggle(
+      const _InteractiveToggle(
         label: 'with leading',
-        pressed: true,
-        onPressedChange: (_) {},
-        leading: const _Dot(color: Color(0xFFFFFFFF)),
+        initialPressed: true,
+        leading: _Dot(color: Color(0xFFFFFFFF)),
       ),
-      Toggle(
+      const _InteractiveToggle(
         label: 'with trailing',
-        pressed: true,
-        onPressedChange: (_) {},
-        trailing: const _Dot(color: Color(0xFFFFFFFF)),
+        initialPressed: true,
+        trailing: _Dot(color: Color(0xFFFFFFFF)),
       ),
     ],
   );
@@ -82,12 +80,16 @@ class _InteractiveToggle extends StatefulWidget {
     required this.initialPressed,
     this.variant = ToggleVariant.standard,
     this.size = ToggleSize.md,
+    this.leading,
+    this.trailing,
   });
 
   final String label;
   final bool initialPressed;
   final ToggleVariant variant;
   final ToggleSize size;
+  final Widget? leading;
+  final Widget? trailing;
 
   @override
   State<_InteractiveToggle> createState() => _InteractiveToggleState();
@@ -110,6 +112,8 @@ class _InteractiveToggleState extends State<_InteractiveToggle> {
       onPressedChange: (next) => setState(() => _pressed = next),
       variant: widget.variant,
       size: widget.size,
+      leading: widget.leading,
+      trailing: widget.trailing,
     );
   }
 }
