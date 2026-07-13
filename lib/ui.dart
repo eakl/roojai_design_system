@@ -36,3 +36,4 @@ export 'src/components/skeleton/skeleton_shape.dart';
 export 'src/components/slider/slider.dart';
 export 'src/components/spinner/spinner.dart';
 export 'src/components/spinner/spinner_size.dart';
+export 'src/components/switch/switch.dart';
