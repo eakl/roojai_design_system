@@ -47,6 +47,7 @@ export 'src/components/slider/slider.dart';
 export 'src/components/spinner/spinner.dart';
 export 'src/components/spinner/spinner_size.dart';
 export 'src/components/switch/switch.dart';
+export 'src/components/textarea/textarea.dart';
 export 'src/components/toggle/toggle.dart';
 export 'src/components/toggle/toggle_interaction_state.dart';
 export 'src/components/toggle/toggle_size.dart';

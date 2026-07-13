@@ -14,6 +14,7 @@ import 'specs/skeleton_showcase_spec.dart';
 import 'specs/slider_showcase_spec.dart';
 import 'specs/spinner_showcase_spec.dart';
 import 'specs/switch_showcase_spec.dart';
+import 'specs/textarea_showcase_spec.dart';
 import 'specs/toggle_group_showcase_spec.dart';
 import 'specs/toggle_showcase_spec.dart';
 
@@ -39,6 +40,7 @@ final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Slider': buildSliderShowcaseSpec,
   'Spinner': buildSpinnerShowcaseSpec,
   'Switch': buildSwitchShowcaseSpec,
+  'Textarea': buildTextareaShowcaseSpec,
   'Toggle': buildToggleShowcaseSpec,
   'Toggle Group': buildToggleGroupShowcaseSpec,
 };
