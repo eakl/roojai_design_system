@@ -5,6 +5,7 @@ import 'specs/badge_showcase_spec.dart';
 import 'specs/button_showcase_spec.dart';
 import 'specs/checkbox_showcase_spec.dart';
 import 'specs/label_showcase_spec.dart';
+import 'specs/progress_showcase_spec.dart';
 import 'specs/separator_showcase_spec.dart';
 import 'specs/skeleton_showcase_spec.dart';
 import 'specs/spinner_showcase_spec.dart';
@@ -22,6 +23,7 @@ final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Button': buildButtonShowcaseSpec,
   'Checkbox': buildCheckboxShowcaseSpec,
   'Label': buildLabelShowcaseSpec,
+  'Progress': buildProgressShowcaseSpec,
   'Separator': buildSeparatorShowcaseSpec,
   'Skeleton': buildSkeletonShowcaseSpec,
   'Spinner': buildSpinnerShowcaseSpec,
