@@ -23,6 +23,8 @@ export 'src/components/button/button.dart';
 export 'src/components/button/button_interaction_state.dart';
 export 'src/components/button/button_size.dart';
 export 'src/components/button/button_variant.dart';
+export 'src/components/checkbox/checkbox.dart';
+export 'src/components/checkbox/checkbox_value.dart';
 export 'src/components/label/label.dart';
 export 'src/components/separator/separator.dart';
 export 'src/components/separator/separator_orientation.dart';
