@@ -41,3 +41,6 @@ export 'src/components/toggle/toggle.dart';
 export 'src/components/toggle/toggle_interaction_state.dart';
 export 'src/components/toggle/toggle_size.dart';
 export 'src/components/toggle/toggle_variant.dart';
+export 'src/components/toggle_group/toggle_group.dart';
+export 'src/components/toggle_group/toggle_group_item.dart';
+export 'src/components/toggle_group/toggle_group_orientation.dart';
