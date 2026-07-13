@@ -9,6 +9,7 @@ import 'specs/progress_showcase_spec.dart';
 import 'specs/radio_showcase_spec.dart';
 import 'specs/separator_showcase_spec.dart';
 import 'specs/skeleton_showcase_spec.dart';
+import 'specs/slider_showcase_spec.dart';
 import 'specs/spinner_showcase_spec.dart';
 
 /// Maps a component's display name to a function building its
@@ -28,5 +29,6 @@ final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Radio': buildRadioShowcaseSpec,
   'Separator': buildSeparatorShowcaseSpec,
   'Skeleton': buildSkeletonShowcaseSpec,
+  'Slider': buildSliderShowcaseSpec,
   'Spinner': buildSpinnerShowcaseSpec,
 };
