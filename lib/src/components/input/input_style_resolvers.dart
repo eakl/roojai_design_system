@@ -22,16 +22,41 @@ Color _resolveBorderColor(SemanticColors colors, InputInteractionState state) {
   }
 }
 
-/// A thicker border on focus/invalid gives a stronger visual signal than
-/// a color change alone.
+/// Kept constant across every [InputInteractionState] — still resolved
+/// through a per-state switch (rather than a bare constant) so it follows
+/// the same one-resolver-per-property shape as every other property here.
+///
+/// This used to return `2` for focused/invalid to make those states read
+/// more strongly. That grew the field by 2px in both directions on every
+/// focus/invalid transition, because `Container`'s `decoration` border is
+/// *additive* to its box size (border width adds outside the padding) —
+/// a visible layout shift. Focus/invalid now signal via [_resolveRingColor]
+/// instead, a `BoxShadow` painted outside the box bounds, which (like
+/// CSS's `box-shadow`/`ring`) never affects layout.
 double _resolveBorderWidth(InputInteractionState state) {
   switch (state) {
     case InputInteractionState.enabled:
     case InputInteractionState.disabled:
-      return 1;
     case InputInteractionState.focused:
     case InputInteractionState.invalid:
-      return 2;
+      return 1;
+  }
+}
+
+/// A soft ring drawn *outside* the field's own border via `BoxShadow` —
+/// null for states that don't need one. `BoxShadow` doesn't participate
+/// in layout sizing (unlike a wider `Border`), so this reinforces
+/// focused/invalid without ever shifting surrounding layout. Mirrors
+/// shadcn's `ring`/`ring-offset` focus treatment.
+Color? _resolveRingColor(SemanticColors colors, InputInteractionState state) {
+  switch (state) {
+    case InputInteractionState.enabled:
+    case InputInteractionState.disabled:
+      return null;
+    case InputInteractionState.focused:
+      return colors.surface.inverted.withOpacity(0.15);
+    case InputInteractionState.invalid:
+      return colors.negative.border.withOpacity(0.15);
   }
 }
 
@@ -129,3 +154,25 @@ TextInputType _resolveKeyboardType(InputType type) {
 
 /// Only [InputType.password] obscures entered characters.
 bool _resolveObscureText(InputType type) => type == InputType.password;
+
+/// Keystroke-level restriction for [InputVariant.text]. `keyboardType`
+/// alone (see [_resolveKeyboardType]) only *suggests* which soft keyboard
+/// layout to show — it never restricts what a user can actually type,
+/// including on desktop/web where there's no soft keyboard to swap at
+/// all. [InputType.number]/[InputType.phone] need an explicit
+/// `TextInputFormatter` to actually reject non-matching characters.
+List<TextInputFormatter>? _resolveInputFormatters(InputType type) {
+  switch (type) {
+    case InputType.number:
+      return [FilteringTextInputFormatter.digitsOnly];
+    case InputType.phone:
+      // Phone numbers legitimately contain more than digits, so allow
+      // the common punctuation too rather than digits-only.
+      return [FilteringTextInputFormatter.allow(RegExp(r'[0-9+\-\s()]'))];
+    case InputType.text:
+    case InputType.email:
+    case InputType.password:
+    case InputType.url:
+      return null;
+  }
+}

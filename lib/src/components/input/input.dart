@@ -8,6 +8,8 @@
 // below and `InputDecoration.collapsed`, which strips all of TextField's
 // own chrome.
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'
+    show FilteringTextInputFormatter, TextInputFormatter;
 
 import '../../theme/app_tokens.dart';
 import '../../tokens/primitives/app_motion.dart';
@@ -198,6 +200,7 @@ class _InputState extends State<Input> {
     final state = _interactionState;
     final borderColor = _resolveBorderColor(colors, state);
     final borderWidth = _resolveBorderWidth(state);
+    final ringColor = _resolveRingColor(colors, state);
     final backgroundColor = _resolveBackgroundColor(colors, state);
     final textStyle = _resolveTextStyle(typography, widget.size);
     final padding = _resolvePadding(widget.size);
@@ -232,6 +235,12 @@ class _InputState extends State<Input> {
                 color: backgroundColor,
                 borderRadius: BorderRadius.circular(radius),
                 border: Border.all(color: borderColor, width: borderWidth),
+                // Painted outside the box bounds and therefore, unlike a
+                // wider border, never affects layout size — see
+                // `_resolveRingColor`.
+                boxShadow: ringColor != null
+                    ? [BoxShadow(color: ringColor, spreadRadius: 2)]
+                    : null,
               ),
               child: TextField(
                 controller: widget.controller,
@@ -240,6 +249,7 @@ class _InputState extends State<Input> {
                 enabled: !widget.disabled,
                 keyboardType: _resolveKeyboardType(widget.type),
                 obscureText: _resolveObscureText(widget.type),
+                inputFormatters: _resolveInputFormatters(widget.type),
                 onChanged: widget.onChanged,
                 onSubmitted: widget.onSubmitted,
                 style: textStyle.copyWith(color: colors.content.primary),
