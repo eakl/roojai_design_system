@@ -28,6 +28,7 @@ export 'src/components/checkbox/checkbox_value.dart';
 export 'src/components/label/label.dart';
 export 'src/components/progress/progress.dart';
 export 'src/components/progress/progress_size.dart';
+export 'src/components/radio/radio.dart';
 export 'src/components/separator/separator.dart';
 export 'src/components/separator/separator_orientation.dart';
 export 'src/components/skeleton/skeleton.dart';
