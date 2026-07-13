@@ -135,44 +135,17 @@ double _resolveIconExtent(InputSize size) {
 }
 
 /// Keyboard layout for [InputVariant.text]. Not called for
-/// [InputVariant.file], which renders no `TextField`.
-TextInputType _resolveKeyboardType(InputType type) {
-  switch (type) {
-    case InputType.text:
-    case InputType.password:
-      return TextInputType.text;
-    case InputType.email:
-      return TextInputType.emailAddress;
-    case InputType.number:
-      return TextInputType.number;
-    case InputType.phone:
-      return TextInputType.phone;
-    case InputType.url:
-      return TextInputType.url;
-  }
-}
+/// [InputVariant.file], which renders no `TextField`. Delegates to
+/// [resolveInputTypeKeyboardType] — the single source of truth also used
+/// by `InputGroupInput` — rather than switching over [InputType] again
+/// here, so the two widgets can never drift apart on this mapping. See
+/// `input_keyboard_behavior.dart` for the full rationale.
+TextInputType _resolveKeyboardType(InputType type) =>
+    resolveInputTypeKeyboardType(type);
 
-/// Only [InputType.password] obscures entered characters.
-bool _resolveObscureText(InputType type) => type == InputType.password;
+/// Delegates to [resolveInputTypeObscureText] — see [_resolveKeyboardType].
+bool _resolveObscureText(InputType type) => resolveInputTypeObscureText(type);
 
-/// Keystroke-level restriction for [InputVariant.text]. `keyboardType`
-/// alone (see [_resolveKeyboardType]) only *suggests* which soft keyboard
-/// layout to show — it never restricts what a user can actually type,
-/// including on desktop/web where there's no soft keyboard to swap at
-/// all. [InputType.number]/[InputType.phone] need an explicit
-/// `TextInputFormatter` to actually reject non-matching characters.
-List<TextInputFormatter>? _resolveInputFormatters(InputType type) {
-  switch (type) {
-    case InputType.number:
-      return [FilteringTextInputFormatter.digitsOnly];
-    case InputType.phone:
-      // Phone numbers legitimately contain more than digits, so allow
-      // the common punctuation too rather than digits-only.
-      return [FilteringTextInputFormatter.allow(RegExp(r'[0-9+\-\s()]'))];
-    case InputType.text:
-    case InputType.email:
-    case InputType.password:
-    case InputType.url:
-      return null;
-  }
-}
+/// Delegates to [resolveInputTypeFormatters] — see [_resolveKeyboardType].
+List<TextInputFormatter>? _resolveInputFormatters(InputType type) =>
+    resolveInputTypeFormatters(type);

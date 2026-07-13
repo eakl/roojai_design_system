@@ -4,10 +4,9 @@
 // same reason: `TextField` provides text-editing/IME/selection/clipboard
 // behavior with no low-level primitive equivalent in `widgets.dart`.
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'
-    show FilteringTextInputFormatter, TextInputFormatter;
 
 import '../../theme/app_tokens.dart';
+import '../input/input_keyboard_behavior.dart';
 import '../input/input_type.dart';
 
 /// The primary field inside an [InputGroup] — a single-line text field
@@ -19,12 +18,11 @@ import '../input/input_type.dart';
 /// `InputGroupInput`.
 ///
 /// Reuses [InputType] from `Input` for keyboard layout / obscured-entry /
-/// keystroke-filtering behavior (see `_resolveKeyboardType` etc. below),
-/// but re-implements those small helpers locally rather than importing
-/// `Input`'s — they live as `part of 'input.dart'` and are private to
-/// that file. Duplicating ~15 lines here keeps `InputGroupInput`
-/// decoupled from `Input`'s own container/border logic, which this
-/// widget must *not* inherit.
+/// keystroke-filtering behavior, via the shared
+/// `resolveInputType*` functions in `input_keyboard_behavior.dart` — the
+/// single source of truth for that mapping, also used by `Input` itself.
+/// Only the container/border/background logic is deliberately *not*
+/// shared, since this widget must not inherit `Input`'s own chrome.
 class InputGroupInput extends StatelessWidget {
   const InputGroupInput({
     super.key,
@@ -97,9 +95,9 @@ class InputGroupInput extends StatelessWidget {
         focusNode: focusNode,
         autofocus: autofocus,
         enabled: !disabled,
-        keyboardType: _resolveKeyboardType(type),
-        obscureText: _resolveObscureText(type),
-        inputFormatters: _resolveInputFormatters(type),
+        keyboardType: resolveInputTypeKeyboardType(type),
+        obscureText: resolveInputTypeObscureText(type),
+        inputFormatters: resolveInputTypeFormatters(type),
         onChanged: onChanged,
         onSubmitted: onSubmitted,
         style: textStyle.copyWith(color: textColor),
@@ -110,49 +108,5 @@ class InputGroupInput extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-// Local re-implementation of `Input`'s `InputType` → keyboard-behavior
-// mapping (see `_resolveKeyboardType`/`_resolveObscureText`/
-// `_resolveInputFormatters` in `input_style_resolvers.dart`), kept
-// private to this file — see the class doc above for why this is
-// duplicated rather than shared.
-
-TextInputType _resolveKeyboardType(InputType type) {
-  switch (type) {
-    case InputType.text:
-    case InputType.password:
-      return TextInputType.text;
-    case InputType.email:
-      return TextInputType.emailAddress;
-    case InputType.number:
-      return TextInputType.number;
-    case InputType.phone:
-      return TextInputType.phone;
-    case InputType.url:
-      return TextInputType.url;
-  }
-}
-
-/// Only [InputType.password] obscures entered characters.
-bool _resolveObscureText(InputType type) => type == InputType.password;
-
-/// `keyboardType` alone only *suggests* which soft keyboard layout to
-/// show — it never restricts what a user can actually type, including on
-/// desktop/web where there's no soft keyboard to swap at all.
-/// [InputType.number]/[InputType.phone] need an explicit
-/// `TextInputFormatter` to actually reject non-matching characters.
-List<TextInputFormatter>? _resolveInputFormatters(InputType type) {
-  switch (type) {
-    case InputType.number:
-      return [FilteringTextInputFormatter.digitsOnly];
-    case InputType.phone:
-      return [FilteringTextInputFormatter.allow(RegExp(r'[0-9+\-\s()]'))];
-    case InputType.text:
-    case InputType.email:
-    case InputType.password:
-    case InputType.url:
-      return null;
   }
 }

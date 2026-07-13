@@ -8,8 +8,7 @@
 // below and `InputDecoration.collapsed`, which strips all of TextField's
 // own chrome.
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'
-    show FilteringTextInputFormatter, TextInputFormatter;
+import 'package:flutter/services.dart' show TextInputFormatter;
 
 import '../../theme/app_tokens.dart';
 import '../../tokens/primitives/app_motion.dart';
@@ -18,6 +17,7 @@ import '../../tokens/primitives/app_spacing.dart';
 import '../../tokens/semantic/semantic_colors.dart';
 import '../../tokens/semantic/semantic_typography.dart';
 import 'input_interaction_state.dart';
+import 'input_keyboard_behavior.dart';
 import 'input_size.dart';
 import 'input_type.dart';
 import 'input_variant.dart';
