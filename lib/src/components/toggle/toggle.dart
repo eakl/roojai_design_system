@@ -34,6 +34,7 @@ class Toggle extends StatefulWidget {
     this.size = ToggleSize.md,
     this.disabled = false,
     this.leading,
+    this.trailing,
     this.focusNode,
     this.autofocus = false,
   });
@@ -62,6 +63,9 @@ class Toggle extends StatefulWidget {
 
   /// Optional widget shown before [label] (typically an `Icon`).
   final Widget? leading;
+
+  /// Optional widget shown after [label] (typically an `Icon`).
+  final Widget? trailing;
 
   /// Optional external focus node. When null, the widget owns and disposes
   /// an internal one — see [_ToggleState._focusNode].
@@ -178,6 +182,14 @@ class _ToggleState extends State<Toggle> {
           SizedBox(width: iconGap),
         ],
         Text(widget.label, style: textStyle.copyWith(color: foregroundColor)),
+        if (widget.trailing != null) ...[
+          SizedBox(width: iconGap),
+          SizedBox(
+            width: iconExtent,
+            height: iconExtent,
+            child: widget.trailing,
+          ),
+        ],
       ],
     );
 

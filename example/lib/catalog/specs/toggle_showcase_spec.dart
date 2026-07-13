@@ -3,6 +3,22 @@ import 'package:ui/ui.dart';
 
 import '../component_showcase_spec.dart';
 
+/// Simple leading/trailing glyph used in the showcase only — the real `ui`
+/// package has no icon set of its own, components accept arbitrary
+/// `Widget`s for icon slots.
+class _Dot extends StatelessWidget {
+  const _Dot({required this.color});
+
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+    );
+  }
+}
+
 ComponentShowcaseSpec buildToggleShowcaseSpec() {
   return ComponentShowcaseSpec(
     title: 'Toggle',
@@ -29,20 +45,32 @@ ComponentShowcaseSpec buildToggleShowcaseSpec() {
       _InteractiveToggle(label: 'lg', initialPressed: true, size: ToggleSize.lg),
     ],
     // The disabled entries need no state since they ignore taps entirely.
-    statesBuilder: () => const [
-      _InteractiveToggle(label: 'off', initialPressed: false),
-      _InteractiveToggle(label: 'on', initialPressed: true),
-      Toggle(
+    statesBuilder: () => [
+      const _InteractiveToggle(label: 'off', initialPressed: false),
+      const _InteractiveToggle(label: 'on', initialPressed: true),
+      const Toggle(
         label: 'disabled',
         pressed: false,
         onPressedChange: null,
         disabled: true,
       ),
-      Toggle(
+      const Toggle(
         label: 'disabled',
         pressed: true,
         onPressedChange: null,
         disabled: true,
+      ),
+      Toggle(
+        label: 'with leading',
+        pressed: true,
+        onPressedChange: (_) {},
+        leading: const _Dot(color: Color(0xFFFFFFFF)),
+      ),
+      Toggle(
+        label: 'with trailing',
+        pressed: true,
+        onPressedChange: (_) {},
+        trailing: const _Dot(color: Color(0xFFFFFFFF)),
       ),
     ],
   );
