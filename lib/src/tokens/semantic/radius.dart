@@ -2,8 +2,9 @@
 
 import 'package:mix/mix.dart';
 
-const $radiusSm = RadiusToken('radius.sm');
-const $radiusMd = RadiusToken('radius.md');
-const $radiusLg = RadiusToken('radius.lg');
-const $radiusXl = RadiusToken('radius.xl');
+const $radius000 = RadiusToken('radius.0');
+const $radius004 = RadiusToken('radius.4');
+const $radius008 = RadiusToken('radius.8');
+const $radius012 = RadiusToken('radius.12');
+const $radius016 = RadiusToken('radius.16');
 const $radiusFull = RadiusToken('radius.full');

@@ -2,12 +2,12 @@
 
 import 'package:mix/mix.dart';
 
-import 'light/light_colors.dart';
-import 'light/light_elevation.dart';
-import 'light/light_motion.dart';
-import 'light/light_radius.dart';
-import 'light/light_spacing.dart';
-import 'light/light_typography.dart';
+import 'light/colors.dart';
+import 'light/elevation.dart';
+import 'light/motion.dart';
+import 'light/radius.dart';
+import 'light/spacing.dart';
+import 'light/typography.dart';
 
 /// The package's built-in default light theme, mapping every semantic
 /// token declared under `lib/src/tokens/semantic/` to its concrete value.
