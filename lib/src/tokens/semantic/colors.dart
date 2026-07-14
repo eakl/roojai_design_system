@@ -91,3 +91,6 @@ const $infoUi = ColorToken('color.info.ui');
 const $infoUiHover = ColorToken('color.info.uiHover');
 const $infoText = ColorToken('color.info.text');
 const $infoTextStrong = ColorToken('color.info.textStrong');
+
+// Icon.
+const $iconNeutral = ColorToken('color.icon.neutral');
