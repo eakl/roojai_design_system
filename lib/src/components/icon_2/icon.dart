@@ -11,8 +11,8 @@ import 'icon_variant.dart';
 // file — same split as Badge/DsButton.
 part 'icon_style_resolver.dart';
 
-/// Renders a Phosphor glyph at a design-system [IconSize], colored by
-/// [IconVariant].
+/// Renders a Phosphor glyph at a design-system [DsIconSize], colored by
+/// [DsIconVariant].
 ///
 /// Built on Mix's [StyledIcon] — the same primitive [RemixButton] uses
 /// internally to render its own `leadingIcon`/`trailingIcon` — so size and
@@ -33,12 +33,11 @@ class Icon extends StatelessWidget {
   /// size/color, never the glyph's own style.
   final IconData glyph;
 
-  /// Semantic color treatment — see [IconVariant].
-  final IconVariant variant;
+  /// Semantic color treatment — see [DsIconVariant].
+  final DsIconVariant variant;
 
-  /// Physical size — see [IconSize].
-  final IconSize size;
-
+  /// Physical size — see [DsIconSize].
+  final DsIconSize size;
 
   /// Escape hatch merged on top of the resolved style (e.g. a one-off
   /// color/opacity override), same shape as `DsButton.style`. When null,
