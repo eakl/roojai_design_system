@@ -80,8 +80,9 @@ class DsInput extends StatelessWidget {
   final String? label;
 
   /// Helper text shown below the field, styled via [resolveDsInputStyle].
-  /// Not shown when [error] is true and no dedicated error message slot
-  /// exists — see the design spec's "Label/helper text" decision.
+  /// Always rendered when non-null, regardless of [error] — there is no
+  /// separate error-message slot, so callers wanting distinct error copy
+  /// should swap [helperText]'s content themselves when [error] is true.
   final String? helperText;
 
   /// Icon shown at the field's leading edge, rendered through the DS
