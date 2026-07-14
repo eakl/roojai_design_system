@@ -2,7 +2,7 @@
 
 import 'package:mix/mix.dart';
 
-import '../../tokens/primitives/app_motion.dart';
+import '../../tokens/primitives/motion.dart';
 import '../../tokens/semantic/motion.dart';
 
 /// The package's built-in default light motion values, one entry per

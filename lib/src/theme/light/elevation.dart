@@ -3,7 +3,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:mix/mix.dart';
 
-import '../../tokens/primitives/app_elevation.dart';
+import '../../tokens/primitives/elevation.dart';
 import '../../tokens/semantic/elevation.dart';
 
 /// The package's built-in default light elevation values, one entry per
