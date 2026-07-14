@@ -67,70 +67,70 @@ nesting flattened into dotted token ids.
 import 'package:mix/mix.dart';
 
 // Canvas.
-final $canvasBase = const ColorToken('color.canvas.base');
-final $canvasAlternative = const ColorToken('color.canvas.alternative');
+const $canvasBase = ColorToken('color.canvas.base');
+const $canvasAlternative = ColorToken('color.canvas.alternative');
 
 // Surface.
-final $surfaceBase = const ColorToken('color.surface.base');
-final $surfaceAlternative = const ColorToken('color.surface.alternative');
-final $surfaceInverted = const ColorToken('color.surface.inverted');
+const $surfaceBase = ColorToken('color.surface.base');
+const $surfaceAlternative = ColorToken('color.surface.alternative');
+const $surfaceInverted = ColorToken('color.surface.inverted');
 
 // Content.
-final $contentPrimary = const ColorToken('color.content.primary');
-final $contentSecondary = const ColorToken('color.content.secondary');
-final $contentMuted = const ColorToken('color.content.muted');
-final $contentPlaceholder = const ColorToken('color.content.placeholder');
-final $contentOnBrand = const ColorToken('color.content.onBrand');
-final $contentOnBrandMuted = const ColorToken('color.content.onBrandMuted');
+const $contentPrimary = ColorToken('color.content.primary');
+const $contentSecondary = ColorToken('color.content.secondary');
+const $contentMuted = ColorToken('color.content.muted');
+const $contentPlaceholder = ColorToken('color.content.placeholder');
+const $contentOnBrand = ColorToken('color.content.onBrand');
+const $contentOnBrandMuted = ColorToken('color.content.onBrandMuted');
 
 // Border.
-final $borderBase = const ColorToken('color.border.base');
-final $borderStrong = const ColorToken('color.border.strong');
+const $borderBase = ColorToken('color.border.base');
+const $borderStrong = ColorToken('color.border.strong');
 
 // Positive.
-final $positiveSurface = const ColorToken('color.positive.surface');
-final $positiveSurfaceStrong = const ColorToken('color.positive.surfaceStrong');
-final $positiveBorder = const ColorToken('color.positive.border');
-final $positiveUi = const ColorToken('color.positive.ui');
-final $positiveUiHover = const ColorToken('color.positive.uiHover');
-final $positiveText = const ColorToken('color.positive.text');
-final $positiveTextStrong = const ColorToken('color.positive.textStrong');
+const $positiveSurface = ColorToken('color.positive.surface');
+const $positiveSurfaceStrong = ColorToken('color.positive.surfaceStrong');
+const $positiveBorder = ColorToken('color.positive.border');
+const $positiveUi = ColorToken('color.positive.ui');
+const $positiveUiHover = ColorToken('color.positive.uiHover');
+const $positiveText = ColorToken('color.positive.text');
+const $positiveTextStrong = ColorToken('color.positive.textStrong');
 
 // Negative.
-final $negativeSurface = const ColorToken('color.negative.surface');
-final $negativeSurfaceStrong = const ColorToken('color.negative.surfaceStrong');
-final $negativeBorder = const ColorToken('color.negative.border');
-final $negativeUi = const ColorToken('color.negative.ui');
-final $negativeUiHover = const ColorToken('color.negative.uiHover');
-final $negativeText = const ColorToken('color.negative.text');
-final $negativeTextStrong = const ColorToken('color.negative.textStrong');
+const $negativeSurface = ColorToken('color.negative.surface');
+const $negativeSurfaceStrong = ColorToken('color.negative.surfaceStrong');
+const $negativeBorder = ColorToken('color.negative.border');
+const $negativeUi = ColorToken('color.negative.ui');
+const $negativeUiHover = ColorToken('color.negative.uiHover');
+const $negativeText = ColorToken('color.negative.text');
+const $negativeTextStrong = ColorToken('color.negative.textStrong');
 
 // Warning.
-final $warningSurface = const ColorToken('color.warning.surface');
-final $warningSurfaceStrong = const ColorToken('color.warning.surfaceStrong');
-final $warningBorder = const ColorToken('color.warning.border');
-final $warningUi = const ColorToken('color.warning.ui');
-final $warningUiHover = const ColorToken('color.warning.uiHover');
-final $warningText = const ColorToken('color.warning.text');
-final $warningTextStrong = const ColorToken('color.warning.textStrong');
+const $warningSurface = ColorToken('color.warning.surface');
+const $warningSurfaceStrong = ColorToken('color.warning.surfaceStrong');
+const $warningBorder = ColorToken('color.warning.border');
+const $warningUi = ColorToken('color.warning.ui');
+const $warningUiHover = ColorToken('color.warning.uiHover');
+const $warningText = ColorToken('color.warning.text');
+const $warningTextStrong = ColorToken('color.warning.textStrong');
 
 // Alert.
-final $alertSurface = const ColorToken('color.alert.surface');
-final $alertSurfaceStrong = const ColorToken('color.alert.surfaceStrong');
-final $alertBorder = const ColorToken('color.alert.border');
-final $alertUi = const ColorToken('color.alert.ui');
-final $alertUiHover = const ColorToken('color.alert.uiHover');
-final $alertText = const ColorToken('color.alert.text');
-final $alertTextStrong = const ColorToken('color.alert.textStrong');
+const $alertSurface = ColorToken('color.alert.surface');
+const $alertSurfaceStrong = ColorToken('color.alert.surfaceStrong');
+const $alertBorder = ColorToken('color.alert.border');
+const $alertUi = ColorToken('color.alert.ui');
+const $alertUiHover = ColorToken('color.alert.uiHover');
+const $alertText = ColorToken('color.alert.text');
+const $alertTextStrong = ColorToken('color.alert.textStrong');
 
 // Info.
-final $infoSurface = const ColorToken('color.info.surface');
-final $infoSurfaceStrong = const ColorToken('color.info.surfaceStrong');
-final $infoBorder = const ColorToken('color.info.border');
-final $infoUi = const ColorToken('color.info.ui');
-final $infoUiHover = const ColorToken('color.info.uiHover');
-final $infoText = const ColorToken('color.info.text');
-final $infoTextStrong = const ColorToken('color.info.textStrong');
+const $infoSurface = ColorToken('color.info.surface');
+const $infoSurfaceStrong = ColorToken('color.info.surfaceStrong');
+const $infoBorder = ColorToken('color.info.border');
+const $infoUi = ColorToken('color.info.ui');
+const $infoUiHover = ColorToken('color.info.uiHover');
+const $infoText = ColorToken('color.info.text');
+const $infoTextStrong = ColorToken('color.info.textStrong');
 ```
 
 - [ ] **Step 2: Verify it analyzes cleanly**
@@ -161,23 +161,23 @@ One `TextStyleToken` per existing `SemanticTypography` field.
 
 import 'package:mix/mix.dart';
 
-final $displayMd = const TextStyleToken('typography.displayMd');
-final $displaySm = const TextStyleToken('typography.displaySm');
-final $h1 = const TextStyleToken('typography.h1');
-final $h2 = const TextStyleToken('typography.h2');
-final $h3 = const TextStyleToken('typography.h3');
-final $h4 = const TextStyleToken('typography.h4');
-final $bodyLg = const TextStyleToken('typography.bodyLg');
-final $bodyMd = const TextStyleToken('typography.bodyMd');
-final $bodySm = const TextStyleToken('typography.bodySm');
-final $labelLg = const TextStyleToken('typography.labelLg');
-final $labelMd = const TextStyleToken('typography.labelMd');
-final $labelSm = const TextStyleToken('typography.labelSm');
-final $captionMd = const TextStyleToken('typography.captionMd');
-final $captionSm = const TextStyleToken('typography.captionSm');
-final $overline = const TextStyleToken('typography.overline');
-final $small = const TextStyleToken('typography.small');
-final $footnote = const TextStyleToken('typography.footnote');
+const $displayMd = TextStyleToken('typography.displayMd');
+const $displaySm = TextStyleToken('typography.displaySm');
+const $h1 = TextStyleToken('typography.h1');
+const $h2 = TextStyleToken('typography.h2');
+const $h3 = TextStyleToken('typography.h3');
+const $h4 = TextStyleToken('typography.h4');
+const $bodyLg = TextStyleToken('typography.bodyLg');
+const $bodyMd = TextStyleToken('typography.bodyMd');
+const $bodySm = TextStyleToken('typography.bodySm');
+const $labelLg = TextStyleToken('typography.labelLg');
+const $labelMd = TextStyleToken('typography.labelMd');
+const $labelSm = TextStyleToken('typography.labelSm');
+const $captionMd = TextStyleToken('typography.captionMd');
+const $captionSm = TextStyleToken('typography.captionSm');
+const $overline = TextStyleToken('typography.overline');
+const $small = TextStyleToken('typography.small');
+const $footnote = TextStyleToken('typography.footnote');
 ```
 
 - [ ] **Step 2: Verify it analyzes cleanly**
@@ -209,21 +209,21 @@ value dropped).
 
 import 'package:mix/mix.dart';
 
-final $spacing0 = const SpaceToken('spacing.0');
-final $spacing2 = const SpaceToken('spacing.2');
-final $spacing4 = const SpaceToken('spacing.4');
-final $spacing6 = const SpaceToken('spacing.6');
-final $spacing8 = const SpaceToken('spacing.8');
-final $spacing12 = const SpaceToken('spacing.12');
-final $spacing16 = const SpaceToken('spacing.16');
-final $spacing20 = const SpaceToken('spacing.20');
-final $spacing24 = const SpaceToken('spacing.24');
-final $spacing32 = const SpaceToken('spacing.32');
-final $spacing40 = const SpaceToken('spacing.40');
-final $spacing48 = const SpaceToken('spacing.48');
-final $spacing64 = const SpaceToken('spacing.64');
-final $spacing80 = const SpaceToken('spacing.80');
-final $spacing96 = const SpaceToken('spacing.96');
+const $spacing0 = SpaceToken('spacing.0');
+const $spacing2 = SpaceToken('spacing.2');
+const $spacing4 = SpaceToken('spacing.4');
+const $spacing6 = SpaceToken('spacing.6');
+const $spacing8 = SpaceToken('spacing.8');
+const $spacing12 = SpaceToken('spacing.12');
+const $spacing16 = SpaceToken('spacing.16');
+const $spacing20 = SpaceToken('spacing.20');
+const $spacing24 = SpaceToken('spacing.24');
+const $spacing32 = SpaceToken('spacing.32');
+const $spacing40 = SpaceToken('spacing.40');
+const $spacing48 = SpaceToken('spacing.48');
+const $spacing64 = SpaceToken('spacing.64');
+const $spacing80 = SpaceToken('spacing.80');
+const $spacing96 = SpaceToken('spacing.96');
 ```
 
 - [ ] **Step 2: Verify it analyzes cleanly**
@@ -254,11 +254,11 @@ Named t-shirt scale (5 primitive values total — clean fit).
 
 import 'package:mix/mix.dart';
 
-final $radiusSm = const RadiusToken('radius.sm');
-final $radiusMd = const RadiusToken('radius.md');
-final $radiusLg = const RadiusToken('radius.lg');
-final $radiusXl = const RadiusToken('radius.xl');
-final $radiusFull = const RadiusToken('radius.full');
+const $radiusSm = RadiusToken('radius.sm');
+const $radiusMd = RadiusToken('radius.md');
+const $radiusLg = RadiusToken('radius.lg');
+const $radiusXl = RadiusToken('radius.xl');
+const $radiusFull = RadiusToken('radius.full');
 ```
 
 - [ ] **Step 2: Verify it analyzes cleanly**
@@ -293,12 +293,12 @@ import 'package:mix/mix.dart';
 
 import '../../theme/curve_token.dart';
 
-final $motionDurationFast = const DurationToken('motion.duration.fast');
-final $motionDurationNormal = const DurationToken('motion.duration.normal');
-final $motionDurationSlow = const DurationToken('motion.duration.slow');
+const $motionDurationFast = DurationToken('motion.duration.fast');
+const $motionDurationNormal = DurationToken('motion.duration.normal');
+const $motionDurationSlow = DurationToken('motion.duration.slow');
 
-final $motionCurveStandard = const CurveToken('motion.curve.standard');
-final $motionCurveEmphasized = const CurveToken('motion.curve.emphasized');
+const $motionCurveStandard = CurveToken('motion.curve.standard');
+const $motionCurveEmphasized = CurveToken('motion.curve.emphasized');
 ```
 
 - [ ] **Step 2: Verify it analyzes cleanly**
@@ -329,11 +329,11 @@ One `BoxShadowToken` per existing `AppElevation` level (1:1 mirror).
 
 import 'package:mix/mix.dart';
 
-final $elevationLevel0 = const BoxShadowToken('elevation.level0');
-final $elevationLevel1 = const BoxShadowToken('elevation.level1');
-final $elevationLevel2 = const BoxShadowToken('elevation.level2');
-final $elevationLevel3 = const BoxShadowToken('elevation.level3');
-final $elevationLevel4 = const BoxShadowToken('elevation.level4');
+const $elevationLevel0 = BoxShadowToken('elevation.level0');
+const $elevationLevel1 = BoxShadowToken('elevation.level1');
+const $elevationLevel2 = BoxShadowToken('elevation.level2');
+const $elevationLevel3 = BoxShadowToken('elevation.level3');
+const $elevationLevel4 = BoxShadowToken('elevation.level4');
 ```
 
 - [ ] **Step 2: Verify it analyzes cleanly**
