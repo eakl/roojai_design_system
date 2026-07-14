@@ -3,6 +3,7 @@ import 'specs/button_2_showcase_spec.dart';
 import 'specs/icon_2_showcase_spec.dart';
 import 'specs/icon_container_2_showcase_spec.dart';
 import 'specs/input_2_showcase_spec.dart';
+import 'specs/switch_2_showcase_spec.dart';
 
 /// Maps a component's display name to a function building its
 /// ComponentShowcaseSpec. Kept as a function (not a pre-built spec) so
@@ -19,4 +20,5 @@ final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Icon 2': buildIcon2ShowcaseSpec,
   'Icon Container 2': buildIconContainer2ShowcaseSpec,
   'Input 2': buildInput2ShowcaseSpec,
+  'Switch 2': buildSwitch2ShowcaseSpec,
 };
