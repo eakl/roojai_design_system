@@ -13,8 +13,8 @@ class ComponentShowcasePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = AppTokens.of(context).colors;
-    final typography = AppTokens.of(context).typography;
+    final canvasBase = $canvasDefault.resolve(context);
+    final h3 = $headingH3.resolve(context);
 
     final sections = <Widget>[];
     if (spec.variantsBuilder != null) {
@@ -37,14 +37,14 @@ class ComponentShowcasePage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: colors.canvas.base,
+      backgroundColor: canvasBase,
       appBar: AppBar(
-        backgroundColor: colors.canvas.base,
+        backgroundColor: canvasBase,
         elevation: 0,
-        title: Text(spec.title, style: typography.h3),
+        title: Text(spec.title, style: h3),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(AppSpacing.spacing16),
+        padding: const EdgeInsets.all(AppSpacing.sp016),
         children: sections,
       ),
     );
@@ -59,22 +59,22 @@ class _ShowcaseSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = AppTokens.of(context).colors;
-    final typography = AppTokens.of(context).typography;
+    final contentMuted = $contentMuted.resolve(context);
+    final overline = $overline.resolve(context);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppSpacing.spacing32),
+      padding: const EdgeInsets.only(bottom: AppSpacing.sp032),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
-            style: typography.overline.copyWith(color: colors.content.muted),
+            style: overline.copyWith(color: contentMuted),
           ),
-          const SizedBox(height: AppSpacing.spacing12),
+          const SizedBox(height: AppSpacing.sp012),
           Wrap(
-            spacing: AppSpacing.spacing12,
-            runSpacing: AppSpacing.spacing12,
+            spacing: AppSpacing.sp012,
+            runSpacing: AppSpacing.sp012,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: widgets,
           ),

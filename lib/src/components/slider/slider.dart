@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../theme/app_tokens.dart';
-import '../../tokens/primitives/app_motion.dart';
+import '../../tokens/primitives/motion.dart';
 import '../../tokens/semantic/semantic_colors.dart';
 
 part 'slider_style_resolvers.dart';

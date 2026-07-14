@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../theme/app_tokens.dart';
-import '../../tokens/primitives/app_spacing.dart';
+import '../../tokens/primitives/spacing.dart';
 import '../../tokens/semantic/semantic_colors.dart';
 
 /// A form-field caption built from a plain `Text` (no Material `Text`
