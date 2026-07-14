@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart' hide Icon;
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:remix/remix.dart';
 import 'package:ui/src/tokens/semantic/typography.dart';
@@ -6,6 +6,7 @@ import 'package:ui/src/tokens/semantic/typography.dart';
 import '../../tokens/semantic/colors.dart';
 import '../../tokens/semantic/radius.dart';
 import '../../tokens/semantic/spacing.dart';
+import '../icon_2/icon.dart';
 import 'button_2_variants.dart';
 
 // The `resolveDsButtonStyle` function consumed by `build()` below lives in
@@ -18,6 +19,23 @@ part 'button_2_style_resolver.dart';
 // reason as the style resolver above — it's an implementation detail of
 // DsButton, not something callers construct directly.
 part 'button_2_loading_spinner.dart';
+
+/// Default [RemixButtonIconBuilder] for [DsButton]'s leading/trailing icons.
+///
+/// Renders through the design system's own [Icon] rather than Remix's
+/// built-in `StyledIcon`, so the glyph goes through the same widget as every
+/// other icon in the design system. The resolved [IconSpec]'s `color`/`size`
+/// (set per `variant`/`size` in `resolveDsButtonStyle`) are forwarded as an
+/// explicit override, which wins over [Icon]'s own variant/size defaults.
+Widget _dsButtonIconBuilder(BuildContext context, IconSpec spec, IconData? icon) {
+  if (icon == null) return const SizedBox.shrink();
+
+  var style = IconStyler();
+  if (spec.color != null) style = style.color(spec.color!);
+  if (spec.size != null) style = style.size(spec.size!);
+
+  return Icon(icon, style: style);
+}
 
 /// A pressable action button built on top of the `remix` package's
 /// [RemixButton], styled through the design system's Mix semantic tokens.
@@ -142,8 +160,8 @@ class DsButton extends StatelessWidget {
       leadingIcon: leadingIcon,
       trailingIcon: trailingIcon,
       textBuilder: textBuilder,
-      leadingIconBuilder: leadingIconBuilder,
-      trailingIconBuilder: trailingIconBuilder,
+      leadingIconBuilder: leadingIconBuilder ?? _dsButtonIconBuilder,
+      trailingIconBuilder: trailingIconBuilder ?? _dsButtonIconBuilder,
       loadingBuilder: loadingBuilder ?? _dsButtonLoadingSpinnerBuilder,
       loading: loading,
       enabled: enabled,

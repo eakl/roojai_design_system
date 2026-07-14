@@ -1,18 +1,7 @@
+// Probably needs to be removed and backed in button_2
+
 part of 'button_2.dart';
 
-// Default `loading` spinner for DsButton.
-//
-// Remix's own `RemixButton` defaults to a `RemixSpinner` (an arc drawn with
-// `CustomPaint`). The design system instead standardizes on Phosphor's
-// `circleNotch` glyph, continuously rotated, so the loading indicator reuses
-// the same icon set as every other icon in the design system rather than a
-// bespoke painted spinner.
-
-/// Default [RemixButtonLoadingBuilder] for [DsButton]. Renders a rotating
-/// [PhosphorIcons.circleNotch], sized/colored/timed from the resolved
-/// [RemixSpinnerSpec] (see `spinnerSize`/`spinnerIndicatorColor`/
-/// `spinnerDuration` in `resolveDsButtonStyle`), so it always matches the
-/// button's `size`/`variant` without callers wiring anything up themselves.
 Widget _dsButtonLoadingSpinnerBuilder(
   BuildContext context,
   RemixSpinnerSpec spec,
@@ -45,13 +34,14 @@ class _DsButtonLoadingSpinnerState extends State<_DsButtonLoadingSpinner>
 
   @override
   Widget build(BuildContext context) {
+    var style = IconStyler().size(widget.spec.size ?? 20);
+    if (widget.spec.indicatorColor != null) {
+      style = style.color(widget.spec.indicatorColor!);
+    }
+
     return RotationTransition(
       turns: _controller,
-      child: PhosphorIcon(
-        PhosphorIcons.circleNotch(),
-        size: widget.spec.size ?? 20,
-        color: widget.spec.indicatorColor,
-      ),
+      child: Icon(PhosphorIcons.circleNotch(), style: style),
     );
   }
 }

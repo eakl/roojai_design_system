@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' show Icons;
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:ui/ui.dart';
 
 import '../component_showcase_spec.dart';
@@ -28,19 +28,19 @@ ComponentShowcaseSpec buildButton2ShowcaseSpec() {
     // flags. Hover/pressed/focus are handled internally by RemixButton and
     // are inherently transient, so verify them interactively in the running
     // app instead (hover/hold/tab-focus any enabled button below).
-    statesBuilder: () => const [
-      DsButton(label: 'enabled', onPressed: _noop),
-      DsButton(label: 'disabled', onPressed: null, enabled: false),
-      DsButton(label: 'loading', onPressed: _noop, loading: true),
+    statesBuilder: () => [
+      const DsButton(label: 'enabled', onPressed: _noop),
+      const DsButton(label: 'disabled', onPressed: null, enabled: false),
+      const DsButton(label: 'loading', onPressed: _noop, loading: true),
       DsButton(
         label: 'with leading',
         onPressed: _noop,
-        leadingIcon: Icons.add,
+        leadingIcon: PhosphorIcons.circle(),
       ),
       DsButton(
         label: 'with trailing',
         onPressed: _noop,
-        trailingIcon: Icons.arrow_forward,
+        trailingIcon: PhosphorIcons.circle(),
       ),
     ],
   );

@@ -182,7 +182,7 @@ class DsInput extends StatelessWidget {
       size: size,
       error: error,
     ).merge(style);
-
+  
     return RemixTextField(
       controller: controller,
       hintText: hintText,

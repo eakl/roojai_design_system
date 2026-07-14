@@ -1,31 +1,9 @@
 part of 'input_2.dart';
 
-// Style resolver for DsInput.
-//
-// Single entry point `resolveDsInputStyle` builds one `RemixTextFieldStyle`
-// by merging fragments — base, then size, then error state — mirroring the
-// base/size/variant/state composition in `button_2_style_resolver.dart`
-// (minus the variant fragment: DsInput has no visual-skin axis, see the
-// design spec's "Variant axis" decision).
-
-/// Resolves the full `RemixTextFieldStyle` for a [DsInput], given its
-/// [size] and current [error] state.
-///
-/// Order of composition: base metrics/colors/focus-disabled states, then
-/// size (padding/typography), then error. Later merges win on overlapping
-/// properties, so `stateStyle` — applied last — always has final say (e.g.
-/// an errored field's red border wins over the size fragment, which sets
-/// no border color of its own).
 RemixTextFieldStyle resolveDsInputStyle({
   required DsInputSize size,
   required bool error,
 }) {
-  // Focus/disabled use Remix's own `.onFocused()`/`.onDisabled()`
-  // widget-state variant helpers (from `WidgetStateVariantMixin`, mixed
-  // into `RemixTextFieldStyle` via `RemixFlexContainerStyle`) — Naked's
-  // `NakedTextFieldState` already derives these live, so (unlike the
-  // legacy `Input`) this widget never needs to track a `FocusNode`
-  // listener itself.
   final baseStyle = RemixTextFieldStyle()
       .borderRadiusAll($radius008())
       .borderAll(color: $borderDefault(), width: 1)
@@ -80,7 +58,7 @@ RemixTextFieldStyle resolveDsInputStyle({
   // `RemixTextField.error` directly. See the design spec's "Style
   // resolver" section for the full rationale.
   final stateStyle = error
-      ? RemixTextFieldStyle().borderAll(color: $negativeBorder(), width: 1)
+      ? RemixTextFieldStyle().borderAll(color: $negativeUi(), width: 1) // SHould also be red when focused
       : RemixTextFieldStyle();
 
   return baseStyle.merge(sizeStyle).merge(stateStyle);

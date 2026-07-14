@@ -2,6 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:remix/remix.dart';
 
 import '../../tokens/semantic/colors.dart';
+import '../../tokens/semantic/radius.dart';
+import '../../tokens/semantic/spacing.dart';
+import '../../tokens/semantic/typography.dart';
 import 'toggle_2_variants.dart';
 
 // The `resolveDsToggleStyle` function consumed by `build()` below lives in
