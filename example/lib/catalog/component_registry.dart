@@ -2,14 +2,17 @@ import 'component_showcase_spec.dart';
 import 'specs/avatar_group_showcase_spec.dart';
 import 'specs/avatar_showcase_spec.dart';
 import 'specs/badge_showcase_spec.dart';
+import 'specs/button_group_showcase_spec.dart';
 import 'specs/button_showcase_spec.dart';
 import 'specs/checkbox_showcase_spec.dart';
+import 'specs/form_field_showcase_spec.dart';
 import 'specs/input_group_showcase_spec.dart';
 import 'specs/input_otp_showcase_spec.dart';
 import 'specs/input_showcase_spec.dart';
 import 'specs/label_showcase_spec.dart';
 import 'specs/progress_showcase_spec.dart';
 import 'specs/radio_showcase_spec.dart';
+import 'specs/select_showcase_spec.dart';
 import 'specs/separator_showcase_spec.dart';
 import 'specs/skeleton_showcase_spec.dart';
 import 'specs/slider_showcase_spec.dart';
@@ -30,13 +33,16 @@ final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Avatar Group': buildAvatarGroupShowcaseSpec,
   'Badge': buildBadgeShowcaseSpec,
   'Button': buildButtonShowcaseSpec,
+  'Button Group': buildButtonGroupShowcaseSpec,
   'Checkbox': buildCheckboxShowcaseSpec,
+  'Form Field': buildFormFieldShowcaseSpec,
   'Input': buildInputShowcaseSpec,
   'Input Group': buildInputGroupShowcaseSpec,
   'Input OTP': buildInputOtpShowcaseSpec,
   'Label': buildLabelShowcaseSpec,
   'Progress': buildProgressShowcaseSpec,
   'Radio': buildRadioShowcaseSpec,
+  'Select': buildSelectShowcaseSpec,
   'Separator': buildSeparatorShowcaseSpec,
   'Skeleton': buildSkeletonShowcaseSpec,
   'Slider': buildSliderShowcaseSpec,
