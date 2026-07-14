@@ -91,6 +91,11 @@ final Map<ColorToken, Color> lightColors = <ColorToken, Color>{
   $infoText: AppColors.blue700,
   $infoTextStrong: AppColors.blue800,
 
-  // Icon.
-  $iconNeutral: AppColors.neutral600,
+  // Neutral.
+  $neutralSurface: AppColors.neutral050,
+  $neutralSurfaceStrong: AppColors.neutral200,
+  $neutralUi: AppColors.neutral500,
+  $neutralUiHover: AppColors.neutral600,
+  $neutralText: AppColors.neutral700,
+  $neutralTextStrong: AppColors.neutral800,
 };

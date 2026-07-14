@@ -92,5 +92,11 @@ const $infoUiHover = ColorToken('color.info.uiHover');
 const $infoText = ColorToken('color.info.text');
 const $infoTextStrong = ColorToken('color.info.textStrong');
 
-// Icon.
-const $iconNeutral = ColorToken('color.icon.neutral');
+// Neutral.
+const $neutralSurface = ColorToken('color.neutral.surface');
+const $neutralSurfaceStrong = ColorToken('color.neutral.surfaceStrong');
+const $neutralBorder = ColorToken('color.neutral.border');
+const $neutralUi = ColorToken('color.neutral.ui');
+const $neutralUiHover = ColorToken('color.neutral.uiHover');
+const $neutralText = ColorToken('color.neutral.text');
+const $neutralTextStrong = ColorToken('color.neutral.textStrong');
