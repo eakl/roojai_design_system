@@ -74,6 +74,8 @@ export 'src/components/switch_2/switch_2_variants.dart';
 // export 'src/components/toggle/toggle_interaction_state.dart';
 // export 'src/components/toggle/toggle_size.dart';
 // export 'src/components/toggle/toggle_variant.dart';
+export 'src/components/toggle_2/toggle_2.dart';
+export 'src/components/toggle_2/toggle_2_variants.dart';
 // export 'src/components/toggle_group/toggle_group.dart';
 // export 'src/components/toggle_group/toggle_group_item.dart';
 // export 'src/components/toggle_group/toggle_group_orientation.dart';
