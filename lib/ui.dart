@@ -66,6 +66,8 @@ export 'src/components/input_2/input_2_variants.dart';
 // export 'src/components/slider/slider.dart';
 // export 'src/components/spinner/spinner.dart';
 // export 'src/components/spinner/spinner_size.dart';
+export 'src/components/switch_2/switch_2.dart';
+export 'src/components/switch_2/switch_2_variants.dart';
 // export 'src/components/switch/switch.dart';
 // export 'src/components/textarea/textarea.dart';
 // export 'src/components/toggle/toggle.dart';
