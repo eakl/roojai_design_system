@@ -86,7 +86,10 @@ class DsSwitch extends StatelessWidget {
 
   /// True when the switch accepts toggles at all. [enabled] always wins,
   /// and a null [onChanged] makes the switch inert even when [enabled] is
-  /// true — mirrors [DsButton]'s `_interactive` getter.
+  /// true. Unlike [DsButton], which forwards its nullable `onPressed`
+  /// straight to `RemixButton` (itself nullable), this getter exists
+  /// because [RemixSwitch.onChanged] is non-null — [DsSwitch] must fold
+  /// the null check in here before forwarding.
   bool get _isEnabled => enabled && onChanged != null;
 
   @override
