@@ -11,9 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show TextInputFormatter;
 
 import '../../theme/app_tokens.dart';
-import '../../tokens/primitives/app_motion.dart';
-import '../../tokens/primitives/app_radius.dart';
-import '../../tokens/primitives/app_spacing.dart';
+import '../../tokens/primitives/motion.dart';
+import '../../tokens/primitives/radius.dart';
+import '../../tokens/primitives/spacing.dart';
 import '../../tokens/semantic/semantic_colors.dart';
 import '../../tokens/semantic/semantic_typography.dart';
 import 'input_interaction_state.dart';

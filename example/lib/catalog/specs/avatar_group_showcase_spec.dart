@@ -24,8 +24,9 @@ class _AddAvatarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = AppTokens.of(context).colors;
-    final typography = AppTokens.of(context).typography;
+    final borderStrong = $borderStrong.resolve(context);
+    final contentSecondary = $contentSecondary.resolve(context);
+    final labelLg = $labelLg.resolve(context);
     final diameter = avatarDiameterForSize(AvatarSize.md);
 
     return Container(
@@ -33,12 +34,12 @@ class _AddAvatarButton extends StatelessWidget {
       height: diameter,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: colors.border.strong),
+        border: Border.all(color: borderStrong),
       ),
       child: Center(
         child: Text(
           '+',
-          style: typography.labelLg.copyWith(color: colors.content.secondary),
+          style: labelLg.copyWith(color: contentSecondary),
         ),
       ),
     );

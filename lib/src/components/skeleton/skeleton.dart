@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../theme/app_tokens.dart';
-import '../../tokens/primitives/app_radius.dart';
+import '../../tokens/primitives/radius.dart';
 import 'skeleton_shape.dart';
 
 /// A pulsing placeholder block shown in place of content that hasn't

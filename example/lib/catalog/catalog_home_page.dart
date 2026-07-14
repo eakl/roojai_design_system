@@ -11,34 +11,37 @@ class CatalogHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = AppTokens.of(context).colors;
-    final typography = AppTokens.of(context).typography;
+    final canvasDefault = $canvasDefault.resolve(context);
+    final contentMuted = $contentMuted.resolve(context);
+    final borderDefault = $borderDefault.resolve(context);
+    final h3 = $headingH3.resolve(context);
+    final bodyMd = $bodyMd.resolve(context);
     final names = componentRegistry.keys.toList()..sort();
 
     return Scaffold(
-      backgroundColor: colors.canvas.base,
+      backgroundColor: canvasDefault,
       appBar: AppBar(
-        backgroundColor: colors.canvas.base,
+        backgroundColor: canvasDefault,
         elevation: 0,
-        title: Text('Components', style: typography.h3),
+        title: Text('Components', style: h3),
       ),
       body: names.isEmpty
           ? Center(
               child: Text(
                 'No components yet',
-                style: typography.bodyMd.copyWith(color: colors.content.muted),
+                style: bodyMd.copyWith(color: contentMuted),
               ),
             )
           : ListView.separated(
               itemCount: names.length,
               separatorBuilder: (_, __) => Divider(
                 height: 1,
-                color: colors.border.base,
+                color: borderDefault,
               ),
               itemBuilder: (context, index) {
                 final name = names[index];
                 return ListTile(
-                  title: Text(name, style: typography.bodyMd),
+                  title: Text(name, style: bodyMd),
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
