@@ -1,15 +1,21 @@
 library ui;
 
-// Semantic tokens (public — consuming apps may construct custom token sets).
-export 'src/tokens/semantic/semantic_colors.dart';
-export 'src/tokens/semantic/semantic_typography.dart';
+// Semantic tokens (public — consuming apps may reference/override these
+// when passing overrides to AppTokensScope).
+export 'src/tokens/semantic/colors.dart';
+export 'src/tokens/semantic/typography.dart';
+export 'src/tokens/semantic/spacing.dart';
+export 'src/tokens/semantic/radius.dart';
+export 'src/tokens/semantic/motion.dart';
+export 'src/tokens/semantic/elevation.dart';
 
 // Primitive scales referenced directly by consuming apps for spacing/radius.
 export 'src/tokens/primitives/app_spacing.dart';
 export 'src/tokens/primitives/app_radius.dart';
 
 // Theme.
-export 'src/theme/app_tokens.dart';
+export 'src/theme/curve_token.dart';
+export 'src/theme/app_theme_data.dart';
 export 'src/theme/app_tokens_scope.dart';
 
 // Components.
