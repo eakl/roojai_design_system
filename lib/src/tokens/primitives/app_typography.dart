@@ -3,7 +3,8 @@
 import 'package:flutter/widgets.dart';
 
 /// Raw font-size/weight/line-height/letter-spacing values. Semantic
-/// typography (`SemanticTypography`) composes these into named `TextStyle`s.
+/// typography tokens (`lib/src/tokens/semantic/typography.dart`) compose
+/// these into named `TextStyle`s.
 class AppTypeScale {
   AppTypeScale._();
 
