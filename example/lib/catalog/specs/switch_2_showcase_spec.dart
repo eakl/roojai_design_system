@@ -20,8 +20,8 @@ ComponentShowcaseSpec buildSwitch2ShowcaseSpec() {
     // interactively in the running app instead (hover/hold/tab-focus any
     // enabled switch below).
     statesBuilder: () => [
-      DsSwitch(selected: true, onChanged: _noop),
-      DsSwitch(selected: false, onChanged: _noop),
+      const DsSwitch(selected: true, onChanged: _noop),
+      const DsSwitch(selected: false, onChanged: _noop),
       const DsSwitch(selected: true, onChanged: null, enabled: false),
       const DsSwitch(selected: false, onChanged: null, enabled: false),
     ],
