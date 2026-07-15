@@ -142,16 +142,16 @@ class _DsAvatarState extends State<DsAvatar> {
     return RemixAvatar(
       backgroundImage: showImage ? widget.image : null,
       onBackgroundImageError: showImage ? _handleImageError : null,
-      label: widget.label == null
+      label: showImage || widget.label == null
           ? null
           : _resolveDsAvatarLabelText(widget.label!),
-      iconBuilder: widget.label == null && widget.icon != null
-          ? (context, spec, icon) => Icon(
+      iconBuilder: showImage || widget.label != null || widget.icon == null
+          ? null
+          : (context, spec, icon) => Icon(
                 icon!,
                 size: _resolveDsAvatarIconSize(widget.size),
-              )
-          : null,
-      icon: widget.label == null ? widget.icon : null,
+              ),
+      icon: showImage || widget.label != null ? null : widget.icon,
       style: resolvedStyle,
       styleSpec: widget.styleSpec,
     );
