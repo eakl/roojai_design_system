@@ -203,28 +203,26 @@ RemixBadgeStyle resolveDsBadgeStyle({
   required DsBadgeVariant variant,
   required DsBadgeSize size,
 }) {
-  final baseStyle = RemixBadgeStyle().borderRadius(
-    BorderRadiusGeometryMix.circular($radius004()),
-  );
+  final baseStyle = RemixBadgeStyle().borderRadiusAll($radius004());
 
   final sizeStyle = switch (size) {
     DsBadgeSize.sm => RemixBadgeStyle(
         container: BoxStyler()
-            .paddingX($spacing008())
+            .paddingX($spacing004())
             .paddingY($spacing002()),
-        text: $captionSm.mix(),
+        text: TextStyler(style: $captionSm.mix()),
       ),
     DsBadgeSize.md => RemixBadgeStyle(
         container: BoxStyler()
-            .paddingX($spacing012())
+            .paddingX($spacing008())
             .paddingY($spacing004()),
-        text: $captionMd.mix(),
+        text: TextStyler(style: $captionMd.mix()),
       ),
     DsBadgeSize.lg => RemixBadgeStyle(
         container: BoxStyler()
-            .paddingX($spacing016())
+            .paddingX($spacing012())
             .paddingY($spacing006()),
-        text: $labelSm.mix(),
+        text: TextStyler(style: $labelSm.mix()),
       ),
   };
 
@@ -240,11 +238,7 @@ RemixBadgeStyle resolveDsBadgeStyle({
     DsBadgeVariant.outline => RemixBadgeStyle()
         .backgroundColor(transparent)
         .foregroundColor($contentPrimary())
-        .merge(
-          RemixBadgeStyle(
-            container: BoxStyler().borderAll(color: $borderStrong(), width: 1),
-          ),
-        ),
+        .borderAll(color: $borderStrong(), width: 1),
     DsBadgeVariant.ghost => RemixBadgeStyle()
         .backgroundColor(transparent)
         .foregroundColor($contentPrimary()),
@@ -275,17 +269,34 @@ Notes:
   non-interactive (no `onPressed`, no hover/press/focus), same as legacy
   `Badge`'s comment ("Unlike `Badge`'s closest sibling, `Button`, this
   widget is always non-interactive").
-- `borderRadius($radius004())` is fixed across all three sizes, not
+- `borderRadiusAll($radius004())` is fixed across all three sizes, not
   varied per size and not `$radiusFull()` (unlike legacy `Badge`, which
   used `AppRadius.radiusFull` for a pill shape) — this migration
   deliberately moves off the pill shape onto the DS's small-radius scale.
+  `borderRadiusAll(Radius)` (from `BorderRadiusStyleMixin`, mixed into
+  every `RemixContainerStyle` incl. `RemixBadgeStyle`) is used instead of
+  `.borderRadius(BorderRadiusGeometryMix.circular(...))` because
+  `.circular()` takes a plain `double`, and `$radius004()` resolves to a
+  `RadiusRef` (a `Radius`, not a `double`) — same pattern
+  `resolveDsSwitchStyle`'s `.borderRadiusAll($radiusFull())` already uses.
 - `outline` is the only variant that sets a border; every other variant
   leaves `container`'s border unset (default none), same variant/border
-  pairing as legacy `Badge`'s `_resolveBorderColor`.
-- Padding/text-style numbers are a direct token-sourced port of legacy
-  `Badge`'s `_resolvePadding`/`_resolveTextStyle` values (`spacing8/2` →
-  `$spacing008()/$spacing002()`, etc.) — same numeric scale, now
-  token-backed instead of `AppSpacing`/typography constants.
+  pairing as legacy `Badge`'s `_resolveBorderColor`. `.borderAll(...)` is
+  chained directly on `RemixBadgeStyle()` — no `container: BoxStyler()`
+  wrapping or `.merge()` needed, since `RemixContainerStyle` (which
+  `RemixBadgeStyle` extends) already mixes in `BorderStyleMixin`, the
+  same mixin family `borderRadiusAll` above comes from.
+- `text` fields wrap each typography token in `TextStyler(style: ...)`
+  (e.g. `TextStyler(style: $captionSm.mix())`) rather than assigning the
+  token's `.mix()` result directly — `RemixBadgeStyle`'s `text` field is
+  typed `TextStyler?`, not `TextStyleMix`/`TextStyleMixRef`, so the ref
+  must be wrapped, mirroring `LabelStyleMixin.labelStyle`'s own internal
+  `label(TextStyler(style: value))` wrapping.
+- Padding uses one token tier below legacy `Badge`'s literal values —
+  `sm`/`md`/`lg` map to `$spacing004()`/`$spacing008()`/`$spacing012()`
+  (paired with `$spacing002()`/`$spacing004()`/`$spacing006()` vertically)
+  rather than a direct `spacing8/12/16` port — a deliberate tightening for
+  badge_2, not a port of the legacy numbers.
 
 ## Catalog registration
 
