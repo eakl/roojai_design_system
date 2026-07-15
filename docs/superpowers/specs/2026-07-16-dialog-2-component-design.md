@@ -66,7 +66,6 @@ class DsDialog extends StatelessWidget {
     this.modal = true,
     this.semanticLabel,
     this.style = const RemixDialogStyle.create(),
-    this.styleSpec,
   }) : assert(
          child != null || title != null || description != null,
          'Either child, title, or description must be provided',
@@ -83,8 +82,10 @@ class DsDialog extends StatelessWidget {
   overrides default title/description/actions composition; at least one of
   the three must be provided.
 - `modal` and `semanticLabel` pass straight through.
-- `style`/`styleSpec` are the escape hatches, same convention as
-  `DsButton`/`DsInput`.
+- `style` is the escape hatch, same convention as `DsButton`/`DsInput`.
+  Unlike `RemixButton`/`RemixTextField`, `RemixDialog` has no `styleSpec`
+  parameter to bypass style resolution with, so `DsDialog` doesn't expose
+  one either.
 
 ## `showDsDialog<T>()`
 
@@ -207,4 +208,4 @@ to export), same pattern as `button_2`/`input_2`.
   section above.
 - `DsDialogSize`/`DsDialogVariant` enums — no precedent from a legacy
   `Dialog`, and `RemixDialog` itself has no size prop; single style only,
-  `style`/`styleSpec` cover fixed-dimension cases.
+  `style` covers fixed-dimension cases.

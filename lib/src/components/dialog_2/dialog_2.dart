@@ -71,7 +71,6 @@ class DsDialog extends StatelessWidget {
     this.modal = true,
     this.semanticLabel,
     this.style = const RemixDialogStyle.create(),
-    this.styleSpec,
   }) : assert(
          child != null || title != null || description != null,
          'Either child, title, or description must be provided',
@@ -101,10 +100,6 @@ class DsDialog extends StatelessWidget {
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsDialogStyle]'s output).
   final RemixDialogStyle style;
-
-  /// Escape hatch for callers that need to supply an already-resolved
-  /// [RemixDialogSpec] directly, bypassing style resolution entirely.
-  final RemixDialogSpec? styleSpec;
 
   @override
   Widget build(BuildContext context) {
