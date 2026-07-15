@@ -28,13 +28,11 @@ RemixAvatarStyle resolveDsAvatarStyle({
         .labelStyle($labelLg.mix()),
   };
 
-  // Icon fallback size is fixed per `size`, reusing `icon_2`'s own
-  // `DsIconSize` scale 1:1 (both have exactly 4 steps) — same pattern as
-  // `input_2`'s `_resolveDsInputIconSize`. `DsAvatar` maps this separately
-  // in `avatar_2.dart` when building the `Icon` fallback widget; here we
-  // only size Remix's own `IconStyler` slot to match, in case a caller's
-  // `iconBuilder`-less default path is ever exercised directly through
-  // `styleSpec`.
+  // Icon fallback size is fixed per `size`. `DsAvatar` passes `icon`
+  // straight through to `RemixAvatar` with no custom `iconBuilder`, so
+  // this `IconStyler` slot is what actually sizes (and, via
+  // `variantStyle` below, colors) every rendered fallback glyph — not a
+  // niche `styleSpec`-only path.
   final iconSizeStyle = switch (size) {
     DsAvatarSize.sm => RemixAvatarStyle().iconSize($spacing016()),
     DsAvatarSize.md => RemixAvatarStyle().iconSize($spacing020()),
