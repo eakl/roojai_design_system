@@ -126,13 +126,8 @@ Widget build(BuildContext context) {
     styleSpec: styleSpec,
     labelBuilder: (leading == null && trailing == null)
         ? null
-        : (context, spec, resolvedLabel) => _buildLabelWithIcons(
-              spec: spec,
-              label: resolvedLabel,
-              leading: leading,
-              trailing: trailing,
-              size: size,
-            ),
+        : (context, spec, resolvedLabel) =>
+            _buildLabelWithIcons(spec, resolvedLabel),
   );
 }
 ```
@@ -144,18 +139,16 @@ slot is present, so the plain-label case (no icon slots) renders through
 path unchanged, same as the legacy widget's `if (leading != null)` /
 `if (trailing != null)` conditionals in its `Row`.
 
-`_buildLabelWithIcons` (private top-level function in `badge_2.dart`)
-ports the legacy widget's icon-flanked `Row` build, using the label's
-resolved `TextSpec.style` for the text run:
+`_buildLabelWithIcons` is a private **method on `DsBadge`** (not a
+top-level function): `leading`/`trailing`/`size` are all `DsBadge`'s own
+fields, so reading them via `this` avoids re-threading data the widget
+already has — only `spec`/`label` (which genuinely come from
+`RemixBadge`'s callback) are parameters. Ports the legacy widget's
+icon-flanked `Row` build, using the label's resolved `TextSpec.style`
+for the text run:
 
 ```dart
-Widget _buildLabelWithIcons({
-  required TextSpec spec,
-  required String label,
-  required Widget? leading,
-  required Widget? trailing,
-  required DsBadgeSize size,
-}) {
+Widget _buildLabelWithIcons(TextSpec spec, String label) {
   final iconExtent = _iconExtentFor(size);
   final iconGap = _iconGapFor(size);
 
@@ -163,36 +156,71 @@ Widget _buildLabelWithIcons({
     mainAxisSize: MainAxisSize.min,
     children: [
       if (leading != null) ...[
-        SizedBox(width: iconExtent, height: iconExtent, child: leading),
+        SizedBox(
+          width: iconExtent,
+          height: iconExtent,
+          child: FittedBox(fit: BoxFit.contain, child: leading),
+        ),
         SizedBox(width: iconGap),
       ],
       Text(label, style: spec.style),
       if (trailing != null) ...[
         SizedBox(width: iconGap),
-        SizedBox(width: iconExtent, height: iconExtent, child: trailing),
+        SizedBox(
+          width: iconExtent,
+          height: iconExtent,
+          child: FittedBox(fit: BoxFit.contain, child: trailing),
+        ),
       ],
     ],
   );
 }
 
 double _iconExtentFor(DsBadgeSize size) => switch (size) {
-      DsBadgeSize.sm => 10,
-      DsBadgeSize.md => 12,
-      DsBadgeSize.lg => 14,
+      DsBadgeSize.sm => AppSpacing.sp010,
+      DsBadgeSize.md => AppSpacing.sp012,
+      DsBadgeSize.lg => AppSpacing.sp016,
     };
 
 double _iconGapFor(DsBadgeSize size) => switch (size) {
-      DsBadgeSize.sm => 4,
-      DsBadgeSize.md => 4,
-      DsBadgeSize.lg => 6,
+      DsBadgeSize.sm => AppSpacing.sp004,
+      DsBadgeSize.md => AppSpacing.sp004,
+      DsBadgeSize.lg => AppSpacing.sp006,
     };
 ```
 
-Icon sizing/gap stays outside `RemixBadgeStyle` (which only has
-`container`/`text` fields, no icon slot) — same reasoning legacy
-`Badge`'s `_resolveIconGap`/`_resolveIconExtent` helpers already
-establish, just ported to `double` literals instead of Mix tokens since
-these aren't `BoxStyler`/`TextStyler` properties.
+`FittedBox(fit: BoxFit.contain, ...)` wrapping each icon inside its
+`SizedBox` is required, not cosmetic: a caller-supplied `leading`/
+`trailing` (typically `icon_2`'s `Icon`) paints its glyph at its own
+configured font size regardless of `SizedBox`'s layout constraints —
+`SizedBox` alone clamps the *layout box* to `iconExtent` but doesn't
+rescale the glyph, so an icon larger than `iconExtent` (e.g.
+`DsIconSize.md`'s default 20px against a `sm`/`md` badge's 10-12px
+extent) overflows the box and visually crowds/overlaps the gap and
+label instead of appearing centered with visible spacing. `FittedBox`
+scales oversized content down to fit.
+
+`_iconExtentFor`/`_iconGapFor` are `double`-returning free functions
+sourced from `AppSpacing` (`lib/src/tokens/primitives/spacing.dart`'s
+plain-`double` constant scale — `sp000`/`sp002`/.../`sp096`), not the
+`$spacingNNN` Mix tokens: a Mix token's `()` call (e.g. `$spacing010()`)
+returns a sentinel placeholder (a tiny near-zero double) that only
+resolves to its real value inside Mix's own style-resolution pipeline —
+a `BoxStyler`/`TextStyler` chain resolved against a `BuildContext`'s
+`MixScope`, as `resolveDsBadgeStyle` below does. `SizedBox.width`/
+`height` are plain Flutter properties that never go through that
+resolution, so a token call here would hand `SizedBox` the sentinel's
+raw value instead of the intended spacing number. `AppSpacing`'s
+constants carry the same numeric scale as compile-time doubles, safe to
+use directly. Icon sizing/gap otherwise stays outside `RemixBadgeStyle`
+(which only has `container`/`text` fields, no icon slot) — same
+schema-limit reasoning legacy `Badge`'s `_resolveIconGap`/
+`_resolveIconExtent` helpers already establish.
+
+`lg`'s icon extent is `AppSpacing.sp016` (16), not a direct port of
+legacy `Badge`'s arbitrary `14` — `14` isn't a step on the `AppSpacing`
+scale (`...sp012` (12) → `sp016` (16), nothing between), so `lg` snaps
+up to the nearest real value instead of keeping an off-scale number.
 
 ## Style resolver (`badge_2_style_resolver.dart`)
 

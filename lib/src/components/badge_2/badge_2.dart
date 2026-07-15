@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:remix/remix.dart';
 
+import '../../tokens/primitives/spacing.dart';
 import '../../tokens/semantic/colors.dart';
 import '../../tokens/semantic/radius.dart';
 import '../../tokens/semantic/spacing.dart';
@@ -131,20 +132,31 @@ class DsBadge extends StatelessWidget {
   }
 }
 
-/// Icon slot extent per [DsBadgeSize] — kept as plain `double` literals
-/// (not Mix tokens) since icon sizing isn't part of [RemixBadgeStyle]'s
-/// schema (`container`/`text` only), same reasoning legacy `Badge`'s
-/// `_resolveIconExtent` already establishes.
+/// Icon slot extent per [DsBadgeSize] — sourced from [AppSpacing]'s
+/// primitive scale (not the `$spacingNNN` Mix tokens): those tokens'
+/// `()` call returns a sentinel placeholder that only resolves to a real
+/// value inside Mix's own style-resolution pipeline (a `BoxStyler`/
+/// `TextStyler` chain resolved against a `BuildContext`'s `MixScope`) —
+/// see `resolveDsBadgeStyle`. `SizedBox.width`/`height` below are plain
+/// Flutter properties that never go through that resolution, so a token
+/// call here would hand `SizedBox` the sentinel's raw (near-zero)
+/// double instead of the real spacing value. `AppSpacing` mirrors the
+/// same numeric scale as plain compile-time constants, safe to use
+/// directly. `lg` snaps to `sp016` (not the legacy widget's arbitrary
+/// `14`, which isn't on the scale — the nearest steps are `sp012`/12
+/// and `sp016`/16).
 double _iconExtentFor(DsBadgeSize size) => switch (size) {
-      DsBadgeSize.sm => 10,
-      DsBadgeSize.md => 12,
-      DsBadgeSize.lg => 14,
+      DsBadgeSize.sm => AppSpacing.sp010,
+      DsBadgeSize.md => AppSpacing.sp012,
+      DsBadgeSize.lg => AppSpacing.sp016,
     };
 
-/// Icon-to-label gap per [DsBadgeSize] — ports legacy `Badge`'s
-/// `_resolveIconGap` values.
+/// Icon-to-label gap per [DsBadgeSize] — also [AppSpacing]-sourced, same
+/// reasoning as [_iconExtentFor]. Values match legacy `Badge`'s
+/// `_resolveIconGap`, which already happened to land on real scale
+/// steps (`sp004`/`sp006`).
 double _iconGapFor(DsBadgeSize size) => switch (size) {
-      DsBadgeSize.sm => 4,
-      DsBadgeSize.md => 4,
-      DsBadgeSize.lg => 6,
+      DsBadgeSize.sm => AppSpacing.sp004,
+      DsBadgeSize.md => AppSpacing.sp004,
+      DsBadgeSize.lg => AppSpacing.sp006,
     };
