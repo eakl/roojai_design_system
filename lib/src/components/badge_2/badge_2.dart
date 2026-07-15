@@ -83,63 +83,52 @@ class DsBadge extends StatelessWidget {
       styleSpec: styleSpec,
       labelBuilder: (leading == null && trailing == null)
           ? null
-          : (context, spec, resolvedLabel) => _buildLabelWithIcons(
-                spec: spec,
-                label: resolvedLabel,
-                leading: leading,
-                trailing: trailing,
-                size: size,
-              ),
+          : (context, spec, resolvedLabel) =>
+              _buildLabelWithIcons(spec, resolvedLabel),
     );
   }
-}
 
-/// Builds [DsBadge]'s label content flanked by [leading]/[trailing] icon
-/// slots, using the resolved [TextSpec]'s [TextSpec.style] for the text
-/// run so the label matches [resolveDsBadgeStyle]'s size/variant text
-/// styling exactly. Only invoked by [DsBadge.build] when at least one of
-/// [leading]/[trailing] is non-null — ports legacy `Badge`'s icon-flanked
-/// `Row` build.
-Widget _buildLabelWithIcons({
-  required TextSpec spec,
-  required String label,
-  required Widget? leading,
-  required Widget? trailing,
-  required DsBadgeSize size,
-}) {
-  final iconExtent = _iconExtentFor(size);
-  final iconGap = _iconGapFor(size);
+  /// Builds the label content flanked by [leading]/[trailing] icon slots,
+  /// using the resolved [TextSpec]'s [TextSpec.style] for the text run so
+  /// the label matches [resolveDsBadgeStyle]'s size/variant text styling
+  /// exactly. Only invoked by [build] when at least one of [leading]/
+  /// [trailing] is non-null — ports legacy `Badge`'s icon-flanked `Row`
+  /// build.
+  Widget _buildLabelWithIcons(TextSpec spec, String label) {
+    final iconExtent = _iconExtentFor(size);
+    final iconGap = _iconGapFor(size);
 
-  // `FittedBox` is required, not cosmetic: a caller-supplied `leading`/
-  // `trailing` (typically icon_2's `Icon`) paints its glyph at its own
-  // configured font size regardless of the `SizedBox`'s layout
-  // constraints — `SizedBox` alone clamps the layout box to [iconExtent]
-  // but doesn't rescale the glyph, so an icon larger than [iconExtent]
-  // (e.g. `DsIconSize.md`'s default 20px against a `sm`/`md` badge's
-  // 10-12px extent) overflows the box and visually crowds/overlaps the
-  // gap and label instead of shrinking to fit.
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      if (leading != null) ...[
-        SizedBox(
-          width: iconExtent,
-          height: iconExtent,
-          child: FittedBox(fit: BoxFit.contain, child: leading),
-        ),
-        SizedBox(width: iconGap),
+    // `FittedBox` is required, not cosmetic: a caller-supplied `leading`/
+    // `trailing` (typically icon_2's `Icon`) paints its glyph at its own
+    // configured font size regardless of the `SizedBox`'s layout
+    // constraints — `SizedBox` alone clamps the layout box to
+    // [iconExtent] but doesn't rescale the glyph, so an icon larger than
+    // [iconExtent] (e.g. `DsIconSize.md`'s default 20px against a
+    // `sm`/`md` badge's 10-12px extent) overflows the box and visually
+    // crowds/overlaps the gap and label instead of shrinking to fit.
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (leading != null) ...[
+          SizedBox(
+            width: iconExtent,
+            height: iconExtent,
+            child: FittedBox(fit: BoxFit.contain, child: leading),
+          ),
+          SizedBox(width: iconGap),
+        ],
+        Text(label, style: spec.style),
+        if (trailing != null) ...[
+          SizedBox(width: iconGap),
+          SizedBox(
+            width: iconExtent,
+            height: iconExtent,
+            child: FittedBox(fit: BoxFit.contain, child: trailing),
+          ),
+        ],
       ],
-      Text(label, style: spec.style),
-      if (trailing != null) ...[
-        SizedBox(width: iconGap),
-        SizedBox(
-          width: iconExtent,
-          height: iconExtent,
-          child: FittedBox(fit: BoxFit.contain, child: trailing),
-        ),
-      ],
-    ],
-  );
+    );
+  }
 }
 
 /// Icon slot extent per [DsBadgeSize] — kept as plain `double` literals
