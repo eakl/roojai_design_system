@@ -110,17 +110,33 @@ Widget _buildLabelWithIcons({
   final iconExtent = _iconExtentFor(size);
   final iconGap = _iconGapFor(size);
 
+  // `FittedBox` is required, not cosmetic: a caller-supplied `leading`/
+  // `trailing` (typically icon_2's `Icon`) paints its glyph at its own
+  // configured font size regardless of the `SizedBox`'s layout
+  // constraints — `SizedBox` alone clamps the layout box to [iconExtent]
+  // but doesn't rescale the glyph, so an icon larger than [iconExtent]
+  // (e.g. `DsIconSize.md`'s default 20px against a `sm`/`md` badge's
+  // 10-12px extent) overflows the box and visually crowds/overlaps the
+  // gap and label instead of shrinking to fit.
   return Row(
     mainAxisSize: MainAxisSize.min,
     children: [
       if (leading != null) ...[
-        SizedBox(width: iconExtent, height: iconExtent, child: leading),
+        SizedBox(
+          width: iconExtent,
+          height: iconExtent,
+          child: FittedBox(fit: BoxFit.contain, child: leading),
+        ),
         SizedBox(width: iconGap),
       ],
       Text(label, style: spec.style),
       if (trailing != null) ...[
         SizedBox(width: iconGap),
-        SizedBox(width: iconExtent, height: iconExtent, child: trailing),
+        SizedBox(
+          width: iconExtent,
+          height: iconExtent,
+          child: FittedBox(fit: BoxFit.contain, child: trailing),
+        ),
       ],
     ],
   );
