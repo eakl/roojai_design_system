@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:ui/ui.dart';
 
 import '../component_showcase_spec.dart';
@@ -7,10 +8,13 @@ ComponentShowcaseSpec buildSlider2ShowcaseSpec() {
     title: 'Slider 2',
     sizesBuilder: () => DsSliderSize.values
         .map(
-          (size) => DsSlider(
-            value: 0.5,
-            onChanged: (_) {},
-            size: size,
+          (size) => SizedBox(
+            width: 240,
+            child: DsSlider(
+              value: 0.5,
+              onChanged: (_) {},
+              size: size,
+            ),
           ),
         )
         .toList(),
@@ -19,12 +23,30 @@ ComponentShowcaseSpec buildSlider2ShowcaseSpec() {
     // Naked-driven, so verify them interactively in the running catalog
     // app instead (drag any enabled slider below).
     statesBuilder: () => [
-      DsSlider(value: 0.25, onChanged: (_) {}),
-      DsSlider(value: 0.75, onChanged: (_) {}),
-      const DsSlider(value: 0.5, onChanged: null, enabled: false),
-      DsSlider(value: 0.0, onChanged: (_) {}),
-      DsSlider(value: 1.0, onChanged: (_) {}),
-      DsSlider(value: 0.5, onChanged: (_) {}, snapDivisions: 4),
+      SizedBox(
+        width: 240,
+        child: DsSlider(value: 0.25, onChanged: (_) {}),
+      ),
+      SizedBox(
+        width: 240,
+        child: DsSlider(value: 0.75, onChanged: (_) {}),
+      ),
+      const SizedBox(
+        width: 240,
+        child: DsSlider(value: 0.5, onChanged: null, enabled: false),
+      ),
+      SizedBox(
+        width: 240,
+        child: DsSlider(value: 0.0, onChanged: (_) {}),
+      ),
+      SizedBox(
+        width: 240,
+        child: DsSlider(value: 1.0, onChanged: (_) {}),
+      ),
+      SizedBox(
+        width: 240,
+        child: DsSlider(value: 0.5, onChanged: (_) {}, snapDivisions: 4),
+      ),
     ],
   );
 }
