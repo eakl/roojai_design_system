@@ -5,8 +5,6 @@ import '../../tokens/semantic/colors.dart';
 import '../../tokens/semantic/radius.dart';
 import '../../tokens/semantic/spacing.dart';
 import '../../tokens/semantic/typography.dart';
-import '../icon_2/icon.dart';
-import '../icon_2/icon_variants.dart';
 import 'avatar_2_variants.dart';
 
 // The `resolveDsAvatarStyle` function consumed by `build()` below lives in
@@ -15,19 +13,6 @@ import 'avatar_2_variants.dart';
 // file — same split as `DsButton`'s `button_2_style_resolver.dart` and
 // `DsBadge`'s `badge_2_style_resolver.dart`.
 part 'avatar_2_style_resolver.dart';
-
-/// Maps [DsAvatar]'s own size enum onto [Icon]'s, so the fallback glyph
-/// scales with the avatar instead of needing a second size prop from
-/// callers — same pattern as `input_2`'s `_resolveDsInputIconSize`. Both
-/// enums have exactly four steps, so this is a direct 1:1 mapping.
-DsIconSize _resolveDsAvatarIconSize(DsAvatarSize size) {
-  return switch (size) {
-    DsAvatarSize.sm => DsIconSize.sm,
-    DsAvatarSize.md => DsIconSize.md,
-    DsAvatarSize.lg => DsIconSize.lg,
-    DsAvatarSize.xl => DsIconSize.xl,
-  };
-}
 
 /// Normalizes [label] to at most two uppercase characters, so a caller
 /// passing a full name or lowercase text still lays out as a compact
@@ -145,12 +130,6 @@ class _DsAvatarState extends State<DsAvatar> {
       label: showImage || widget.label == null
           ? null
           : _resolveDsAvatarLabelText(widget.label!),
-      iconBuilder: showImage || widget.label != null || widget.icon == null
-          ? null
-          : (context, spec, icon) => Icon(
-                icon!,
-                size: _resolveDsAvatarIconSize(widget.size),
-              ),
       icon: showImage || widget.label != null ? null : widget.icon,
       style: resolvedStyle,
       styleSpec: widget.styleSpec,
