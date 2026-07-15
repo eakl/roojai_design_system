@@ -1,0 +1,4 @@
+enum DsSeparatorOrientation {
+  horizontal,
+  vertical,
+}

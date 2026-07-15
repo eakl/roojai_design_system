@@ -24,6 +24,9 @@ part 'badge_2_style_resolver.dart';
 /// (status pills, counts, tags), matching how legacy `Badge` was a plain
 /// `Container`/`Row` rather than a button. See
 /// `docs/superpowers/specs/2026-07-15-badge-2-component-design.md`.
+/// 
+
+// TODO: Remove leading and trailing support
 class DsBadge extends StatelessWidget {
   const DsBadge({
     super.key,
