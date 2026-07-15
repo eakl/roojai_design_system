@@ -19,6 +19,8 @@ export 'src/theme/app_theme_data.dart';
 export 'src/theme/app_tokens_scope.dart';
 
 // Components.
+export 'src/components/avatar_2/avatar_2.dart';
+export 'src/components/avatar_2/avatar_2_variants.dart';
 // export 'src/components/avatar/avatar.dart';
 // export 'src/components/avatar/avatar_group.dart';
 // export 'src/components/avatar/avatar_size.dart';
