@@ -140,9 +140,12 @@ clip to the resolved shape — `BoxDecoration`'s image otherwise ignores
 | `lg`           | 40       | `$labelMd`     | `lg` (24px)               |
 | `xl`           | 64       | `$labelLg`     | `xl` (32px)               |
 
-The icon-size mapping reuses `icon_2`'s existing `DsIconSize` enum 1:1 (both
-have exactly 4 steps), the same way `input_2` maps `DsInputSize` onto
-`DsIconSize` for its leading/trailing icons.
+The icon fallback pixel sizes match `icon_2`'s `DsIconSize` scale 1:1 (both
+have exactly 4 steps: 16/20/24/32), the same values `input_2` maps
+`DsInputSize` onto for its leading/trailing icons. `DsAvatar` passes `icon`
+straight through to `RemixAvatar` with no custom `iconBuilder`, so this
+sizing (and the variant's `iconColor`, below) is applied by Remix's own
+`IconStyler` resolution — not via `icon_2`'s `Icon` widget.
 
 **Shape**:
 - `circle` → `.borderRadiusAll($radiusFull())` at every size (a token large
