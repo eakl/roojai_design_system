@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:ui/ui.dart';
 
 import '../component_showcase_spec.dart';
