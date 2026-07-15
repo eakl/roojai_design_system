@@ -1,4 +1,5 @@
 import 'component_showcase_spec.dart';
+import 'specs/badge_2_showcase_spec.dart';
 import 'specs/button_2_showcase_spec.dart';
 import 'specs/icon_2_showcase_spec.dart';
 import 'specs/icon_container_2_showcase_spec.dart';
@@ -22,6 +23,7 @@ import 'specs/toggle_2_showcase_spec.dart';
 /// have their exports commented out in `ui.dart` during the migration, so
 /// registering their specs here would fail the build.
 final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
+  'Badge 2': buildBadge2ShowcaseSpec,
   'Button 2': buildButton2ShowcaseSpec,
   'Icon 2': buildIcon2ShowcaseSpec,
   'Icon Container 2': buildIconContainer2ShowcaseSpec,
