@@ -36,6 +36,7 @@ export 'src/components/button_2/button_2_variants.dart';
 // export 'src/components/checkbox/checkbox.dart';
 // export 'src/components/checkbox/checkbox_value.dart';
 // export 'src/components/form_field/form_field.dart';
+export 'src/components/dialog_2/dialog_2.dart';
 export 'src/components/icon_2/icon.dart';
 export 'src/components/icon_2/icon_variants.dart';
 export 'src/components/icon_container_2/icon_container.dart';
