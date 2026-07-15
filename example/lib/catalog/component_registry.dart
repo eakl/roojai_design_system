@@ -7,7 +7,9 @@ import 'specs/icon_container_2_showcase_spec.dart';
 import 'specs/input_2_showcase_spec.dart';
 import 'specs/progress_2_showcase_spec.dart';
 import 'specs/select_2_showcase_spec.dart';
+import 'specs/separator_2_showcase_spec.dart';
 import 'specs/skeleton_2_showcase_spec.dart';
+import 'specs/slider_2_showcase_spec.dart';
 import 'specs/spinner_2_showcase_spec.dart';
 import 'specs/switch_2_showcase_spec.dart';
 import 'specs/tabs_2_showcase_spec.dart';
@@ -32,7 +34,9 @@ final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Input 2': buildInput2ShowcaseSpec,
   'Progress 2': buildProgress2ShowcaseSpec,
   'Select 2': buildSelect2ShowcaseSpec,
+  'Separator 2': buildSeparator2ShowcaseSpec,
   'Skeleton 2': buildSkeleton2ShowcaseSpec,
+  'Slider 2': buildSlider2ShowcaseSpec,
   'Spinner 2': buildSpinner2ShowcaseSpec,
   'Switch 2': buildSwitch2ShowcaseSpec,
   'Tabs 2': buildTabs2ShowcaseSpec,
