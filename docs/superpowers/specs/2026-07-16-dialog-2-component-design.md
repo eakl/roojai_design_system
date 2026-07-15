@@ -137,21 +137,36 @@ size/variant axis to switch on, so this composes a single fixed style
 fragment):
 
 ```dart
+// AppElevation.level3's concrete shadow, inlined as a literal — Mix's
+// BoxDecorationMix.boxShadow (and RemixDialogStyle.shadow, which delegates
+// to it) only accepts `List<BoxShadowMix>`/`BoxShadowMix`, with no way to
+// feed in a `BoxShadowToken` (`MixToken<List<BoxShadow>>`) token reference
+// directly. Same class of limitation button_2's resolver hit with
+// Curve/Duration token refs — falls back to a literal matching
+// `AppElevation.level3` until Mix supports resolving this token type
+// outside of a theme lookup.
+final _dialogShadow = BoxShadowMix(
+  color: const Color(0x1F000000),
+  offset: const Offset(0, 4),
+  blurRadius: 12,
+);
+
 RemixDialogStyle resolveDsDialogStyle() {
-  return RemixDialogStyle()
+  return RemixDialogStyle(
+    title: TextStyler(style: $labelLg.mix()).color($contentPrimary()),
+    description: TextStyler(
+      style: $bodyMd.mix(),
+    ).color($contentSecondary()),
+    actions: FlexBoxStyler()
+        .direction(Axis.horizontal)
+        .mainAxisAlignment(MainAxisAlignment.end)
+        .spacing($spacing008())
+        .padding(EdgeInsetsGeometryMix.only(top: $spacing016())),
+  )
       .borderRadiusAll($radius008())
       .backgroundColor($surfaceDefault())
-      .shadow(BoxShadowMix.fromToken($elevationLevel3))
       .padding(EdgeInsetsGeometryMix.all($spacing020()))
-      .title(TextStyler(style: $labelLg.mix()).color($contentPrimary()))
-      .description(TextStyler(style: $bodyMd.mix()).color($contentSecondary()))
-      .actions(
-        FlexBoxStyler()
-            .direction(Axis.horizontal)
-            .mainAxisAlignment(MainAxisAlignment.end)
-            .spacing($spacing008())
-            .padding(EdgeInsetsGeometryMix.only(top: $spacing016())),
-      );
+      .shadow(_dialogShadow);
 }
 ```
 
@@ -159,11 +174,23 @@ Notes:
 
 - `$radius008` matches `DsButton`/`DsInput`'s corner radius for visual
   consistency across the DS.
-- `$elevationLevel3` (from `tokens/semantic/elevation.dart`) gives the
-  dialog a shadow separating it from the barrier — no equivalent token use
-  exists yet in `button_2`/`input_2` since neither floats above other
-  content; this is `dialog_2`'s first use of the elevation token set in a
-  `_2` component.
+- `title`/`description`/`actions` are passed as `RemixDialogStyle`
+  constructor args (not fluent `.title()`/`.description()`/`.actions()`
+  calls) — `RemixDialogStyle` only exposes those three fields via its
+  constructor, mirroring how `resolveDsInputStyle` sets `text`/`hintText`/
+  `helperText`/`label` on `RemixTextFieldStyle`.
+- The dialog's shadow is meant to visually separate it from the barrier
+  behind it, at the same visual weight as `AppElevation.level3`
+  (`tokens/primitives/elevation.dart`) — but it's expressed as an inlined
+  `BoxShadowMix` literal, not a `$elevationLevel3` token reference. Mix's
+  `BoxDecorationMix.boxShadow` (which `RemixDialogStyle.shadow()` delegates
+  into) only accepts `List<BoxShadowMix>`/`BoxShadowMix` values, with no
+  path to resolve a `BoxShadowToken` (`MixToken<List<BoxShadow>>`) inline —
+  the same class of limitation `button_2`'s resolver hit with `Curve`/
+  `Duration` token refs (see that resolver's own comment). This remains
+  `dialog_2`'s first (attempted) use of the elevation token set in a `_2`
+  component; a true token reference can replace the literal once Mix
+  supports resolving this token type outside of a theme lookup.
 - `title`/`description` use the same `$labelLg`/`$bodyMd` typography tokens
   and `$contentPrimary`/`$contentSecondary` color tokens already used
   elsewhere in the DS (e.g. `button_2`'s `$labelLg` label styling,
