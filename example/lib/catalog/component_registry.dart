@@ -5,8 +5,10 @@ import 'specs/icon_container_2_showcase_spec.dart';
 import 'specs/input_2_showcase_spec.dart';
 import 'specs/progress_2_showcase_spec.dart';
 import 'specs/select_2_showcase_spec.dart';
+import 'specs/skeleton_2_showcase_spec.dart';
 import 'specs/spinner_2_showcase_spec.dart';
 import 'specs/switch_2_showcase_spec.dart';
+import 'specs/tabs_2_showcase_spec.dart';
 import 'specs/toggle_2_showcase_spec.dart';
 
 /// Maps a component's display name to a function building its
@@ -26,7 +28,9 @@ final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Input 2': buildInput2ShowcaseSpec,
   'Progress 2': buildProgress2ShowcaseSpec,
   'Select 2': buildSelect2ShowcaseSpec,
+  'Skeleton 2': buildSkeleton2ShowcaseSpec,
   'Spinner 2': buildSpinner2ShowcaseSpec,
   'Switch 2': buildSwitch2ShowcaseSpec,
+  'Tabs 2': buildTabs2ShowcaseSpec,
   'Toggle 2': buildToggle2ShowcaseSpec,
 };
