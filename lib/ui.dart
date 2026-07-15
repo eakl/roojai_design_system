@@ -61,6 +61,8 @@ export 'src/components/progress_2/progress_2_variants.dart';
 // export 'src/components/radio/radio.dart';
 // export 'src/components/select/select.dart';
 // export 'src/components/select/select_interaction_state.dart';
+export 'src/components/select_2/select_2.dart';
+export 'src/components/select_2/select_2_variants.dart';
 // export 'src/components/separator/separator.dart';
 // export 'src/components/separator/separator_orientation.dart';
 // export 'src/components/skeleton/skeleton.dart';
