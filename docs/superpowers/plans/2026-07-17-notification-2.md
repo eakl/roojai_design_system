@@ -17,6 +17,8 @@
 - Border radius `$radius008()` on the container, matching every other `_2` component.
 - No dismiss button, no auto-dismiss timer, no animation — static content only.
 - Full spec: `docs/superpowers/specs/2026-07-17-notification-2-component-design.md`.
+- This repo is FVM-pinned — use `fvm flutter ...`, never bare `flutter`/`dart`.
+- Both `lib/` and `example/` have pre-existing analyzer errors in unrelated legacy (non-`_2`) components mid-migration (confirmed baseline: `fvm flutter analyze` in `lib/` reports 648 issues in `toggle/`/`toggle_group/`/`textarea/`; in `example/` reports 298 issues in legacy showcase specs). None of these are caused by this plan and none are this plan's responsibility to fix. Always scope `flutter analyze` invocations to the specific files/directories a task touches — "No issues found!" is the bar for that scope, not for the whole package.
 
 ---
 
@@ -441,9 +443,11 @@ And add the registry entry alphabetically in the `componentRegistry` map:
 
 (Exact neighboring lines depend on the current file contents — insert alphabetically relative to whatever is actually there; the import list already confirmed to include `input_2` and `popover_2` entries adjacent to where `notification_2` sorts.)
 
-- [ ] **Step 3: Verify the example app analyzes cleanly**
+- [ ] **Step 3: Verify the new/changed files analyze cleanly**
 
-Run: `cd /Users/eakl/dev/projects/roojai/example && fvm flutter analyze lib/catalog/`
+The `example` package has pre-existing analyzer errors in unrelated legacy files (confirmed baseline: `fvm flutter analyze lib/catalog/` currently reports 298 issues, all in `toggle_showcase_spec.dart` and other non-`_2` legacy specs — nothing to do with this task). Scope the analyze invocation to only the files this task touches so pre-existing noise doesn't obscure real signal:
+
+Run: `cd /Users/eakl/dev/projects/roojai/example && fvm flutter analyze lib/catalog/specs/notification_2_showcase_spec.dart lib/catalog/component_registry.dart`
 Expected: `No issues found!`
 
 - [ ] **Step 4: Run the catalog app and visually verify**
@@ -490,9 +494,11 @@ export 'src/components/notification_2/notification_2.dart';
 export 'src/components/notification_2/notification_2_variants.dart';
 ```
 
-- [ ] **Step 2: Verify the whole package analyzes cleanly**
+- [ ] **Step 2: Verify the touched files analyze cleanly**
 
-Run: `cd /Users/eakl/dev/projects/roojai && fvm flutter analyze`
+The `lib/` package has pre-existing analyzer errors in unrelated legacy (non-`_2`) components under active migration (confirmed baseline: `fvm flutter analyze` currently reports 648 issues, all in `toggle/`, `toggle_group/`, `textarea/` — nothing to do with this task). Scope the analyze invocation to `ui.dart` plus the new component directory:
+
+Run: `cd /Users/eakl/dev/projects/roojai && fvm flutter analyze lib/ui.dart lib/src/components/notification_2/`
 Expected: `No issues found!`
 
 - [ ] **Step 3: Commit**
