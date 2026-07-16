@@ -11,12 +11,15 @@ BoxStyler resolveDsNotificationContainerStyle({
   required DsNotificationSize size,
 }) {
   final sizeStyle = switch (size) {
-    DsNotificationSize.sm =>
-      BoxStyler().padding(EdgeInsetsGeometryMix.all($spacing012())),
-    DsNotificationSize.md =>
-      BoxStyler().padding(EdgeInsetsGeometryMix.all($spacing016())),
-    DsNotificationSize.lg =>
-      BoxStyler().padding(EdgeInsetsGeometryMix.all($spacing020())),
+    DsNotificationSize.sm => BoxStyler().padding(
+      EdgeInsetsGeometryMix.all($spacing012()),
+    ),
+    DsNotificationSize.md => BoxStyler().padding(
+      EdgeInsetsGeometryMix.all($spacing016()),
+    ),
+    DsNotificationSize.lg => BoxStyler().padding(
+      EdgeInsetsGeometryMix.all($spacing020()),
+    ),
   };
 
   final variantStyle = switch (variant) {
