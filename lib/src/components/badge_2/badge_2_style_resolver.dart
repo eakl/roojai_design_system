@@ -1,34 +1,33 @@
 part of 'badge_2.dart';
 
-
 RemixBadgeStyler resolveDsBadgeStyle({
   required DsBadgeVariant variant,
   required DsBadgeSize size,
 }) {
-  final baseStyle = RemixBadgeStyler().borderRadiusAll($radius004());
+  final baseStyle = RemixBadgeStyler()
+      .borderRadiusAll($radius004())
+      .borderAll(color: $transparent(), width: 1);
 
   final sizeStyle = switch (size) {
     DsBadgeSize.sm => RemixBadgeStyler(
         container: BoxStyler()
             .paddingX($spacing004())
             .paddingY($spacing002()),
-        label: TextStyler(style: $captionSm.mix()),
+        label: TextStyler(style: $labelSm.mix()),
       ),
     DsBadgeSize.md => RemixBadgeStyler(
         container: BoxStyler()
             .paddingX($spacing008())
-            .paddingY($spacing004()),
-        label: TextStyler(style: $captionMd.mix()),
+            .paddingY($spacing002()),
+        label: TextStyler(style: $labelSm.mix()),
       ),
     DsBadgeSize.lg => RemixBadgeStyler(
         container: BoxStyler()
             .paddingX($spacing012())
             .paddingY($spacing006()),
-        label: TextStyler(style: $labelSm.mix()),
+        label: TextStyler(style: $labelMd.mix()),
       ),
   };
-
-  const transparent = Color(0x00000000);
 
   final variantStyle = switch (variant) {
     DsBadgeVariant.primary => RemixBadgeStyler()
@@ -38,11 +37,11 @@ RemixBadgeStyler resolveDsBadgeStyle({
         .backgroundColor($surfaceAlternative())
         .foregroundColor($contentPrimary()),
     DsBadgeVariant.outline => RemixBadgeStyler()
-        .backgroundColor(transparent)
+        .backgroundColor($transparent())
         .foregroundColor($contentPrimary())
         .borderAll(color: $borderStrong(), width: 1),
     DsBadgeVariant.ghost => RemixBadgeStyler()
-        .backgroundColor(transparent)
+        .backgroundColor($transparent())
         .foregroundColor($contentPrimary()),
     DsBadgeVariant.positive => RemixBadgeStyler()
         .backgroundColor($positiveSurface())
@@ -63,3 +62,16 @@ RemixBadgeStyler resolveDsBadgeStyle({
 
   return baseStyle.merge(sizeStyle).merge(variantStyle);
 }
+
+
+double resolveIconSize(DsBadgeSize size) => switch (size) {
+  DsBadgeSize.sm => AppSpacing.sp010,
+  DsBadgeSize.md => AppSpacing.sp012,
+  DsBadgeSize.lg => AppSpacing.sp016,
+};
+
+double resolveIconToLabelGap(DsBadgeSize size) => switch (size) {
+  DsBadgeSize.sm => AppSpacing.sp004,
+  DsBadgeSize.md => AppSpacing.sp004,
+  DsBadgeSize.lg => AppSpacing.sp006,
+};

@@ -46,9 +46,9 @@ class DsAvatar extends StatefulWidget {
     this.onImageError,
     this.label,
     this.icon,
+    this.shape = DsAvatarShape.circle,
     this.variant = DsAvatarVariant.soft,
     this.size = DsAvatarSize.md,
-    this.shape = DsAvatarShape.circle,
     this.style = const RemixAvatarStyler.create(),
     this.styleSpec,
   });
@@ -180,9 +180,9 @@ class _DsAvatarState extends State<DsAvatar> {
   @override
   Widget build(BuildContext context) {
     final resolvedStyle = resolveDsAvatarStyle(
+      shape: widget.shape,
       variant: widget.variant,
       size: widget.size,
-      shape: widget.shape,
     ).merge(widget.style);
 
     // An `image` is handed to `RemixAvatar` as soon as it's supplied (and

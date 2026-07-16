@@ -1,9 +1,9 @@
 part of 'avatar_2.dart';
 
 RemixAvatarStyler resolveDsAvatarStyle({
+  required DsAvatarShape shape,
   required DsAvatarVariant variant,
   required DsAvatarSize size,
-  required DsAvatarShape shape,
 }) {
   // `clipBehavior(.hardEdge)` is required for `image` to actually clip to
   // the resolved shape — `BoxDecoration`'s image otherwise ignores
@@ -23,6 +23,7 @@ RemixAvatarStyler resolveDsAvatarStyle({
     DsAvatarSize.lg => 1.5,
     DsAvatarSize.xl => 2.0,
   };
+
   final ringStyle = RemixAvatarStyler().borderAll(
     color: $transparent(),
     width: ringWidth,
@@ -39,21 +40,6 @@ RemixAvatarStyler resolveDsAvatarStyle({
       RemixAvatarStyler().square(64).labelStyle($labelLg.mix()),
   };
 
-  // Icon fallback size is fixed per `size`. `DsAvatar` passes `icon`
-  // straight through to `RemixAvatar` with no custom `iconBuilder`, so
-  // this `IconStyler` slot is what actually sizes (and, via
-  // `variantStyle` below, colors) every rendered fallback glyph — not a
-  // niche `styleSpec`-only path.
-  final iconSizeStyle = switch (size) {
-    DsAvatarSize.sm => RemixAvatarStyler().iconSize($spacing016()),
-    DsAvatarSize.md => RemixAvatarStyler().iconSize($spacing020()),
-    DsAvatarSize.lg => RemixAvatarStyler().iconSize($spacing024()),
-    DsAvatarSize.xl => RemixAvatarStyler().iconSize($spacing032()),
-  };
-
-  // `circle` uses a radius token large enough that a square container
-  // renders fully round at every size. `square` uses a per-size radius
-  // that grows with diameter so corner rounding stays proportional.
   final shapeStyle = switch (shape) {
     DsAvatarShape.circle => RemixAvatarStyler().borderRadiusAll($radiusFull()),
     DsAvatarShape.square => switch (size) {
@@ -64,9 +50,6 @@ RemixAvatarStyler resolveDsAvatarStyle({
     },
   };
 
-  // Fallback-only colors — a rendered `image` visually hides these, since
-  // `RemixAvatar` paints the image as a `BoxDecoration.image` above the
-  // container's background color.
   final variantStyle = switch (variant) {
     DsAvatarVariant.soft =>
       RemixAvatarStyler()
@@ -75,9 +58,16 @@ RemixAvatarStyler resolveDsAvatarStyle({
           .iconColor($accentText()),
     DsAvatarVariant.solid =>
       RemixAvatarStyler()
-          .backgroundColor($accentSurfaceStrong())
+          .backgroundColor($accentUi())
           .labelColor($contentOnBrand())
           .iconColor($contentOnBrand()),
+  };
+
+  final iconSizeStyle = switch (size) {
+    DsAvatarSize.sm => RemixAvatarStyler().iconSize($spacing016()),
+    DsAvatarSize.md => RemixAvatarStyler().iconSize($spacing020()),
+    DsAvatarSize.lg => RemixAvatarStyler().iconSize($spacing024()),
+    DsAvatarSize.xl => RemixAvatarStyler().iconSize($spacing032()),
   };
 
   return baseStyle

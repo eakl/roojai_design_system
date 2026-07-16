@@ -4,6 +4,7 @@ enum DsButtonVariant {
   outline,
   destructive,
   ghost,
+  link,
 }
 
 enum DsButtonSize { sm, md, lg }

@@ -8,25 +8,6 @@ import '../../tokens/semantic/spacing.dart';
 import '../../tokens/semantic/typography.dart';
 import 'badge_2_variants.dart';
 
-// The `resolveDsBadgeStyle` function consumed by `build()` below lives in
-// badge_2_style_resolver.dart, split out as `part of` this library (not a
-// separate import) so it stays private to DsBadge while living in its own
-// file — same split as `DsButton`'s `button_2_style_resolver.dart` and
-// `DsSwitch`'s `switch_2_style_resolver.dart`.
-part 'badge_2_style_resolver.dart';
-
-/// A small status/label pill built on top of the `remix` package's
-/// [RemixBadge], styled through the design system's Mix semantic tokens.
-///
-/// Unlike [DsBadge]'s closest sibling, [DsButton], this widget is always
-/// non-interactive — it has no `onPressed` and derives no pressed/hover/
-/// focus state. It exists purely to label or annotate other content
-/// (status pills, counts, tags), matching how legacy `Badge` was a plain
-/// `Container`/`Row` rather than a button. See
-/// `docs/superpowers/specs/2026-07-15-badge-2-component-design.md`.
-/// 
-
-// TODO: Remove leading and trailing support
 class DsBadge extends StatelessWidget {
   const DsBadge({
     super.key,
@@ -39,21 +20,10 @@ class DsBadge extends StatelessWidget {
     this.styleSpec,
   });
 
-  /// The badge's text content. Always shown.
   final String label;
-
-  /// Widget shown before [label] (typically an `Icon`), sized to
-  /// [DsBadgeSize]'s icon extent.
   final Widget? leading;
-
-  /// Widget shown after [label] (typically an `Icon`), sized to
-  /// [DsBadgeSize]'s icon extent.
   final Widget? trailing;
-
-  /// Visual treatment — see [DsBadgeVariant].
   final DsBadgeVariant variant;
-
-  /// Physical size — see [DsBadgeSize].
   final DsBadgeSize size;
 
   /// Escape hatch for callers that need to further customize the resolved
@@ -96,8 +66,8 @@ class DsBadge extends StatelessWidget {
   /// [trailing] is non-null — ports legacy `Badge`'s icon-flanked `Row`
   /// build.
   Widget _buildLabelWithIcons(TextSpec spec, String label) {
-    final iconExtent = _iconExtentFor(size);
-    final iconGap = _iconGapFor(size);
+    final iconExtent = resolveIconSize(size);
+    final iconGap = resolveIconToLabelGap(size);
 
     // `FittedBox` is required, not cosmetic: a caller-supplied `leading`/
     // `trailing` (typically icon_2's `Icon`) paints its glyph at its own
@@ -131,32 +101,3 @@ class DsBadge extends StatelessWidget {
     );
   }
 }
-
-/// Icon slot extent per [DsBadgeSize] — sourced from [AppSpacing]'s
-/// primitive scale (not the `$spacingNNN` Mix tokens): those tokens'
-/// `()` call returns a sentinel placeholder that only resolves to a real
-/// value inside Mix's own style-resolution pipeline (a `BoxStyler`/
-/// `TextStyler` chain resolved against a `BuildContext`'s `MixScope`) —
-/// see `resolveDsBadgeStyle`. `SizedBox.width`/`height` below are plain
-/// Flutter properties that never go through that resolution, so a token
-/// call here would hand `SizedBox` the sentinel's raw (near-zero)
-/// double instead of the real spacing value. `AppSpacing` mirrors the
-/// same numeric scale as plain compile-time constants, safe to use
-/// directly. `lg` snaps to `sp016` (not the legacy widget's arbitrary
-/// `14`, which isn't on the scale — the nearest steps are `sp012`/12
-/// and `sp016`/16).
-double _iconExtentFor(DsBadgeSize size) => switch (size) {
-      DsBadgeSize.sm => AppSpacing.sp010,
-      DsBadgeSize.md => AppSpacing.sp012,
-      DsBadgeSize.lg => AppSpacing.sp016,
-    };
-
-/// Icon-to-label gap per [DsBadgeSize] — also [AppSpacing]-sourced, same
-/// reasoning as [_iconExtentFor]. Values match legacy `Badge`'s
-/// `_resolveIconGap`, which already happened to land on real scale
-/// steps (`sp004`/`sp006`).
-double _iconGapFor(DsBadgeSize size) => switch (size) {
-      DsBadgeSize.sm => AppSpacing.sp004,
-      DsBadgeSize.md => AppSpacing.sp004,
-      DsBadgeSize.lg => AppSpacing.sp006,
-    };

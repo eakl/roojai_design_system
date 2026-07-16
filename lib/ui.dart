@@ -1,5 +1,3 @@
-library ui;
-
 // Semantic tokens (public — consuming apps may reference/override these
 // when passing overrides to AppTokensScope).
 export 'src/tokens/semantic/colors.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart' hide Icon;
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:remix/remix.dart';
 import 'package:ui/src/tokens/semantic/typography.dart';
 
@@ -14,11 +13,6 @@ import 'button_2_variants.dart';
 // separate import) so it stays private to DsButton while living in its own
 // file — same split as the legacy Button's `button_style_resolvers.dart`.
 part 'button_2_style_resolver.dart';
-
-// The default `loading` spinner lives in its own `part` file for the same
-// reason as the style resolver above — it's an implementation detail of
-// DsButton, not something callers construct directly.
-part 'button_2_loading_spinner.dart';
 
 /// Default [RemixButtonIconBuilder] for [DsButton]'s leading/trailing icons.
 ///
@@ -90,21 +84,17 @@ class DsButton extends StatelessWidget {
   /// Builder for customizing the trailing icon rendering.
   final RemixButtonIconBuilder? trailingIconBuilder;
 
-  /// Builder for customizing the loading spinner rendering.
+  /// Builder for customizing the loading spinner rendering. Defaults to
+  /// [RemixButton]'s own built-in spinner (a `RemixSpinner` styled from
+  /// [resolveDsButtonStyle]'s `.spinnerSize()`/`.spinnerIndicatorColor()` —
+  /// the same `RemixSpinner` [DsSpinner] wraps), so it stays in sync with
+  /// the label/icon color per [variant] without a bespoke widget to
+  /// maintain.
   final RemixButtonLoadingBuilder? loadingBuilder;
 
-  /// Visual treatment — see [DsButtonVariant].
   final DsButtonVariant variant;
-
-  /// Physical size — see [DsButtonSize].
   final DsButtonSize size;
-
-  /// Public state: shows a spinner and suppresses taps while [label] stays
-  /// visible. Never inferred — always driven by this constructor param.
   final bool loading;
-
-  /// Public state: renders muted/dimmed and suppresses taps/focus when
-  /// false. Never inferred — always driven by this constructor param.
   final bool enabled;
 
   /// Called on tap. Ignored (and the button rendered non-interactive)
@@ -151,7 +141,11 @@ class DsButton extends StatelessWidget {
     final resolvedStyle = resolveDsButtonStyle(
       variant: variant,
       size: size,
-      disabled: !enabled,
+      // Loading suppresses taps the same way a disabled button does (see
+      // `RemixButton._isEnabled`), so it gets the same dimmed treatment —
+      // otherwise a loading button reads as interactive while it silently
+      // ignores taps.
+      disabled: !enabled || loading,
       loading: loading,
     ).merge(style);
 
@@ -162,7 +156,7 @@ class DsButton extends StatelessWidget {
       textBuilder: textBuilder,
       leadingIconBuilder: leadingIconBuilder ?? _dsButtonIconBuilder,
       trailingIconBuilder: trailingIconBuilder ?? _dsButtonIconBuilder,
-      loadingBuilder: loadingBuilder ?? _dsButtonLoadingSpinnerBuilder,
+      loadingBuilder: loadingBuilder,
       loading: loading,
       enabled: enabled,
       onPressed: onPressed,

@@ -1,7 +1,11 @@
 part of 'button_2.dart';
 
-Color _pressedBackground(ColorToken token, {int amount = 15}) {
+Color _darken(ColorToken token, {int amount = 5}) {
   return ColorRef(token().directives([DarkenColorDirective(amount)]));
+}
+
+Color _opacity(ColorToken token, double opacity) {
+  return ColorRef(token().directives([OpacityColorDirective(opacity)]));
 }
 
 RemixButtonStyler resolveDsButtonStyle({
@@ -10,14 +14,6 @@ RemixButtonStyler resolveDsButtonStyle({
   required bool disabled,
   required bool loading,
 }) {
-  // Neither `Curve` nor arithmetic on a `Duration` token reference is
-  // supported by Mix's inline token-ref mechanism: `$motionCurveStandard()`
-  // throws ("No token reference is registered for MixToken<Curve>"), and
-  // `AnimationConfig` internally adds `duration + delay`, which a
-  // `$motionDurationFast()` reference also can't do ("Cannot access '+' on
-  // a Duration token reference"). Both fall back to literals matching the
-  // legacy `Button`'s 100ms interactive transition until Mix supports
-  // resolving these token types outside of Style properties.
   final baseStyle = RemixButtonStyler()
       .borderRadiusAll($radius008())
       .animate(
@@ -27,13 +23,6 @@ RemixButtonStyler resolveDsButtonStyle({
         ),
       );
 
-  // Icon size is fixed per `size` regardless of what `leadingIcon`/
-  // `trailingIcon` glyph the caller passes in — `IconStyler.size` (set via
-  // `.iconSize()`) controls rendering size independently of the `IconData`
-  // supplied, so callers can't accidentally break the button's vertical
-  // rhythm with an oversized/undersized icon. `spinnerSize` mirrors the
-  // same value so the loading spinner matches the icon it temporarily
-  // stands in for.
   final sizeStyle = switch (size) {
     DsButtonSize.sm =>
       RemixButtonStyler()
@@ -64,19 +53,6 @@ RemixButtonStyler resolveDsButtonStyle({
           .spinnerSize(24),
   };
 
-  const transparent = Color(0x00000000);
-
-  // Pressed feedback is a *style property* (background color), not a
-  // `.wrap(WidgetModifierConfig.opacity(...))` modifier — see the design
-  // spec's "Pressed feedback" section. Opacity is already spoken for by
-  // the `disabled` state below (a whole-widget dim via a wrapper
-  // `Opacity` widget, the correct use for a modifier per Mix's own
-  // guidance: https://www.fluttermix.com/documentation/mix/guides/widget-modifiers#modifiers-vs-style-properties).
-  // Reusing it for `pressed` would fight over the same channel and washes
-  // out the border/label along with the fill, so solid-background variants
-  // darken their own fill color (`_pressedBackground`) and the
-  // transparent-background variants (outline/ghost) instead wash in a
-  // light brand-tinted fill, since darkening `transparent` is a no-op.
   final variantStyle = switch (variant) {
     DsButtonVariant.primary =>
       RemixButtonStyler()
@@ -85,7 +61,7 @@ RemixButtonStyler resolveDsButtonStyle({
           .iconColor($contentOnBrand())
           .spinnerIndicatorColor($contentOnBrand())
           .onPressed(
-            RemixButtonStyler().color(_pressedBackground($surfaceInverted)),
+            RemixButtonStyler().color(_darken($surfaceInverted)),
           ),
     DsButtonVariant.secondary =>
       RemixButtonStyler()
@@ -94,23 +70,23 @@ RemixButtonStyler resolveDsButtonStyle({
           .iconColor($brandText())
           .spinnerIndicatorColor($brandText())
           .onPressed(
-            RemixButtonStyler().color(_pressedBackground($surfaceAlternative)),
+            RemixButtonStyler().color(_darken($surfaceAlternative)),
           ),
     DsButtonVariant.outline =>
       RemixButtonStyler()
           .borderAll(color: $brandUi(), width: 1)
-          .backgroundColor(transparent)
+          .backgroundColor(_opacity($canvasAlternative, 0))
           .labelColor($brandText())
           .iconColor($brandText())
           .spinnerIndicatorColor($brandText())
-          .onPressed(RemixButtonStyler().color($brandSurface())),
+          .onPressed(RemixButtonStyler().color(_opacity($canvasAlternative, 1))),
     DsButtonVariant.ghost =>
       RemixButtonStyler()
-          .color(transparent)
+          .backgroundColor(_opacity($canvasAlternative, 0))
           .labelColor($brandText())
           .iconColor($brandText())
           .spinnerIndicatorColor($brandText())
-          .onPressed(RemixButtonStyler().color($brandSurface())),
+          .onPressed(RemixButtonStyler().color(_opacity($canvasAlternative, 1))),
     DsButtonVariant.destructive =>
       RemixButtonStyler()
           .color($negativeSurface())
@@ -118,12 +94,17 @@ RemixButtonStyler resolveDsButtonStyle({
           .iconColor($contentPrimary())
           .spinnerIndicatorColor($contentPrimary())
           .onPressed(
-            RemixButtonStyler().color(_pressedBackground($negativeSurface)),
+            RemixButtonStyler().color(_darken($negativeSurface)),
           ),
+    DsButtonVariant.link =>
+      RemixButtonStyler()
+          .color($transparent())
+          .labelColor($brandText())
+          .iconColor($brandText())
+          .spinnerIndicatorColor($brandText())
+          .onPressed(RemixButtonStyler().labelDecoration(TextDecoration.underline)),
   };
 
-  // Disabled wins over every other interactive state — a disabled button
-  // never shows hover/pressed/focus feedback regardless of `loading`.
   final stateStyle = disabled
       ? RemixButtonStyler().wrap(WidgetModifierConfig.opacity(0.5))
       : RemixButtonStyler();
