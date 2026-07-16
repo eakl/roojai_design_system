@@ -8,6 +8,9 @@ import 'package:flutter/widgets.dart';
 class AppColors {
   AppColors._();
 
+  // Transparent
+  static const transparent = Color(0x00000000);
+
   // Black (opacity variants)
   static const black010 = Color.fromRGBO(0, 0, 0, 0.10);
   static const black020 = Color.fromRGBO(0, 0, 0, 0.20);

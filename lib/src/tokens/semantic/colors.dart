@@ -3,6 +3,7 @@
 import 'package:mix/mix.dart';
 
 // Base.
+const $transparent = ColorToken('color.base.transparent');
 const $white = ColorToken('color.base.white');
 const $black = ColorToken('color.base.black');
 

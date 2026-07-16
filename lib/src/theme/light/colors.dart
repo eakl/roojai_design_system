@@ -10,6 +10,7 @@ import '../../tokens/semantic/colors.dart';
 /// [ColorToken] declared in `lib/src/tokens/semantic/colors.dart`.
 final Map<ColorToken, Color> lightColors = <ColorToken, Color>{
   // Base.
+  $transparent: AppColors.transparent,
   $white: AppColors.white100,
   $black: AppColors.black100,
 
