@@ -1,9 +1,9 @@
 part of 'separator_2.dart';
 
-RemixDividerStyle resolveDsSeparatorStyle({
+RemixDividerStyler resolveDsSeparatorStyle({
   required DsSeparatorOrientation orientation,
 }) {
-  final base = RemixDividerStyle().color($borderDefault());
+  final base = RemixDividerStyler().color($borderDefault());
 
   return orientation == DsSeparatorOrientation.horizontal
       ? base.thickness(1)

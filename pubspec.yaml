@@ -11,11 +11,29 @@ dependencies:
   flutter:
     sdk: flutter
   mix: ^2.1.0
-  remix: ^0.2.0
+  remix: ^1.0.0-beta.1
+  naked_ui: ^1.0.0-beta.3
   phosphor_flutter: ^2.1.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0
+
+# `phosphor_flutter: ^2.1.0` (the latest published version) still does
+# `class PhosphorIconData extends IconData`, which no longer compiles on
+# Flutter 3.44+ (IconData was made a `final class` — see
+# https://github.com/flutter/flutter/issues/181342). No fixed release has
+# been published to pub.dev yet, but an unmerged upstream fix PR exists
+# (https://github.com/phosphor-icons/flutter/pull/63) that stops
+# subclassing IconData and emits plain `IconData` constants instead —
+# override to that fork/branch until the fix is merged and released.
+# TODO: remove this override once phosphor_flutter publishes a fixed
+# version (tracked upstream at
+# https://github.com/phosphor-icons/flutter/issues/64).
+dependency_overrides:
+  phosphor_flutter:
+    git:
+      url: https://github.com/MahMoos/flutter.git
+      ref: agent/icondata-final-compat
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

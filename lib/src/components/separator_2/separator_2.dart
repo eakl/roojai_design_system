@@ -12,7 +12,7 @@ class DsSeparator extends StatelessWidget {
     super.key,
     this.orientation = DsSeparatorOrientation.horizontal,
     this.length = 100,
-    this.style = const RemixDividerStyle.create(),
+    this.style = const RemixDividerStyler.create(),
     this.styleSpec,
   }) : assert(
          length > 0 && length <= 100,
@@ -32,16 +32,12 @@ class DsSeparator extends StatelessWidget {
 
   /// Escape hatch merged on top of [resolveDsSeparatorStyle]'s output —
   /// same convention as [DsToggle.style].
-  final RemixDividerStyle style;
+  final RemixDividerStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
   /// [RemixDividerSpec] directly, bypassing style resolution entirely —
-  /// same convention as [DsToggle.styleSpec]. Unlike [RemixToggle]
-  /// (a [StatelessWidget] with its own `RemixToggleSpec?` field),
-  /// [RemixDivider] extends Mix's `StyleWidget` directly, so this takes
-  /// the wrapped `StyleSpec<RemixDividerSpec>?` its `styleSpec` field
-  /// actually expects.
-  final StyleSpec<RemixDividerSpec>? styleSpec;
+  /// same convention as [DsToggle.styleSpec].
+  final RemixDividerSpec? styleSpec;
 
   @override
   Widget build(BuildContext context) {

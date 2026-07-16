@@ -1,28 +1,28 @@
 part of 'toggle_2.dart';
 
-RemixToggleStyle resolveDsToggleStyle({
+RemixToggleStyler resolveDsToggleStyle({
   required DsToggleVariant variant,
   required DsToggleSize size,
   required bool disabled,
 }) {
-  final baseStyle = RemixToggleStyle()
+  final baseStyle = RemixToggleStyler()
       .borderRadiusAll($radius008())
       .mainAxisSize(MainAxisSize.min);
 
   final sizeStyle = switch (size) {
-    DsToggleSize.sm => RemixToggleStyle()
+    DsToggleSize.sm => RemixToggleStyler()
         .paddingX($spacing008())
         .paddingY($spacing004())
         .spacing($spacing004())
         .labelStyle($labelSm.mix())
         .iconSize(16),
-    DsToggleSize.md => RemixToggleStyle()
+    DsToggleSize.md => RemixToggleStyler()
         .paddingX($spacing012())
         .paddingY($spacing008())
         .spacing($spacing004())
         .labelStyle($labelMd.mix())
         .iconSize(18),
-    DsToggleSize.lg => RemixToggleStyle()
+    DsToggleSize.lg => RemixToggleStyler()
         .paddingX($spacing016())
         .paddingY($spacing010())
         .spacing($spacing006())
@@ -33,22 +33,22 @@ RemixToggleStyle resolveDsToggleStyle({
   const transparent = Color(0x00000000);
 
   final variantStyle = switch (variant) {
-    DsToggleVariant.ghost => RemixToggleStyle()
+    DsToggleVariant.ghost => RemixToggleStyler()
         .backgroundColor(transparent)
         .foregroundColor($contentPrimary())
-        .onHovered(RemixToggleStyle().backgroundColor($surfaceAlternative()))
+        .onHovered(RemixToggleStyler().backgroundColor($surfaceAlternative()))
         .onSelected(
-          RemixToggleStyle()
+          RemixToggleStyler()
               .backgroundColor($brandSurface())
               .foregroundColor($brandText()),
         ),
-    DsToggleVariant.outline => RemixToggleStyle()
+    DsToggleVariant.outline => RemixToggleStyler()
         .backgroundColor(transparent)
         .borderAll(color: $borderStrong(), width: 1)
         .foregroundColor($contentPrimary())
-        .onHovered(RemixToggleStyle().backgroundColor($surfaceAlternative()))
+        .onHovered(RemixToggleStyler().backgroundColor($surfaceAlternative()))
         .onSelected(
-          RemixToggleStyle()
+          RemixToggleStyler()
               .backgroundColor($brandSurface())
               .foregroundColor($brandText())
               .borderAll(color: $brandUi()),
@@ -56,8 +56,8 @@ RemixToggleStyle resolveDsToggleStyle({
   };
 
   final stateStyle = disabled
-      ? RemixToggleStyle().wrap(WidgetModifierConfig.opacity(0.5))
-      : RemixToggleStyle();
+      ? RemixToggleStyler().wrap(WidgetModifierConfig.opacity(0.5))
+      : RemixToggleStyler();
 
   return baseStyle.merge(sizeStyle).merge(variantStyle).merge(stateStyle);
 }

@@ -35,7 +35,7 @@ class DsBadge extends StatelessWidget {
     this.trailing,
     this.variant = DsBadgeVariant.primary,
     this.size = DsBadgeSize.md,
-    this.style = const RemixBadgeStyle.create(),
+    this.style = const RemixBadgeStyler.create(),
     this.styleSpec,
   });
 
@@ -60,19 +60,16 @@ class DsBadge extends StatelessWidget {
   /// style (merged on top of [resolveDsBadgeStyle]'s output). Replaces
   /// legacy `Badge`'s dedicated `backgroundColor`/`foregroundColor`
   /// params — same convention as [DsButton.style]/[DsSwitch.style]
-  /// (`RemixBadgeStyle().backgroundColor(...)`/`.foregroundColor(...)`
+  /// (`RemixBadgeStyler().backgroundColor(...)`/`.foregroundColor(...)`
   /// cover the same cases).
-  final RemixBadgeStyle style;
+  final RemixBadgeStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
-  /// [RemixBadgeSpec] directly, bypassing style resolution entirely.
-  ///
-  /// Typed `StyleSpec<RemixBadgeSpec>?` (not `RemixBadgeSpec?`): unlike
-  /// [DsButton]/[DsSwitch]'s underlying `RemixButton`/`RemixSwitch` (plain
-  /// `StatelessWidget`s with a bare `RemixButtonSpec?`/`RemixSwitchSpec?`
-  /// field), `RemixBadge` extends Mix's `StyleWidget<RemixBadgeSpec>`,
-  /// whose inherited `styleSpec` param is `StyleSpec<RemixBadgeSpec>?`.
-  final StyleSpec<RemixBadgeSpec>? styleSpec;
+  /// [RemixBadgeSpec] directly, bypassing style resolution entirely —
+  /// same convention as [DsButton]/[DsSwitch]'s underlying
+  /// `RemixButton`/`RemixSwitch` (plain `StatelessWidget`s with a bare
+  /// `RemixButtonSpec?`/`RemixSwitchSpec?` field).
+  final RemixBadgeSpec? styleSpec;
 
   @override
   Widget build(BuildContext context) {

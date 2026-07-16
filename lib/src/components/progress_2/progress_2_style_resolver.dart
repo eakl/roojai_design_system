@@ -1,7 +1,7 @@
 part of 'progress_2.dart';
 
-RemixProgressStyle resolveDsProgressStyle({required DsProgressSize size}) {
-  final baseStyle = RemixProgressStyle()
+RemixProgressStyler resolveDsProgressStyle({required DsProgressSize size}) {
+  final baseStyle = RemixProgressStyler()
       .width(double.infinity)
       .trackColor($surfaceAlternative())
       .indicatorColor($surfaceInverted())
@@ -16,17 +16,17 @@ RemixProgressStyle resolveDsProgressStyle({required DsProgressSize size}) {
 
   final sizeStyle = switch (size) {
     DsProgressSize.sm =>
-      RemixProgressStyle()
+      RemixProgressStyler()
           .height(6)
           .track(BoxStyler().height(6))
           .indicator(BoxStyler().height(6)),
     DsProgressSize.md =>
-      RemixProgressStyle()
+      RemixProgressStyler()
           .height(8)
           .track(BoxStyler().height(8))
           .indicator(BoxStyler().height(8)),
     DsProgressSize.lg =>
-      RemixProgressStyle()
+      RemixProgressStyler()
           .height(10)
           .track(BoxStyler().height(10))
           .indicator(BoxStyler().height(10)),

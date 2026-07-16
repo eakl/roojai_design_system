@@ -1,6 +1,6 @@
 part of 'avatar_2.dart';
 
-RemixAvatarStyle resolveDsAvatarStyle({
+RemixAvatarStyler resolveDsAvatarStyle({
   required DsAvatarVariant variant,
   required DsAvatarSize size,
   required DsAvatarShape shape,
@@ -9,21 +9,21 @@ RemixAvatarStyle resolveDsAvatarStyle({
   // the resolved shape — `BoxDecoration`'s image otherwise ignores
   // `borderRadius`. `labelFontWeight` matches legacy `Avatar`'s and Remix
   // Fortal's fallback-text weight.
-  final baseStyle = RemixAvatarStyle()
+  final baseStyle = RemixAvatarStyler()
       .clipBehavior(Clip.hardEdge)
       .labelFontWeight(FontWeight.w500);
 
   final sizeStyle = switch (size) {
-    DsAvatarSize.sm => RemixAvatarStyle()
+    DsAvatarSize.sm => RemixAvatarStyler()
         .square(24)
         .labelStyle($captionSm.mix()),
-    DsAvatarSize.md => RemixAvatarStyle()
+    DsAvatarSize.md => RemixAvatarStyler()
         .square(32)
         .labelStyle($labelSm.mix()),
-    DsAvatarSize.lg => RemixAvatarStyle()
+    DsAvatarSize.lg => RemixAvatarStyler()
         .square(40)
         .labelStyle($labelMd.mix()),
-    DsAvatarSize.xl => RemixAvatarStyle()
+    DsAvatarSize.xl => RemixAvatarStyler()
         .square(64)
         .labelStyle($labelLg.mix()),
   };
@@ -34,22 +34,22 @@ RemixAvatarStyle resolveDsAvatarStyle({
   // `variantStyle` below, colors) every rendered fallback glyph — not a
   // niche `styleSpec`-only path.
   final iconSizeStyle = switch (size) {
-    DsAvatarSize.sm => RemixAvatarStyle().iconSize($spacing016()),
-    DsAvatarSize.md => RemixAvatarStyle().iconSize($spacing020()),
-    DsAvatarSize.lg => RemixAvatarStyle().iconSize($spacing024()),
-    DsAvatarSize.xl => RemixAvatarStyle().iconSize($spacing032()),
+    DsAvatarSize.sm => RemixAvatarStyler().iconSize($spacing016()),
+    DsAvatarSize.md => RemixAvatarStyler().iconSize($spacing020()),
+    DsAvatarSize.lg => RemixAvatarStyler().iconSize($spacing024()),
+    DsAvatarSize.xl => RemixAvatarStyler().iconSize($spacing032()),
   };
 
   // `circle` uses a radius token large enough that a square container
   // renders fully round at every size. `square` uses a per-size radius
   // that grows with diameter so corner rounding stays proportional.
   final shapeStyle = switch (shape) {
-    DsAvatarShape.circle => RemixAvatarStyle().borderRadiusAll($radiusFull()),
+    DsAvatarShape.circle => RemixAvatarStyler().borderRadiusAll($radiusFull()),
     DsAvatarShape.square => switch (size) {
-        DsAvatarSize.sm => RemixAvatarStyle().borderRadiusAll($radius004()),
-        DsAvatarSize.md => RemixAvatarStyle().borderRadiusAll($radius008()),
-        DsAvatarSize.lg => RemixAvatarStyle().borderRadiusAll($radius012()),
-        DsAvatarSize.xl => RemixAvatarStyle().borderRadiusAll($radius016()),
+        DsAvatarSize.sm => RemixAvatarStyler().borderRadiusAll($radius004()),
+        DsAvatarSize.md => RemixAvatarStyler().borderRadiusAll($radius008()),
+        DsAvatarSize.lg => RemixAvatarStyler().borderRadiusAll($radius012()),
+        DsAvatarSize.xl => RemixAvatarStyler().borderRadiusAll($radius016()),
       },
   };
 
@@ -57,11 +57,11 @@ RemixAvatarStyle resolveDsAvatarStyle({
   // `RemixAvatar` paints the image as a `BoxDecoration.image` above the
   // container's background color.
   final variantStyle = switch (variant) {
-    DsAvatarVariant.soft => RemixAvatarStyle()
+    DsAvatarVariant.soft => RemixAvatarStyler()
         .backgroundColor($accentSurface())
         .labelColor($accentText())
         .iconColor($accentText()),
-    DsAvatarVariant.solid => RemixAvatarStyle()
+    DsAvatarVariant.solid => RemixAvatarStyler()
         .backgroundColor($accentSurfaceStrong())
         .labelColor($contentOnBrand())
         .iconColor($contentOnBrand()),

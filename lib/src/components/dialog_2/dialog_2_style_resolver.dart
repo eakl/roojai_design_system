@@ -6,8 +6,8 @@ final _dialogShadow = BoxShadowMix(
   blurRadius: 12,
 );
 
-RemixDialogStyle resolveDsDialogStyle() {
-  return RemixDialogStyle(
+RemixDialogStyler resolveDsDialogStyle() {
+  return RemixDialogStyler(
     title: TextStyler(style: $labelLg.mix()).color($contentPrimary()),
     description: TextStyler(
       style: $bodyMd.mix(),

@@ -15,7 +15,7 @@ part 'slider_2_style_resolver.dart';
 ///
 /// Unlike the legacy hand-rolled `AppSlider`, [DsSlider] delegates all
 /// interaction handling (drag/tap, haptics, focus, semantics) to
-/// [RemixSlider] and only supplies a resolved [RemixSliderStyle] — see
+/// [RemixSlider] and only supplies a resolved [RemixSliderStyler] — see
 /// [resolveDsSliderStyle] — for [size] and the disabled state.
 class DsSlider extends StatelessWidget {
   const DsSlider({
@@ -32,7 +32,7 @@ class DsSlider extends StatelessWidget {
     this.snapDivisions,
     this.focusNode,
     this.autofocus = false,
-    this.style = const RemixSliderStyle.create(),
+    this.style = const RemixSliderStyler.create(),
     this.styleSpec,
   });
 
@@ -84,7 +84,7 @@ class DsSlider extends StatelessWidget {
 
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsSliderStyle]'s output).
-  final RemixSliderStyle style;
+  final RemixSliderStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
   /// [RemixSliderSpec] directly, bypassing style resolution entirely.
@@ -105,7 +105,7 @@ class DsSlider extends StatelessWidget {
       onChangeStart: onChangeStart,
       onChangeEnd: onChangeEnd,
       enabled: enabled,
-      enableHapticFeedback: enableHapticFeedback,
+      enableFeedback: enableHapticFeedback,
       snapDivisions: snapDivisions,
       focusNode: focusNode,
       autofocus: autofocus,

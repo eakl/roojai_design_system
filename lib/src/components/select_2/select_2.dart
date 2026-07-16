@@ -21,10 +21,10 @@ part 'select_2_style_resolver.dart';
 /// `OverlayEntry` dropdown built from scratch), [DsSelect] delegates all
 /// interaction handling (overlay open/close, hover/press/focus, keyboard
 /// navigation, semantics) to [RemixSelect] and only supplies a resolved
-/// [RemixSelectStyle] — see [resolveDsSelectStyle] — for [size]/[error], plus
-/// a resolved [RemixSelectMenuItemStyle] — see [resolveDsSelectItemStyle] —
-/// applied to every item before [RemixSelectItem.style] merges on top as a
-/// row-level override.
+/// [RemixSelectStyler] — see [resolveDsSelectStyle] — for [size]/[error],
+/// plus a resolved [RemixSelectMenuItemStyler] — see
+/// [resolveDsSelectItemStyle] — applied to every item before
+/// [RemixSelectItem.style] merges on top as a row-level override.
 ///
 /// See `docs/superpowers/specs/2026-07-15-select-2-component-design.md` for
 /// the full design rationale.
@@ -46,7 +46,7 @@ class DsSelect<T> extends StatelessWidget {
     this.followerAnchor,
     this.focusNode,
     this.semanticLabel,
-    this.style = const RemixSelectStyle.create(),
+    this.style = const RemixSelectStyler.create(),
   });
 
   /// The full list of selectable options shown in the dropdown menu, in
@@ -97,11 +97,11 @@ class DsSelect<T> extends StatelessWidget {
   final bool closeOnSelect;
 
   /// The target anchor for the dropdown overlay. Forwarded to
-  /// [RemixSelect.targetAnchor].
+  /// [RemixSelect.positioning]'s `targetAnchor`.
   final Alignment? targetAnchor;
 
   /// The follower anchor for the dropdown overlay. Forwarded to
-  /// [RemixSelect.followerAnchor].
+  /// [RemixSelect.positioning]'s `followerAnchor`.
   final Alignment? followerAnchor;
 
   /// Optional external focus node, forwarded to the underlying
@@ -113,9 +113,9 @@ class DsSelect<T> extends StatelessWidget {
 
   /// Escape hatch for callers that need to further customize the resolved
   /// trigger/menu style (merged on top of [resolveDsSelectStyle]'s output).
-  /// There is no `styleSpec` param here — the installed `RemixSelect`
-  /// (remix `0.2.0`) has none to forward to.
-  final RemixSelectStyle style;
+  /// There is no `styleSpec` param here — [DsSelect] only exposes the
+  /// fluent styler API, not `RemixSelect`'s raw `styleSpec` bypass.
+  final RemixSelectStyler style;
 
   @override
   Widget build(BuildContext context) {
@@ -140,8 +140,10 @@ class DsSelect<T> extends StatelessWidget {
       trigger: RemixSelectTrigger(placeholder: placeholder, icon: leadingIcon),
       items: resolvedItems,
       selectedValue: selectedValue,
-      targetAnchor: targetAnchor,
-      followerAnchor: followerAnchor,
+      positioning: OverlayPositionConfig(
+        targetAnchor: targetAnchor ?? Alignment.bottomCenter,
+        followerAnchor: followerAnchor ?? Alignment.topCenter,
+      ),
       onChanged: onChanged,
       onOpen: onOpen,
       onClose: onClose,
