@@ -43,7 +43,7 @@ example/lib/catalog/component_registry.dart                 — MODIFY: import +
 - Consumes: nothing.
 - Produces: `enum DsNotificationVariant { neutral, brand, positive, negative, warning }`, `enum DsNotificationSize { sm, md, lg }` — consumed by Tasks 2 and 3.
 
-There is no test framework in this package (`lib/` has no `test/` directory — verification for this component family is `flutter analyze` + the running catalog app, same as every existing `_2` component). This task's own verification is just that the file analyzes cleanly.
+There is no test framework in this package (`lib/` has no `test/` directory — verification for this component family is `fvm flutter analyze` + the running catalog app, same as every existing `_2` component). This task's own verification is just that the file analyzes cleanly.
 
 - [ ] **Step 1: Write the enums file**
 
@@ -55,7 +55,7 @@ enum DsNotificationSize { sm, md, lg }
 
 - [ ] **Step 2: Verify it analyzes cleanly**
 
-Run: `cd /Users/eakl/dev/projects/roojai && flutter analyze lib/src/components/notification_2/notification_2_variants.dart`
+Run: `cd /Users/eakl/dev/projects/roojai && fvm flutter analyze lib/src/components/notification_2/notification_2_variants.dart`
 Expected: `No issues found!`
 
 - [ ] **Step 3: Commit**
@@ -329,7 +329,7 @@ class DsNotification extends StatelessWidget {
 
 - [ ] **Step 2: Verify the library analyzes cleanly**
 
-Run: `cd /Users/eakl/dev/projects/roojai && flutter analyze lib/src/components/notification_2/`
+Run: `cd /Users/eakl/dev/projects/roojai && fvm flutter analyze lib/src/components/notification_2/`
 Expected: `No issues found!`
 
 If it fails, the most likely causes are: a missing import (`package:mix/mix.dart` must export `Box`, `BoxStyler`, `TextStyler`, `StyledText` — confirmed already used this way in `icon_container_2/icon_container.dart` and `icon_2/icon.dart`), or a token accessor typo (compare against `lib/src/tokens/semantic/{colors,radius,spacing,typography}.dart`).
@@ -443,12 +443,12 @@ And add the registry entry alphabetically in the `componentRegistry` map:
 
 - [ ] **Step 3: Verify the example app analyzes cleanly**
 
-Run: `cd /Users/eakl/dev/projects/roojai/example && flutter analyze lib/catalog/`
+Run: `cd /Users/eakl/dev/projects/roojai/example && fvm flutter analyze lib/catalog/`
 Expected: `No issues found!`
 
 - [ ] **Step 4: Run the catalog app and visually verify**
 
-Run: `cd /Users/eakl/dev/projects/roojai/example && flutter run -d macos` (or any available desktop/simulator device)
+Run: `cd /Users/eakl/dev/projects/roojai/example && fvm flutter run -d macos` (or any available desktop/simulator device)
 
 In the running app, navigate to "Notification 2" and confirm:
 - Leading icon and text/title column are top-aligned (not center-aligned).
@@ -492,7 +492,7 @@ export 'src/components/notification_2/notification_2_variants.dart';
 
 - [ ] **Step 2: Verify the whole package analyzes cleanly**
 
-Run: `cd /Users/eakl/dev/projects/roojai && flutter analyze`
+Run: `cd /Users/eakl/dev/projects/roojai && fvm flutter analyze`
 Expected: `No issues found!`
 
 - [ ] **Step 3: Commit**
