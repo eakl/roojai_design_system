@@ -42,7 +42,7 @@ Widget _dsButtonIconBuilder(BuildContext context, IconSpec spec, IconData? icon)
 ///
 /// Unlike the legacy hand-rolled `Button`, [DsButton] delegates all
 /// interaction handling (hover/press/focus, semantics, gestures) to
-/// [RemixButton] and only supplies a resolved [RemixButtonStyle] — see
+/// [RemixButton] and only supplies a resolved [RemixButtonStyler] — see
 /// [resolveDsButtonStyle] — for [variant] and [size].
 class DsButton extends StatelessWidget {
   const DsButton({
@@ -67,7 +67,7 @@ class DsButton extends StatelessWidget {
     this.semanticHint,
     this.excludeSemantics = false,
     this.mouseCursor = SystemMouseCursors.click,
-    this.style = const RemixButtonStyle.create(),
+    this.style = const RemixButtonStyler.create(),
     this.styleSpec,
   });
 
@@ -140,7 +140,7 @@ class DsButton extends StatelessWidget {
 
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsButtonStyle]'s output).
-  final RemixButtonStyle style;
+  final RemixButtonStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
   /// [RemixButtonSpec] directly, bypassing style resolution entirely.

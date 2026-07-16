@@ -18,7 +18,7 @@ part 'progress_2_style_resolver.dart';
 /// Unlike the legacy hand-rolled `Progress` (a `Stack` + `DecoratedBox` pair
 /// with its own label/value annotation rows), [DsProgress] delegates all
 /// layout and painting to [RemixProgress] and only supplies a resolved
-/// [RemixProgressStyle] — see [resolveDsProgressStyle] — for [size].
+/// [RemixProgressStyler] — see [resolveDsProgressStyle] — for [size].
 ///
 /// No label/value slots — same as legacy `Progress`'s optional annotation
 /// rows, [RemixProgress] has no such content slots to forward them to, so
@@ -33,7 +33,7 @@ class DsProgress extends StatelessWidget {
     super.key,
     required this.value,
     this.size = DsProgressSize.md,
-    this.style = const RemixProgressStyle.create(),
+    this.style = const RemixProgressStyler.create(),
     this.styleSpec,
   }) : assert(
          value >= 0 && value <= 1,
@@ -53,15 +53,14 @@ class DsProgress extends StatelessWidget {
   /// style (merged on top of [resolveDsProgressStyle]'s output) — e.g. to
   /// override `.trackColor(...)`/`.indicatorColor(...)`, same pattern
   /// [DsButton]/[DsSwitch] use for their own color overrides.
-  final RemixProgressStyle style;
+  final RemixProgressStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
-  /// [RemixProgressSpec] directly, bypassing style resolution entirely.
-  /// Unlike [DsButton]/[DsInput]'s own `styleSpec` (a bare `*Spec?`),
-  /// [RemixProgress] extends `StyleWidget<RemixProgressSpec>`, so this must
-  /// be the wrapped `StyleSpec<RemixProgressSpec>?` its `super.styleSpec`
-  /// expects — same shape [DsSpinner.styleSpec] has for the same reason.
-  final StyleSpec<RemixProgressSpec>? styleSpec;
+  /// [RemixProgressSpec] directly, bypassing style resolution entirely —
+  /// forwarded as-is to [RemixProgress.styleSpec], which now takes the bare
+  /// `RemixProgressSpec?`, same shape [DsButton]/[DsInput]'s own `styleSpec`
+  /// fields have.
+  final RemixProgressSpec? styleSpec;
 
   @override
   Widget build(BuildContext context) {

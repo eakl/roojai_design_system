@@ -63,7 +63,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_lints:
-    dependency: "direct dev"
+    dependency: "direct overridden"
     description:
       name: flutter_lints
       sha256: "9e8c3858111da373efc5aa341de011d9bd23e2c5c5e0c62bccf32438e192d7b1"
@@ -127,10 +127,10 @@ packages:
     dependency: transitive
     description:
       name: meta
-      sha256: "23f08335362185a5ea2ad3a4e597f1375e78bce8a040df5c600c8d3552ef2394"
+      sha256: "1741988757a65eb6b36abe716829688cf01910bbf91c34354ff7ec1c3de2b349"
       url: "https://pub.dev"
     source: hosted
-    version: "1.17.0"
+    version: "1.18.0"
   mix:
     dependency: transitive
     description:
@@ -151,10 +151,10 @@ packages:
     dependency: transitive
     description:
       name: naked_ui
-      sha256: "7c908f67a5b37d6434183bf261d0adc9cd53a52b62e58dca6f1e2e78929b29f7"
+      sha256: f0add49dead1ddb1d1823b0f0d39d33b65959640b5dfc21c9de4f9e8db658494
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0-beta.7"
+    version: "1.0.0-beta.4"
   path:
     dependency: transitive
     description:
@@ -164,37 +164,22 @@ packages:
     source: hosted
     version: "1.9.1"
   phosphor_flutter:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: phosphor_flutter
-      sha256: "8a14f238f28a0b54842c5a4dc20676598dd4811fcba284ed828bd5a262c11fde"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
-  prism:
-    dependency: transitive
-    description:
-      name: prism
-      sha256: cb5b80867392ed138ca7651d55c1c0013903f20355e3e015e2f6be5c1dcf7020
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.0"
-  prism_flutter:
-    dependency: transitive
-    description:
-      name: prism_flutter
-      sha256: c915d488b864d92dc605091f28e631748a723f77d5c755d08dc4b70726a7bef4
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: "agent/icondata-final-compat"
+      resolved-ref: ab7276993de1fb9beff10b1a34b840e295e10eb4
+      url: "https://github.com/MahMoos/flutter.git"
+    source: git
     version: "2.1.0"
   remix:
     dependency: transitive
     description:
       name: remix
-      sha256: ada40eeb64342eeeb6b294598b147c38f00baf581f1936931e90dfae6e4b8311
+      sha256: f84be8a01d5c878f706f43c6ffaaa11b4a1c0d7600a30a3209569a92b333d2a7
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "1.0.0-beta.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -244,10 +229,10 @@ packages:
     dependency: transitive
     description:
       name: test_api
-      sha256: "8161c84903fd860b26bfdefb7963b3f0b68fee7adea0f59ef805ecca346f0c7a"
+      sha256: "949a932224383300f01be9221c39180316445ecb8e7547f70a41a35bf421fb9e"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.10"
+    version: "0.7.11"
   ui:
     dependency: "direct main"
     description:
@@ -272,5 +257,5 @@ packages:
     source: hosted
     version: "15.2.0"
 sdks:
-  dart: ">=3.11.0 <4.0.0"
-  flutter: ">=3.41.0"
+  dart: ">=3.12.0 <4.0.0"
+  flutter: ">=3.44.0"

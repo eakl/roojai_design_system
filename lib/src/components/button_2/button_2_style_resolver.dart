@@ -4,7 +4,7 @@ Color _pressedBackground(ColorToken token, {int amount = 15}) {
   return ColorRef(token().directives([DarkenColorDirective(amount)]));
 }
 
-RemixButtonStyle resolveDsButtonStyle({
+RemixButtonStyler resolveDsButtonStyle({
   required DsButtonVariant variant,
   required DsButtonSize size,
   required bool disabled,
@@ -18,7 +18,7 @@ RemixButtonStyle resolveDsButtonStyle({
   // a Duration token reference"). Both fall back to literals matching the
   // legacy `Button`'s 100ms interactive transition until Mix supports
   // resolving these token types outside of Style properties.
-  final baseStyle = RemixButtonStyle()
+  final baseStyle = RemixButtonStyler()
       .borderRadiusAll($radius008())
       .animate(
         AnimationConfig.curve(
@@ -36,7 +36,7 @@ RemixButtonStyle resolveDsButtonStyle({
   // stands in for.
   final sizeStyle = switch (size) {
     DsButtonSize.sm =>
-      RemixButtonStyle()
+      RemixButtonStyler()
           .height(36)
           .paddingX($spacing012())
           .paddingY($spacing008())
@@ -45,7 +45,7 @@ RemixButtonStyle resolveDsButtonStyle({
           .iconSize(20)
           .spinnerSize(20),
     DsButtonSize.md =>
-      RemixButtonStyle()
+      RemixButtonStyler()
           .height(44)
           .paddingX($spacing016())
           .paddingY($spacing010())
@@ -54,7 +54,7 @@ RemixButtonStyle resolveDsButtonStyle({
           .iconSize(20)
           .spinnerSize(20),
     DsButtonSize.lg =>
-      RemixButtonStyle()
+      RemixButtonStyler()
           .height(56)
           .paddingX($spacing020())
           .paddingY($spacing016())
@@ -79,54 +79,54 @@ RemixButtonStyle resolveDsButtonStyle({
   // light brand-tinted fill, since darkening `transparent` is a no-op.
   final variantStyle = switch (variant) {
     DsButtonVariant.primary =>
-      RemixButtonStyle()
+      RemixButtonStyler()
           .color($surfaceInverted())
           .labelColor($contentOnBrand())
           .iconColor($contentOnBrand())
           .spinnerIndicatorColor($contentOnBrand())
           .onPressed(
-            RemixButtonStyle().color(_pressedBackground($surfaceInverted)),
+            RemixButtonStyler().color(_pressedBackground($surfaceInverted)),
           ),
     DsButtonVariant.secondary =>
-      RemixButtonStyle()
+      RemixButtonStyler()
           .color($surfaceAlternative())
           .labelColor($brandText())
           .iconColor($brandText())
           .spinnerIndicatorColor($brandText())
           .onPressed(
-            RemixButtonStyle().color(_pressedBackground($surfaceAlternative)),
+            RemixButtonStyler().color(_pressedBackground($surfaceAlternative)),
           ),
     DsButtonVariant.outline =>
-      RemixButtonStyle()
+      RemixButtonStyler()
           .borderAll(color: $brandUi(), width: 1)
           .backgroundColor(transparent)
           .labelColor($brandText())
           .iconColor($brandText())
           .spinnerIndicatorColor($brandText())
-          .onPressed(RemixButtonStyle().color($brandSurface())),
+          .onPressed(RemixButtonStyler().color($brandSurface())),
     DsButtonVariant.ghost =>
-      RemixButtonStyle()
+      RemixButtonStyler()
           .color(transparent)
           .labelColor($brandText())
           .iconColor($brandText())
           .spinnerIndicatorColor($brandText())
-          .onPressed(RemixButtonStyle().color($brandSurface())),
+          .onPressed(RemixButtonStyler().color($brandSurface())),
     DsButtonVariant.destructive =>
-      RemixButtonStyle()
+      RemixButtonStyler()
           .color($negativeSurface())
           .labelColor($contentPrimary())
           .iconColor($contentPrimary())
           .spinnerIndicatorColor($contentPrimary())
           .onPressed(
-            RemixButtonStyle().color(_pressedBackground($negativeSurface)),
+            RemixButtonStyler().color(_pressedBackground($negativeSurface)),
           ),
   };
 
   // Disabled wins over every other interactive state — a disabled button
   // never shows hover/pressed/focus feedback regardless of `loading`.
   final stateStyle = disabled
-      ? RemixButtonStyle().wrap(.opacity(0.5))
-      : RemixButtonStyle();
+      ? RemixButtonStyler().wrap(WidgetModifierConfig.opacity(0.5))
+      : RemixButtonStyler();
 
   return baseStyle.merge(sizeStyle).merge(variantStyle).merge(stateStyle);
 }

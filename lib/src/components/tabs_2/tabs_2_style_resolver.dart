@@ -1,7 +1,7 @@
 part of 'tabs_2.dart';
 
 /// Resolves the container style for a [DsTabBar], per [DsTabsVariant].
-RemixTabBarStyle resolveDsTabBarStyle(DsTabsVariant variant) {
+RemixTabBarStyler resolveDsTabBarStyle(DsTabsVariant variant) {
   return switch (variant) {
     DsTabsVariant.underline => _underlineTabBarStyle(),
     DsTabsVariant.segmented => _segmentedTabBarStyle(),
@@ -11,8 +11,8 @@ RemixTabBarStyle resolveDsTabBarStyle(DsTabsVariant variant) {
 /// Draws one hairline under the whole bar so the tab row reads as a single
 /// separated region before any tab is selected — the selected [DsTab]'s own
 /// underline indicator (see [_underlineTabStyle]) then overlaps it visually.
-RemixTabBarStyle _underlineTabBarStyle() {
-  return RemixTabBarStyle().decoration(
+RemixTabBarStyler _underlineTabBarStyle() {
+  return RemixTabBarStyler().decoration(
     BoxDecorationMix(
       border: BorderMix.bottom(BorderSideMix(color: $borderDefault(), width: 1)),
     ),
@@ -23,15 +23,15 @@ RemixTabBarStyle _underlineTabBarStyle() {
 /// of — the iOS `UISegmentedControl` shape. `$spacing004()` inset padding
 /// leaves room for the pill (see [_segmentedTabStyle]) to sit fully inside
 /// the container's own rounded corners without touching its edge.
-RemixTabBarStyle _segmentedTabBarStyle() {
-  return RemixTabBarStyle()
+RemixTabBarStyler _segmentedTabBarStyle() {
+  return RemixTabBarStyler()
       .color($surfaceAlternative())
       .borderRadiusAll($radius008())
       .padding(EdgeInsetsMix.all($spacing004()));
 }
 
 /// Resolves the style for an individual [DsTab], per [DsTabsVariant].
-RemixTabStyle resolveDsTabStyle({
+RemixTabStyler resolveDsTabStyle({
   required DsTabsVariant variant,
   required DsTabsSize size,
   required bool disabled,
@@ -42,7 +42,7 @@ RemixTabStyle resolveDsTabStyle({
   };
 
   final sizeStyle = switch (size) {
-    DsTabsSize.sm => RemixTabStyle()
+    DsTabsSize.sm => RemixTabStyler()
         .label(TextStyler(style: $labelSm.mix()))
         .icon(IconStyler(size: 16))
         .padding(
@@ -51,7 +51,7 @@ RemixTabStyle resolveDsTabStyle({
             horizontal: $spacing008(),
           ),
         ),
-    DsTabsSize.md => RemixTabStyle()
+    DsTabsSize.md => RemixTabStyler()
         .label(TextStyler(style: $labelMd.mix()))
         .icon(IconStyler(size: 18))
         .padding(
@@ -60,7 +60,7 @@ RemixTabStyle resolveDsTabStyle({
             horizontal: $spacing012(),
           ),
         ),
-    DsTabsSize.lg => RemixTabStyle()
+    DsTabsSize.lg => RemixTabStyler()
         .label(TextStyler(style: $labelLg.mix()))
         .icon(IconStyler(size: 20))
         .padding(
@@ -72,8 +72,8 @@ RemixTabStyle resolveDsTabStyle({
   };
 
   final stateStyle = disabled
-      ? RemixTabStyle().wrap(WidgetModifierConfig.opacity(0.5))
-      : RemixTabStyle();
+      ? RemixTabStyler().wrap(WidgetModifierConfig.opacity(0.5))
+      : RemixTabStyler();
 
   return baseStyle.merge(sizeStyle).merge(stateStyle);
 }
@@ -85,10 +85,10 @@ RemixTabStyle resolveDsTabStyle({
 /// same underline pattern the installed `remix` package's own
 /// `FortalTabsStyles.base()` uses, ported onto this design system's
 /// semantic tokens instead of `FortalTokens`.
-RemixTabStyle _underlineTabStyle() {
+RemixTabStyler _underlineTabStyle() {
   const transparent = Color(0x00000000);
 
-  return RemixTabStyle()
+  return RemixTabStyler()
       .container(
         FlexBoxStyler()
             .direction(Axis.horizontal)
@@ -104,12 +104,12 @@ RemixTabStyle _underlineTabStyle() {
         ),
       )
       .onHovered(
-        RemixTabStyle()
+        RemixTabStyler()
             .label(TextStyler().color($contentPrimary()))
             .icon(IconStyler(color: $contentPrimary())),
       )
       .onSelected(
-        RemixTabStyle()
+        RemixTabStyler()
             .label(TextStyler().color($contentPrimary()))
             .icon(IconStyler(color: $contentPrimary()))
             .wrap(
@@ -127,10 +127,10 @@ RemixTabStyle _underlineTabStyle() {
 /// merged straight into the same `FlexBoxStyler` used for layout) rather
 /// than a `.wrap(...)` modifier, since the pill needs to be inset by the
 /// bar's own padding, not drawn as an edge-to-edge border.
-RemixTabStyle _segmentedTabStyle() {
+RemixTabStyler _segmentedTabStyle() {
   const transparent = Color(0x00000000);
 
-  return RemixTabStyle()
+  return RemixTabStyler()
       .container(
         FlexBoxStyler()
             .direction(Axis.horizontal)
@@ -143,12 +143,12 @@ RemixTabStyle _segmentedTabStyle() {
       .label(TextStyler().color($contentSecondary()))
       .icon(IconStyler(color: $contentSecondary()))
       .onHovered(
-        RemixTabStyle()
+        RemixTabStyler()
             .label(TextStyler().color($contentPrimary()))
             .icon(IconStyler(color: $contentPrimary())),
       )
       .onSelected(
-        RemixTabStyle()
+        RemixTabStyler()
             .color($surfaceDefault())
             .label(TextStyler().color($contentPrimary()))
             .icon(IconStyler(color: $contentPrimary())),
@@ -156,6 +156,6 @@ RemixTabStyle _segmentedTabStyle() {
 }
 
 /// Resolves the container style for a [DsTabView].
-RemixTabViewStyle resolveDsTabViewStyle() {
-  return RemixTabViewStyle().padding(EdgeInsetsMix.all($spacing016()));
+RemixTabViewStyler resolveDsTabViewStyle() {
+  return RemixTabViewStyler().padding(EdgeInsetsMix.all($spacing016()));
 }

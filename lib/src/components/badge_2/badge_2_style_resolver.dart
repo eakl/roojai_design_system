@@ -1,62 +1,62 @@
 part of 'badge_2.dart';
 
 
-RemixBadgeStyle resolveDsBadgeStyle({
+RemixBadgeStyler resolveDsBadgeStyle({
   required DsBadgeVariant variant,
   required DsBadgeSize size,
 }) {
-  final baseStyle = RemixBadgeStyle().borderRadiusAll($radius004());
+  final baseStyle = RemixBadgeStyler().borderRadiusAll($radius004());
 
   final sizeStyle = switch (size) {
-    DsBadgeSize.sm => RemixBadgeStyle(
+    DsBadgeSize.sm => RemixBadgeStyler(
         container: BoxStyler()
             .paddingX($spacing004())
             .paddingY($spacing002()),
-        text: TextStyler(style: $captionSm.mix()),
+        label: TextStyler(style: $captionSm.mix()),
       ),
-    DsBadgeSize.md => RemixBadgeStyle(
+    DsBadgeSize.md => RemixBadgeStyler(
         container: BoxStyler()
             .paddingX($spacing008())
             .paddingY($spacing004()),
-        text: TextStyler(style: $captionMd.mix()),
+        label: TextStyler(style: $captionMd.mix()),
       ),
-    DsBadgeSize.lg => RemixBadgeStyle(
+    DsBadgeSize.lg => RemixBadgeStyler(
         container: BoxStyler()
             .paddingX($spacing012())
             .paddingY($spacing006()),
-        text: TextStyler(style: $labelSm.mix()),
+        label: TextStyler(style: $labelSm.mix()),
       ),
   };
 
   const transparent = Color(0x00000000);
 
   final variantStyle = switch (variant) {
-    DsBadgeVariant.primary => RemixBadgeStyle()
+    DsBadgeVariant.primary => RemixBadgeStyler()
         .backgroundColor($surfaceInverted())
         .foregroundColor($contentOnBrand()),
-    DsBadgeVariant.secondary => RemixBadgeStyle()
+    DsBadgeVariant.secondary => RemixBadgeStyler()
         .backgroundColor($surfaceAlternative())
         .foregroundColor($contentPrimary()),
-    DsBadgeVariant.outline => RemixBadgeStyle()
+    DsBadgeVariant.outline => RemixBadgeStyler()
         .backgroundColor(transparent)
         .foregroundColor($contentPrimary())
         .borderAll(color: $borderStrong(), width: 1),
-    DsBadgeVariant.ghost => RemixBadgeStyle()
+    DsBadgeVariant.ghost => RemixBadgeStyler()
         .backgroundColor(transparent)
         .foregroundColor($contentPrimary()),
-    DsBadgeVariant.positive => RemixBadgeStyle()
+    DsBadgeVariant.positive => RemixBadgeStyler()
         .backgroundColor($positiveSurface())
         .foregroundColor($positiveTextStrong()),
-    DsBadgeVariant.negative => RemixBadgeStyle()
+    DsBadgeVariant.negative => RemixBadgeStyler()
         .backgroundColor($negativeSurface())
         .foregroundColor($negativeTextStrong()),
-    DsBadgeVariant.warning => RemixBadgeStyle()
+    DsBadgeVariant.warning => RemixBadgeStyler()
         .backgroundColor($warningSurface())
         .foregroundColor($warningTextStrong()),
-    DsBadgeVariant.info => RemixBadgeStyle()
+    DsBadgeVariant.info => RemixBadgeStyler()
         .backgroundColor($infoSurface())
         .foregroundColor($infoTextStrong()),
-    DsBadgeVariant.neutral => RemixBadgeStyle()
+    DsBadgeVariant.neutral => RemixBadgeStyler()
         .backgroundColor($neutralSurface())
         .foregroundColor($neutralTextStrong()),
   };

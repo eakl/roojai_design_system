@@ -18,7 +18,7 @@ part 'switch_2_style_resolver.dart';
 /// Unlike the legacy hand-rolled `AppSwitch` (a `GestureDetector` +
 /// `AnimatedContainer`/`AnimatedAlign` pair), [DsSwitch] delegates all
 /// interaction handling (toggle gesture, hover/press/focus, semantics) to
-/// [RemixSwitch] and only supplies a resolved [RemixSwitchStyle] — see
+/// [RemixSwitch] and only supplies a resolved [RemixSwitchStyler] — see
 /// [resolveDsSwitchStyle] — for [size].
 ///
 /// No label/description slot — same as legacy `AppSwitch`, composing an
@@ -37,7 +37,7 @@ class DsSwitch extends StatelessWidget {
     this.autofocus = false,
     this.semanticLabel,
     this.mouseCursor = SystemMouseCursors.click,
-    this.style = const RemixSwitchStyle.create(),
+    this.style = const RemixSwitchStyler.create(),
     this.styleSpec,
   });
 
@@ -78,7 +78,7 @@ class DsSwitch extends StatelessWidget {
 
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsSwitchStyle]'s output).
-  final RemixSwitchStyle style;
+  final RemixSwitchStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
   /// [RemixSwitchSpec] directly, bypassing style resolution entirely.

@@ -41,6 +41,15 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+# See ../pubspec.yaml for why this override is needed — path dependencies
+# (like `ui` above) don't propagate their `dependency_overrides` to the
+# app that depends on them, so this must be repeated here too.
+dependency_overrides:
+  phosphor_flutter:
+    git:
+      url: https://github.com/MahMoos/flutter.git
+      ref: agent/icondata-final-compat
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

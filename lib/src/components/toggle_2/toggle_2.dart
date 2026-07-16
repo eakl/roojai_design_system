@@ -26,7 +26,7 @@ part 'toggle_2_style_resolver.dart';
 /// Unlike the legacy hand-rolled `Toggle` (a `GestureDetector` +
 /// `AnimatedContainer` pair), [DsToggle] delegates all interaction handling
 /// (tap gesture, hover/press/focus, semantics) to [RemixToggle] and only
-/// supplies a resolved [RemixToggleStyle] — see [resolveDsToggleStyle] — for
+/// supplies a resolved [RemixToggleStyler] — see [resolveDsToggleStyle] — for
 /// [variant] and [size]. See
 /// `docs/superpowers/specs/2026-07-15-toggle-2-component-design.md`.
 class DsToggle extends StatelessWidget {
@@ -44,7 +44,7 @@ class DsToggle extends StatelessWidget {
     this.autofocus = false,
     this.semanticLabel,
     this.mouseCursor = SystemMouseCursors.click,
-    this.style = const RemixToggleStyle.create(),
+    this.style = const RemixToggleStyler.create(),
     this.styleSpec,
   }) : assert(
          label != null || icon != null,
@@ -102,7 +102,7 @@ class DsToggle extends StatelessWidget {
 
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsToggleStyle]'s output).
-  final RemixToggleStyle style;
+  final RemixToggleStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
   /// [RemixToggleSpec] directly, bypassing style resolution entirely.

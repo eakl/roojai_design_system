@@ -17,7 +17,7 @@ part 'spinner_2_style_resolver.dart';
 /// Unlike the legacy hand-rolled `Spinner` (a private `CustomPaint` +
 /// `RotationTransition` pair), [DsSpinner] delegates all animation and
 /// painting to [RemixSpinner] and only supplies a resolved
-/// [RemixSpinnerStyle] — see [resolveDsSpinnerStyle] — for [size] and
+/// [RemixSpinnerStyler] — see [resolveDsSpinnerStyle] — for [size] and
 /// [inverted].
 ///
 /// No variant axis — like [DsSwitch], a spinner has no visual skin to pick
@@ -28,7 +28,7 @@ class DsSpinner extends StatelessWidget {
     super.key,
     this.size = DsSpinnerSize.md,
     this.inverted = false,
-    this.style = const RemixSpinnerStyle.create(),
+    this.style = const RemixSpinnerStyler.create(),
     this.styleSpec,
   });
 
@@ -45,15 +45,12 @@ class DsSpinner extends StatelessWidget {
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsSpinnerStyle]'s output) — e.g. to
   /// add a track via `.spinnerTrackColor(...)`.
-  final RemixSpinnerStyle style;
+  final RemixSpinnerStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
-  /// [RemixSpinnerSpec] directly, bypassing style resolution entirely.
-  /// Unlike [DsButton]/[DsInput]'s own `styleSpec` (a bare `*Spec?`),
-  /// [RemixSpinner] extends `StyleWidget<RemixSpinnerSpec>`, so this must
-  /// be the wrapped `StyleSpec<RemixSpinnerSpec>?` its `super.styleSpec`
-  /// expects.
-  final StyleSpec<RemixSpinnerSpec>? styleSpec;
+  /// [RemixSpinnerSpec] directly, bypassing style resolution entirely —
+  /// matches [RemixSpinner]'s own bare `RemixSpinnerSpec?` `styleSpec` param.
+  final RemixSpinnerSpec? styleSpec;
 
   @override
   Widget build(BuildContext context) {

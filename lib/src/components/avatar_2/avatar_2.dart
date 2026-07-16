@@ -46,7 +46,7 @@ class DsAvatar extends StatefulWidget {
     this.variant = DsAvatarVariant.soft,
     this.size = DsAvatarSize.md,
     this.shape = DsAvatarShape.circle,
-    this.style = const RemixAvatarStyle.create(),
+    this.style = const RemixAvatarStyler.create(),
     this.styleSpec,
   });
 
@@ -84,11 +84,11 @@ class DsAvatar extends StatefulWidget {
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsAvatarStyle]'s output). Same
   /// convention as [DsButton.style]/[DsBadge.style].
-  final RemixAvatarStyle style;
+  final RemixAvatarStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
   /// [RemixAvatarSpec] directly, bypassing style resolution entirely.
-  final StyleSpec<RemixAvatarSpec>? styleSpec;
+  final RemixAvatarSpec? styleSpec;
 
   @override
   State<DsAvatar> createState() => _DsAvatarState();

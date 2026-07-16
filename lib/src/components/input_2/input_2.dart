@@ -33,7 +33,7 @@ DsIconSize _resolveDsInputIconSize(DsInputSize size) {
 ///
 /// Unlike the legacy hand-rolled `Input`, [DsInput] delegates all
 /// interaction handling (focus/hover, IME, selection, semantics) to
-/// [RemixTextField] and only supplies a resolved [RemixTextFieldStyle] —
+/// [RemixTextField] and only supplies a resolved [RemixTextFieldStyler] —
 /// see [resolveDsInputStyle] — for [size] and [error].
 ///
 /// Text-only: there is no file-drop or multiline/textarea variant here —
@@ -66,7 +66,7 @@ class DsInput extends StatelessWidget {
     this.autofocus = false,
     this.semanticLabel,
     this.semanticHint,
-    this.style = const RemixTextFieldStyle.create(),
+    this.style = const RemixTextFieldStyler.create(),
     this.styleSpec,
   });
 
@@ -158,7 +158,7 @@ class DsInput extends StatelessWidget {
 
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsInputStyle]'s output).
-  final RemixTextFieldStyle style;
+  final RemixTextFieldStyler style;
 
   /// Escape hatch for callers that need to supply an already-resolved
   /// [RemixTextFieldSpec] directly, bypassing style resolution entirely.

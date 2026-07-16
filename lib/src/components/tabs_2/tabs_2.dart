@@ -111,7 +111,7 @@ class DsTabBar extends StatelessWidget {
     super.key,
     required this.child,
     this.variant = DsTabsVariant.underline,
-    this.style = const RemixTabBarStyle.create(),
+    this.style = const RemixTabBarStyler.create(),
   });
 
   /// The tab buttons — typically a [Row] of [DsTab]s.
@@ -124,7 +124,7 @@ class DsTabBar extends StatelessWidget {
 
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsTabBarStyle]'s output).
-  final RemixTabBarStyle style;
+  final RemixTabBarStyler style;
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +153,7 @@ class DsTab extends StatelessWidget {
     this.onHoverChange,
     this.onPressChange,
     this.semanticLabel,
-    this.style = const RemixTabStyle.create(),
+    this.style = const RemixTabStyler.create(),
   }) : assert(
          child != null || label != null,
          'Either child or label must be provided',
@@ -216,7 +216,7 @@ class DsTab extends StatelessWidget {
 
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsTabStyle]'s output).
-  final RemixTabStyle style;
+  final RemixTabStyler style;
 
   @override
   Widget build(BuildContext context) {
@@ -251,7 +251,7 @@ class DsTabView extends StatelessWidget {
     super.key,
     required this.tabId,
     required this.child,
-    this.style = const RemixTabViewStyle.create(),
+    this.style = const RemixTabViewStyler.create(),
   });
 
   /// The identifier that matches a [DsTab.tabId].
@@ -262,7 +262,7 @@ class DsTabView extends StatelessWidget {
 
   /// Escape hatch for callers that need to further customize the resolved
   /// style (merged on top of [resolveDsTabViewStyle]'s output).
-  final RemixTabViewStyle style;
+  final RemixTabViewStyler style;
 
   @override
   Widget build(BuildContext context) {
