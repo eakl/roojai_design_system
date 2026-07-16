@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 /// Raw color swatches with no semantic meaning. Only the semantic token
 /// layer (`lib/src/tokens/semantic/`) may reference these directly —
 /// components must never import this file.
-class AppColors {
+class PrimColors {
   AppColors._();
 
   // Transparent

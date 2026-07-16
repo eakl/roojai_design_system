@@ -3,7 +3,7 @@
 /// Fixed, value-named spacing scale. The name *is* the pixel value —
 /// components reference these directly, there is no semantic re-aliasing
 /// layer for spacing.
-class AppSpacing {
+class PrimSpacing {
   AppSpacing._();
 
   static const double sp000 = 0;

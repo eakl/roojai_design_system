@@ -2,14 +2,17 @@
 
 import 'package:mix/mix.dart';
 
+import './primitives/colors.dart';
+
+
 // Base.
-const $transparent = ColorToken('color.base.transparent');
-const $white = ColorToken('color.base.white');
-const $black = ColorToken('color.base.black');
+const $transparent = PrimColors.transparent;
+const $white = PrimColors.white100;
+const $black = PrimColors.black100;
 
 // Canvas.
-const $canvasDefault = ColorToken('color.canvas.default');
-const $canvasAlternative = ColorToken('color.canvas.alternative');
+const $canvasDefault = PrimColors.white100;
+const $canvasAlternative = PrimColors.neutral050;
 
 // Surface.
 const $surfaceDefault = ColorToken('color.surface.default');

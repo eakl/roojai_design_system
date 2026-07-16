@@ -3,7 +3,7 @@
 import 'package:flutter/widgets.dart';
 
 /// Raw shadow definitions, keyed by elevation level.
-class AppElevation {
+class PrimElevation {
   AppElevation._();
 
   static const List<BoxShadow> level0 = [];

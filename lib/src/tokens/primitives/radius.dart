@@ -1,7 +1,7 @@
 // lib/src/tokens/primitives/app_radius.dart
 
 /// Fixed, value-named radius scale. Same rationale as [AppSpacing].
-class AppRadius {
+class PrimRadius {
   AppRadius._();
 
   static const double rd000 = 0;
