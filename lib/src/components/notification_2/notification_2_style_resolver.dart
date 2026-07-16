@@ -82,8 +82,8 @@ Color _resolveDsNotificationTextColor(DsNotificationVariant variant) {
 /// documents.
 double resolveDsNotificationGap(BuildContext context, DsNotificationSize size) {
   return switch (size) {
-    DsNotificationSize.sm => $spacing008.resolve(context),
-    DsNotificationSize.md => $spacing012.resolve(context),
-    DsNotificationSize.lg => $spacing016.resolve(context),
+    DsNotificationSize.sm => $spacing002.resolve(context),
+    DsNotificationSize.md => $spacing004.resolve(context),
+    DsNotificationSize.lg => $spacing006.resolve(context),
   };
 }

@@ -11,13 +11,11 @@ Badge:
 - Remove leading and trailing props (for icon)
 
 Buton:
-- onPress color is wrong (should be darken 15%)
-- outline and ghost variant have a flickering background color onPress with two colors: gray first then blue. SHould be blue only
+- onPress color is wrong (should have opacity 20%)
+- outline and ghost variant have a flickering background color onPress with two colors: gray first then blue
 
 Callout:
-- Icon should be a props. And it should accept either Icon or Icon Container
 - Icon and text should be top aligned
-- Callout props must support: optioonal leading icon, optional title, mandatory text, optional button group bottom right aligned
 
 
 always show fallback letter while loading the image

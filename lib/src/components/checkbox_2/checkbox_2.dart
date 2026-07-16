@@ -72,8 +72,7 @@ class DsCheckbox extends StatelessWidget {
 
   /// Icon shown when [selected] is `true`. Defaults to a bold checkmark
   /// glyph from `phosphor_flutter`, matching the design system's
-  /// preference for Phosphor icons over Material's `Icons` (see
-  /// `button_2_loading_spinner.dart`).
+  /// preference for Phosphor icons over Material's `Icons`.
   final IconData? checkedIcon;
 
   /// Icon shown when [selected] is `false`. Defaults to none, same as

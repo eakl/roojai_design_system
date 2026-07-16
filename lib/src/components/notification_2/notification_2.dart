@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:mix/mix.dart';
 
+import '../../tokens/primitives/spacing.dart';
 import '../../tokens/semantic/colors.dart';
 import '../../tokens/semantic/radius.dart';
 import '../../tokens/semantic/spacing.dart';
@@ -99,21 +100,24 @@ class DsNotification extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (leading != null) ...[leading!, SizedBox(width: gap)],
+          if (leading != null) ...[
+            leading!,
+            SizedBox(width: AppSpacing.sp020),
+          ],
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (title != null) ...[
                   StyledText(title!, style: resolvedTitleStyle),
-                  SizedBox(height: gap),
+                  SizedBox(height: gap), // ERROR: doesn't work
                 ],
                 StyledText(text, style: resolvedTextStyle),
                 if (hasActions) ...[
-                  SizedBox(height: gap),
+                  SizedBox(height: gap), // ERROR: doesn't work
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    spacing: gap,
+                    spacing: gap, // ERROR: doesn't work
                     children: actions!,
                   ),
                 ],
