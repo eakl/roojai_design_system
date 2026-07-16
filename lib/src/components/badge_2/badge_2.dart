@@ -8,6 +8,8 @@ import '../../tokens/semantic/spacing.dart';
 import '../../tokens/semantic/typography.dart';
 import 'badge_2_variants.dart';
 
+part 'badge_2_style_resolver.dart';
+
 class DsBadge extends StatelessWidget {
   const DsBadge({
     super.key,
