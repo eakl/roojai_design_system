@@ -35,6 +35,8 @@ export 'src/components/callout_2/callout_2.dart';
 export 'src/components/callout_2/callout_2_variants.dart';
 export 'src/components/card_2/card_2.dart';
 export 'src/components/card_2/card_2_variants.dart';
+export 'src/components/notification_2/notification_2.dart';
+export 'src/components/notification_2/notification_2_variants.dart';
 // export 'src/components/checkbox/checkbox.dart';
 // export 'src/components/checkbox/checkbox_value.dart';
 export 'src/components/checkbox_2/checkbox_2.dart';
