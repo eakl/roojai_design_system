@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 /// layer (`lib/src/tokens/semantic/`) may reference these directly —
 /// components must never import this file.
 class PrimColors {
-  AppColors._();
+  PrimColors._();
 
   // Transparent
   static const transparent = Color(0x00000000);
@@ -142,34 +142,4 @@ class PrimColors {
   static const blue600 = Color(0xFF006AE5);
   static const blue700 = Color(0xFF005AC3);
   static const blue800 = Color(0xFF003D52);
-
-  // static const Color blue50 = Color(0xFFEFF6FF);
-  // static const Color blue500 = Color(0xFF3B82F6);
-  // static const Color blue600 = Color(0xFF2563EB);
-  // static const Color blue700 = Color(0xFF1D4ED8);
-
-  // static const Color green50 = Color(0xFFF0FDF4);
-  // static const Color green500 = Color(0xFF22C55E);
-  // static const Color green600 = Color(0xFF16A34A);
-  // static const Color green700 = Color(0xFF15803D);
-
-  // static const Color red50 = Color(0xFFFEF2F2);
-  // static const Color red500 = Color(0xFFEF4444);
-  // static const Color red600 = Color(0xFFDC2626);
-  // static const Color red700 = Color(0xFFB91C1C);
-
-  // static const Color amber50 = Color(0xFFFFFBEB);
-  // static const Color amber500 = Color(0xFFF59E0B);
-  // static const Color amber600 = Color(0xFFD97706);
-  // static const Color amber700 = Color(0xFFB45309);
-
-  // static const Color orange50 = Color(0xFFFFF7ED);
-  // static const Color orange500 = Color(0xFFF97316);
-  // static const Color orange600 = Color(0xFFEA580C);
-  // static const Color orange700 = Color(0xFFC2410C);
-
-  // static const Color sky50 = Color(0xFFF0F9FF);
-  // static const Color sky500 = Color(0xFF0EA5E9);
-  // static const Color sky600 = Color(0xFF0284C7);
-  // static const Color sky700 = Color(0xFF0369A1);
 }

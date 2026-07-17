@@ -1,10 +1,14 @@
 // lib/src/tokens/semantic/radius.dart
 
-import 'package:mix/mix.dart';
+import '../primitives/radius.dart';
 
-const $radius000 = RadiusToken('radius.0');
-const $radius004 = RadiusToken('radius.4');
-const $radius008 = RadiusToken('radius.8');
-const $radius012 = RadiusToken('radius.12');
-const $radius016 = RadiusToken('radius.16');
-const $radiusFull = RadiusToken('radius.full');
+class SemRadius {
+  SemRadius._();
+
+  static const radius000 = PrimRadius.radius000;
+  static const radius004 = PrimRadius.radius004;
+  static const radius008 = PrimRadius.radius008;
+  static const radius012 = PrimRadius.radius012;
+  static const radius016 = PrimRadius.radius016;
+  static const radiusFull = PrimRadius.radiusFull;
+}

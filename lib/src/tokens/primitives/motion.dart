@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 /// Raw animation durations and curves.
 class PrimMotion {
-  AppMotion._();
+  PrimMotion._();
 
   static const Duration durationFast = Duration(milliseconds: 100);
   static const Duration durationNormal = Duration(milliseconds: 200);

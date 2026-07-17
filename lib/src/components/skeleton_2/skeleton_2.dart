@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:mix/mix.dart';
 
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
 import 'skeleton_2_shape.dart';
 
 // The `resolveDsSkeletonStyle`/`_resolveRadius` functions consumed by

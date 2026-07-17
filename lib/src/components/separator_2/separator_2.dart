@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:remix/remix.dart';
 
-import '../../tokens/semantic/colors.dart';
+import '../../theme/light/colors.dart';
 import 'separator_2_orientation.dart';
 
 part 'separator_2_style_resolver.dart';

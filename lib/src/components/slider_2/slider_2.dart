@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:remix/remix.dart';
 
-import '../../tokens/semantic/colors.dart';
+import '../../theme/light/colors.dart';
 import 'slider_2_variants.dart';
 
 // The `resolveDsSliderStyle` function consumed by `build()` below lives in

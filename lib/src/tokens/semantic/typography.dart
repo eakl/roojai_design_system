@@ -1,30 +1,84 @@
 // lib/src/tokens/semantic/typography.dart
 
-import 'package:mix/mix.dart';
+import '../primitives/typography.dart';
 
-// Display.
-const $displayMd = TextStyleToken('typography.display.md');
-const $displaySm = TextStyleToken('typography.display.sm');
+class SemTypography {
+  SemTypography._();
 
-// Heading.
-const $headingH1 = TextStyleToken('typography.heading.h1');
-const $headingH2 = TextStyleToken('typography.heading.h2');
-const $headingH3 = TextStyleToken('typography.heading.h3');
-const $headingH4 = TextStyleToken('typography.heading.h4');
+  static const fontFamilyWeb = PrimTypography.fontFamilyWEB;
 
-// Body.
-const $bodyLg = TextStyleToken('typography.body.lg');
-const $bodyMd = TextStyleToken('typography.body.md');
-const $bodySm = TextStyleToken('typography.body.sm');
-const $bodyXs = TextStyleToken('typography.body.xs');
+  // Display.
+  static const displayMDFontSize = PrimTypography.fontSize48;
+  static const displayMDLineHeight = PrimTypography.lineHeightTight;
+  static const displayMDFontWeight = PrimTypography.fontWeightBold;
 
-// Label.
-const $labelLg = TextStyleToken('typography.label.lg');
-const $labelMd = TextStyleToken('typography.label.md');
-const $labelSm = TextStyleToken('typography.label.sm');
-const $overline = TextStyleToken('typography.overline');
+  static const displaySMFontSize = PrimTypography.fontSize40;
+  static const displaySMLineHeight = PrimTypography.lineHeightTight;
+  static const displaySMFontWeight = PrimTypography.fontWeightBold;
 
-// Caption.
-const $captionMd = TextStyleToken('typography.caption.md');
-const $captionSm = TextStyleToken('typography.caption.sm');
-const $footnote = TextStyleToken('typography.footnote');
+  // Heading.
+  static const headingH1FontSize = PrimTypography.fontSize32;
+  static const headingH1LineHeight = PrimTypography.lineHeightTight;
+  static const headingH1FontWeight = PrimTypography.fontWeightSemibold;
+
+  static const headingH2FontSize = PrimTypography.fontSize24;
+  static const headingH2LineHeight = PrimTypography.lineHeightTight;
+  static const headingH2FontWeight = PrimTypography.fontWeightSemibold;
+
+  static const headingH3FontSize = PrimTypography.fontSize20;
+  static const headingH3LineHeight = PrimTypography.lineHeightNormal;
+  static const headingH3FontWeight = PrimTypography.fontWeightSemibold;
+
+  static const headingH4FontSize = PrimTypography.fontSize16;
+  static const headingH4LineHeight = PrimTypography.lineHeightNormal;
+  static const headingH4FontWeight = PrimTypography.fontWeightSemibold;
+
+  // Body.
+  static const bodyLGFontSize = PrimTypography.fontSize18;
+  static const bodyLGLineHeight = PrimTypography.lineHeightNormal;
+  static const bodyLGFontWeight = PrimTypography.fontWeightRegular;
+
+  static const bodyMDFontSize = PrimTypography.fontSize16;
+  static const bodyMDLineHeight = PrimTypography.lineHeightNormal;
+  static const bodyMDFontWeight = PrimTypography.fontWeightRegular;
+
+  static const bodySMFontSize = PrimTypography.fontSize14;
+  static const bodySMLineHeight = PrimTypography.lineHeightNormal;
+  static const bodySMFontWeight = PrimTypography.fontWeightRegular;
+
+  static const bodyXSFontSize = PrimTypography.fontSize12;
+  static const bodyXSLineHeight = PrimTypography.lineHeightNormal;
+  static const bodyXSFontWeight = PrimTypography.fontWeightRegular;
+
+  // Label.
+  static const labelLGFontSize = PrimTypography.fontSize16;
+  static const labelLGLineHeight = PrimTypography.lineHeightNormal;
+  static const labelLGFontWeight = PrimTypography.fontWeightMedium;
+
+  static const labelMDFontSize = PrimTypography.fontSize14;
+  static const labelMDLineHeight = PrimTypography.lineHeightNormal;
+  static const labelMDFontWeight = PrimTypography.fontWeightMedium;
+
+  static const labelSMFontSize = PrimTypography.fontSize12;
+  static const labelSMLineHeight = PrimTypography.lineHeightNormal;
+  static const labelSMFontWeight = PrimTypography.fontWeightMedium;
+
+  static const overlineFontSize = PrimTypography.fontSize12;
+  static const overlineLineHeight = PrimTypography.lineHeightNormal;
+  static const overlineFontWeight = PrimTypography.fontWeightSemibold;
+  static const overlineLetterSpacing = 1.2;
+
+  // Caption.
+  static const captionMDFontSize = PrimTypography.fontSize12;
+  static const captionMDLineHeight = PrimTypography.lineHeightNormal;
+  static const captionMDFontWeight = PrimTypography.fontWeightRegular;
+
+  static const captionSMFontSize = PrimTypography.fontSize12;
+  static const captionSMLineHeight = PrimTypography.lineHeightNormal;
+  static const captionSMFontWeight = PrimTypography.fontWeightRegular;
+
+  // Footnote.
+  static const footnoteFontSize = PrimTypography.fontSize11;
+  static const footnoteLineHeight = PrimTypography.lineHeightRelaxed;
+  static const footnoteFontWeight = PrimTypography.fontWeightRegular;
+}

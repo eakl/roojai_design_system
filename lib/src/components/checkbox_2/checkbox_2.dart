@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart' hide Icon;
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:remix/remix.dart';
 
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
 import 'checkbox_2_variants.dart';
 
 // The `resolveDsCheckboxStyle` function consumed by `build()` below lives in

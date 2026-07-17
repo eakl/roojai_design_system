@@ -65,13 +65,13 @@ RemixBadgeStyler resolveDsBadgeStyle({
 
 
 double resolveIconSize(DsBadgeSize size) => switch (size) {
-  DsBadgeSize.sm => AppSpacing.sp010,
-  DsBadgeSize.md => AppSpacing.sp012,
-  DsBadgeSize.lg => AppSpacing.sp016,
+  DsBadgeSize.sm => SemSpacing.spacing010,
+  DsBadgeSize.md => SemSpacing.spacing012,
+  DsBadgeSize.lg => SemSpacing.spacing016,
 };
 
 double resolveIconToLabelGap(DsBadgeSize size) => switch (size) {
-  DsBadgeSize.sm => AppSpacing.sp004,
-  DsBadgeSize.md => AppSpacing.sp004,
-  DsBadgeSize.lg => AppSpacing.sp006,
+  DsBadgeSize.sm => SemSpacing.spacing004,
+  DsBadgeSize.md => SemSpacing.spacing004,
+  DsBadgeSize.lg => SemSpacing.spacing006,
 };

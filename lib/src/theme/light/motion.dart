@@ -2,8 +2,17 @@
 
 import 'package:mix/mix.dart';
 
-import '../../tokens/primitives/motion.dart';
+import '../curve_token.dart';
 import '../../tokens/semantic/motion.dart';
+
+// Curve.
+const $motionCurveStandard = CurveToken('motion.curve.standard');
+const $motionCurveEmphasized = CurveToken('motion.curve.emphasized');
+
+// Duration.
+const $motionDurationFast = DurationToken('motion.duration.fast');
+const $motionDurationNormal = DurationToken('motion.duration.normal');
+const $motionDurationSlow = DurationToken('motion.duration.slow');
 
 /// The package's built-in default light motion values, one entry per
 /// `DurationToken`/`CurveToken` declared in
@@ -15,11 +24,11 @@ import '../../tokens/semantic/motion.dart';
 /// catch-all param on `AppTokensScope`.
 final Map<MixToken, Object> lightMotion = <MixToken, Object>{
   // Duration.
-  $motionDurationFast: AppMotion.durationFast,
-  $motionDurationNormal: AppMotion.durationNormal,
-  $motionDurationSlow: AppMotion.durationSlow,
+  $motionDurationFast: SemMotion.durationFast,
+  $motionDurationNormal: SemMotion.durationNormal,
+  $motionDurationSlow: SemMotion.durationSlow,
 
   // Curve.
-  $motionCurveStandard: AppMotion.curveStandard,
-  $motionCurveEmphasized: AppMotion.curveEmphasized,
+  $motionCurveStandard: SemMotion.curveStandard,
+  $motionCurveEmphasized: SemMotion.curveEmphasized,
 };

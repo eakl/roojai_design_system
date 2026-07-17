@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../tokens/semantic/spacing.dart';
+import '../../theme/light/spacing.dart';
 import '../toggle_2/toggle_2.dart';
 import '../toggle_2/toggle_2_variants.dart';
 import 'toggle_group_2_item.dart';

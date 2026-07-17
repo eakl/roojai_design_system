@@ -4,22 +4,22 @@
 /// components reference these directly, there is no semantic re-aliasing
 /// layer for spacing.
 class PrimSpacing {
-  AppSpacing._();
+  PrimSpacing._();
 
-  static const double sp000 = 0;
-  static const double sp002 = 2;
-  static const double sp004 = 4;
-  static const double sp006 = 6;
-  static const double sp008 = 8;
-  static const double sp010 = 10;
-  static const double sp012 = 12;
-  static const double sp016 = 16;
-  static const double sp020 = 20;
-  static const double sp024 = 24;
-  static const double sp032 = 32;
-  static const double sp040 = 40;
-  static const double sp048 = 48;
-  static const double sp064 = 64;
-  static const double sp080 = 80;
-  static const double sp096 = 96;
+  static const double spacing000 = 0;
+  static const double spacing002 = 2;
+  static const double spacing004 = 4;
+  static const double spacing006 = 6;
+  static const double spacing008 = 8;
+  static const double spacing010 = 10;
+  static const double spacing012 = 12;
+  static const double spacing016 = 16;
+  static const double spacing020 = 20;
+  static const double spacing024 = 24;
+  static const double spacing032 = 32;
+  static const double spacing040 = 40;
+  static const double spacing048 = 48;
+  static const double spacing064 = 64;
+  static const double spacing080 = 80;
+  static const double spacing096 = 96;
 }

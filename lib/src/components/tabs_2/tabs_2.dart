@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart' hide Icon;
 import 'package:naked_ui/naked_ui.dart' show NakedTabController;
 import 'package:remix/remix.dart';
 
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
-import '../../tokens/semantic/spacing.dart';
-import '../../tokens/semantic/typography.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
+import '../../theme/light/spacing.dart';
+import '../../theme/light/typography.dart';
 import 'tabs_2_variants.dart';
 
 // The `resolveDsTabBarStyle`/`resolveDsTabStyle`/`resolveDsTabViewStyle`

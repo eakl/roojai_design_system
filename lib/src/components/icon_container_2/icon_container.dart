@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart' hide Icon;
 import 'package:mix/mix.dart';
 
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
 import '../icon_2/icon.dart';
 import '../icon_2/icon_variants.dart';
 import 'icon_container_variants.dart';

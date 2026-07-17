@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:remix/remix.dart';
 
-import '../../tokens/semantic/colors.dart';
+import '../../theme/light/colors.dart';
 import 'spinner_2_variants.dart';
 
 // The `resolveDsSpinnerStyle` function consumed by `build()` below lives in

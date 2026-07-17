@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:mix/mix.dart';
 
-import '../../tokens/primitives/spacing.dart';
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
+import '../../theme/light/spacing.dart';
+import '../../theme/light/typography.dart';
 import '../../tokens/semantic/spacing.dart';
-import '../../tokens/semantic/typography.dart';
 import 'notification_2_variants.dart';
 
 // The `resolveDsNotification*` functions consumed by `build()` below live
@@ -102,7 +102,7 @@ class DsNotification extends StatelessWidget {
         children: [
           if (leading != null) ...[
             leading!,
-            SizedBox(width: AppSpacing.sp020),
+            SizedBox(width: SemSpacing.spacing020),
           ],
           Expanded(
             child: Column(

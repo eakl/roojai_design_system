@@ -1,12 +1,16 @@
-import 'package:mix/mix.dart';
+// lib/src/tokens/semantic/motion.dart
 
-import '../../theme/curve_token.dart';
+import '../primitives/motion.dart';
 
-// Curve.
-const $motionCurveStandard = CurveToken('motion.curve.standard');
-const $motionCurveEmphasized = CurveToken('motion.curve.emphasized');
+class SemMotion {
+  SemMotion._();
 
-// Duration.
-const $motionDurationFast = DurationToken('motion.duration.fast');
-const $motionDurationNormal = DurationToken('motion.duration.normal');
-const $motionDurationSlow = DurationToken('motion.duration.slow');
+  // Duration.
+  static const durationFast = PrimMotion.durationFast;
+  static const durationNormal = PrimMotion.durationNormal;
+  static const durationSlow = PrimMotion.durationSlow;
+
+  // Curve.
+  static const curveStandard = PrimMotion.curveStandard;
+  static const curveEmphasized = PrimMotion.curveEmphasized;
+}

@@ -2,10 +2,10 @@ import 'package:flutter/services.dart' show TextInputAction;
 import 'package:flutter/widgets.dart' hide Icon;
 import 'package:remix/remix.dart';
 
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
-import '../../tokens/semantic/spacing.dart';
-import '../../tokens/semantic/typography.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
+import '../../theme/light/spacing.dart';
+import '../../theme/light/typography.dart';
 import '../icon_2/icon.dart';
 import '../icon_2/icon_variants.dart';
 import 'input_2_variants.dart';

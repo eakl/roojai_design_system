@@ -16,6 +16,15 @@ export 'src/theme/curve_token.dart';
 export 'src/theme/app_theme_data.dart';
 export 'src/theme/app_tokens_scope.dart';
 
+// Light theme `MixToken` constants (the `$xxx` tokens components/catalog
+// consume through Mix — e.g. `$canvasDefault`, `$radius008`, `$bodyMd`).
+export 'src/theme/light/colors.dart';
+export 'src/theme/light/typography.dart';
+export 'src/theme/light/spacing.dart';
+export 'src/theme/light/radius.dart';
+export 'src/theme/light/motion.dart';
+export 'src/theme/light/elevation.dart';
+
 // Components.
 export 'src/components/avatar_2/avatar_2.dart';
 export 'src/components/avatar_2/avatar_2_variants.dart';

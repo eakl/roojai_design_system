@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart' hide Icon;
 import 'package:remix/remix.dart';
-import 'package:ui/src/tokens/semantic/typography.dart';
 
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
-import '../../tokens/semantic/spacing.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
+import '../../theme/light/spacing.dart';
+import '../../theme/light/typography.dart';
 import '../icon_2/icon.dart';
 import 'button_2_variants.dart';
 

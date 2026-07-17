@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:remix/remix.dart';
 
-import '../../tokens/primitives/spacing.dart';
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
+import '../../theme/light/spacing.dart';
+import '../../theme/light/typography.dart';
 import '../../tokens/semantic/spacing.dart';
-import '../../tokens/semantic/typography.dart';
 import 'badge_2_variants.dart';
 
 part 'badge_2_style_resolver.dart';

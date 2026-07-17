@@ -1,7 +1,13 @@
-import 'package:mix/mix.dart';
+// lib/src/tokens/semantic/elevation.dart
 
-const $elevationLevel0 = BoxShadowToken('elevation.level0');
-const $elevationLevel1 = BoxShadowToken('elevation.level1');
-const $elevationLevel2 = BoxShadowToken('elevation.level2');
-const $elevationLevel3 = BoxShadowToken('elevation.level3');
-const $elevationLevel4 = BoxShadowToken('elevation.level4');
+import '../primitives/elevation.dart';
+
+class SemElevation {
+  SemElevation._();
+
+  static const level0 = PrimElevation.level0;
+  static const level1 = PrimElevation.level1;
+  static const level2 = PrimElevation.level2;
+  static const level3 = PrimElevation.level3;
+  static const level4 = PrimElevation.level4;
+}

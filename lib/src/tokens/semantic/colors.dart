@@ -1,106 +1,102 @@
 // lib/src/tokens/semantic/colors.dart
 
-import 'package:mix/mix.dart';
+import '../primitives/colors.dart';
 
-import './primitives/colors.dart';
+/// Semantic color values, composed from the raw palette in
+/// `lib/src/tokens/primitives/colors.dart`. Only the light theme layer
+/// (`lib/src/theme/light/colors.dart`) may reference these directly —
+/// components must use the theme's `ColorToken`s instead.
+class SemColors {
+  SemColors._();
 
+  // Base.
+  static const baseTransparent = PrimColors.transparent;
+  static const baseWhite = PrimColors.white100;
+  static const baseBlack = PrimColors.black100;
 
-// Base.
-const $transparent = PrimColors.transparent;
-const $white = PrimColors.white100;
-const $black = PrimColors.black100;
+  // Canvas.
+  static const canvasDefault = PrimColors.white100;
+  static const canvasAlternative = PrimColors.neutral050;
 
-// Canvas.
-const $canvasDefault = PrimColors.white100;
-const $canvasAlternative = PrimColors.neutral050;
+  // Surface.
+  static const surfaceDefault = PrimColors.white100;
+  static const surfaceAlternative = PrimColors.neutral100;
+  static const surfaceSunken = PrimColors.neutral200;
+  static const surfaceInverted = PrimColors.indigo500;
 
-// Surface.
-const $surfaceDefault = ColorToken('color.surface.default');
-const $surfaceAlternative = ColorToken('color.surface.alternative');
-const $surfaceSunken = ColorToken('color.surface.sunken');
-const $surfaceInverted = ColorToken('color.surface.inverted');
+  // Content.
+  static const contentPrimary = PrimColors.neutral1200;
+  static const contentSecondary = PrimColors.neutral900;
+  static const contentMuted = PrimColors.neutral700;
+  static const contentPlaceholder = PrimColors.neutral500;
+  static const contentOnBrand = PrimColors.white100;
+  static const contentOnBrandMuted = PrimColors.neutral400;
 
-// Content.
-const $contentPrimary = ColorToken('color.content.primary');
-const $contentSecondary = ColorToken('color.content.secondary');
-const $contentMuted = ColorToken('color.content.muted');
-const $contentPlaceholder = ColorToken('color.content.placeholder');
-const $contentOnBrand = ColorToken('color.content.onBrand');
-const $contentOnBrandSecondary = ColorToken('color.content.onBrandSecondary');
-const $contentOnBrandMuted = ColorToken('color.content.onBrandMuted');
+  // Border.
+  static const borderDefault = PrimColors.neutral300;
+  static const borderStrong = PrimColors.neutral400;
 
-// Border.
-const $borderDefault = ColorToken('color.border.default');
-const $borderStrong = ColorToken('color.border.strong');
+  // Brand.
+  static const brandSurface = PrimColors.indigo050;
+  static const brandSurfaceStrong = PrimColors.indigo200;
+  static const brandUi = PrimColors.indigo500;
+  static const brandUiHover = PrimColors.indigo600;
+  static const brandText = PrimColors.indigo700;
+  static const brandTextStrong = PrimColors.indigo800;
 
-// Brand.
-const $brandSurface = ColorToken('color.brand.surface');
-const $brandSurfaceStrong = ColorToken('color.brand.surfaceStrong');
-const $brandBorder = ColorToken('color.brand.border');
-const $brandUi = ColorToken('color.brand.ui');
-const $brandUiHover = ColorToken('color.brand.uiHover');
-const $brandText = ColorToken('color.brand.text');
-const $brandTextStrong = ColorToken('color.brand.textStrong');
+  // Accent.
+  static const accentSurface = PrimColors.tangerine050;
+  static const accentSurfaceStrong = PrimColors.tangerine200;
+  static const accentUi = PrimColors.tangerine500;
+  static const accentUiHover = PrimColors.tangerine600;
+  static const accentText = PrimColors.tangerine700;
+  static const accentTextStrong = PrimColors.tangerine800;
 
-// Accent.
-const $accentSurface = ColorToken('color.accent.surface');
-const $accentSurfaceStrong = ColorToken('color.accent.surfaceStrong');
-const $accentBorder = ColorToken('color.accent.border');
-const $accentUi = ColorToken('color.accent.ui');
-const $accentUiHover = ColorToken('color.accent.uiHover');
-const $accentText = ColorToken('color.accent.text');
-const $accentTextStrong = ColorToken('color.accent.textStrong');
+  // Positive.
+  static const positiveSurface = PrimColors.green050;
+  static const positiveSurfaceStrong = PrimColors.green200;
+  static const positiveUi = PrimColors.green500;
+  static const positiveUiHover = PrimColors.green600;
+  static const positiveText = PrimColors.green700;
+  static const positiveTextStrong = PrimColors.green800;
 
-// Positive.
-const $positiveSurface = ColorToken('color.positive.surface');
-const $positiveSurfaceStrong = ColorToken('color.positive.surfaceStrong');
-const $positiveBorder = ColorToken('color.positive.border');
-const $positiveUi = ColorToken('color.positive.ui');
-const $positiveUiHover = ColorToken('color.positive.uiHover');
-const $positiveText = ColorToken('color.positive.text');
-const $positiveTextStrong = ColorToken('color.positive.textStrong');
+  // Negative.
+  static const negativeSurface = PrimColors.red050;
+  static const negativeSurfaceStrong = PrimColors.red200;
+  static const negativeUi = PrimColors.red500;
+  static const negativeUiHover = PrimColors.red600;
+  static const negativeText = PrimColors.red700;
+  static const negativeTextStrong = PrimColors.red800;
 
-// Negative.
-const $negativeSurface = ColorToken('color.negative.surface');
-const $negativeSurfaceStrong = ColorToken('color.negative.surfaceStrong');
-const $negativeBorder = ColorToken('color.negative.border');
-const $negativeUi = ColorToken('color.negative.ui');
-const $negativeUiHover = ColorToken('color.negative.uiHover');
-const $negativeText = ColorToken('color.negative.text');
-const $negativeTextStrong = ColorToken('color.negative.textStrong');
+  // Warning.
+  static const warningSurface = PrimColors.orange050;
+  static const warningSurfaceStrong = PrimColors.orange200;
+  static const warningUi = PrimColors.orange500;
+  static const warningUiHover = PrimColors.orange600;
+  static const warningText = PrimColors.orange700;
+  static const warningTextStrong = PrimColors.orange800;
 
-// Warning.
-const $warningSurface = ColorToken('color.warning.surface');
-const $warningSurfaceStrong = ColorToken('color.warning.surfaceStrong');
-const $warningBorder = ColorToken('color.warning.border');
-const $warningUi = ColorToken('color.warning.ui');
-const $warningUiHover = ColorToken('color.warning.uiHover');
-const $warningText = ColorToken('color.warning.text');
-const $warningTextStrong = ColorToken('color.warning.textStrong');
+  // Alert.
+  static const alertSurface = PrimColors.orange050;
+  static const alertSurfaceStrong = PrimColors.orange200;
+  static const alertUi = PrimColors.orange500;
+  static const alertUiHover = PrimColors.orange600;
+  static const alertText = PrimColors.orange700;
+  static const alertTextStrong = PrimColors.orange800;
 
-// Alert.
-const $alertSurface = ColorToken('color.alert.surface');
-const $alertSurfaceStrong = ColorToken('color.alert.surfaceStrong');
-const $alertBorder = ColorToken('color.alert.border');
-const $alertUi = ColorToken('color.alert.ui');
-const $alertUiHover = ColorToken('color.alert.uiHover');
-const $alertText = ColorToken('color.alert.text');
-const $alertTextStrong = ColorToken('color.alert.textStrong');
+  // Info.
+  static const infoSurface = PrimColors.blue050;
+  static const infoSurfaceStrong = PrimColors.blue200;
+  static const infoUi = PrimColors.blue500;
+  static const infoUiHover = PrimColors.blue600;
+  static const infoText = PrimColors.blue700;
+  static const infoTextStrong = PrimColors.blue800;
 
-// Info.
-const $infoSurface = ColorToken('color.info.surface');
-const $infoSurfaceStrong = ColorToken('color.info.surfaceStrong');
-const $infoBorder = ColorToken('color.info.border');
-const $infoUi = ColorToken('color.info.ui');
-const $infoUiHover = ColorToken('color.info.uiHover');
-const $infoText = ColorToken('color.info.text');
-const $infoTextStrong = ColorToken('color.info.textStrong');
-
-// Neutral.
-const $neutralSurface = ColorToken('color.neutral.surface');
-const $neutralSurfaceStrong = ColorToken('color.neutral.surfaceStrong');
-const $neutralBorder = ColorToken('color.neutral.border');
-const $neutralUi = ColorToken('color.neutral.ui');
-const $neutralUiHover = ColorToken('color.neutral.uiHover');
-const $neutralText = ColorToken('color.neutral.text');
-const $neutralTextStrong = ColorToken('color.neutral.textStrong');
+  // Neutral.
+  static const neutralSurface = PrimColors.neutral050;
+  static const neutralSurfaceStrong = PrimColors.neutral200;
+  static const neutralUi = PrimColors.neutral500;
+  static const neutralUiHover = PrimColors.neutral600;
+  static const neutralText = PrimColors.neutral700;
+  static const neutralTextStrong = PrimColors.neutral800;
+}

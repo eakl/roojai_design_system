@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:remix/remix.dart';
 
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
 import 'progress_2_variants.dart';
 
 // The `resolveDsProgressStyle` function consumed by `build()` below lives in

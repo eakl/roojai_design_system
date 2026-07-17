@@ -26,7 +26,6 @@ const $contentSecondary = ColorToken('color.content.secondary');
 const $contentMuted = ColorToken('color.content.muted');
 const $contentPlaceholder = ColorToken('color.content.placeholder');
 const $contentOnBrand = ColorToken('color.content.onBrand');
-const $contentOnBrandSecondary = ColorToken('color.content.onBrandSecondary');
 const $contentOnBrandMuted = ColorToken('color.content.onBrandMuted');
 
 // Border.
@@ -36,7 +35,6 @@ const $borderStrong = ColorToken('color.border.strong');
 // Brand.
 const $brandSurface = ColorToken('color.brand.surface');
 const $brandSurfaceStrong = ColorToken('color.brand.surfaceStrong');
-const $brandBorder = ColorToken('color.brand.border');
 const $brandUi = ColorToken('color.brand.ui');
 const $brandUiHover = ColorToken('color.brand.uiHover');
 const $brandText = ColorToken('color.brand.text');
@@ -45,7 +43,6 @@ const $brandTextStrong = ColorToken('color.brand.textStrong');
 // Accent.
 const $accentSurface = ColorToken('color.accent.surface');
 const $accentSurfaceStrong = ColorToken('color.accent.surfaceStrong');
-const $accentBorder = ColorToken('color.accent.border');
 const $accentUi = ColorToken('color.accent.ui');
 const $accentUiHover = ColorToken('color.accent.uiHover');
 const $accentText = ColorToken('color.accent.text');
@@ -54,7 +51,6 @@ const $accentTextStrong = ColorToken('color.accent.textStrong');
 // Positive.
 const $positiveSurface = ColorToken('color.positive.surface');
 const $positiveSurfaceStrong = ColorToken('color.positive.surfaceStrong');
-const $positiveBorder = ColorToken('color.positive.border');
 const $positiveUi = ColorToken('color.positive.ui');
 const $positiveUiHover = ColorToken('color.positive.uiHover');
 const $positiveText = ColorToken('color.positive.text');
@@ -63,7 +59,6 @@ const $positiveTextStrong = ColorToken('color.positive.textStrong');
 // Negative.
 const $negativeSurface = ColorToken('color.negative.surface');
 const $negativeSurfaceStrong = ColorToken('color.negative.surfaceStrong');
-const $negativeBorder = ColorToken('color.negative.border');
 const $negativeUi = ColorToken('color.negative.ui');
 const $negativeUiHover = ColorToken('color.negative.uiHover');
 const $negativeText = ColorToken('color.negative.text');
@@ -72,7 +67,6 @@ const $negativeTextStrong = ColorToken('color.negative.textStrong');
 // Warning.
 const $warningSurface = ColorToken('color.warning.surface');
 const $warningSurfaceStrong = ColorToken('color.warning.surfaceStrong');
-const $warningBorder = ColorToken('color.warning.border');
 const $warningUi = ColorToken('color.warning.ui');
 const $warningUiHover = ColorToken('color.warning.uiHover');
 const $warningText = ColorToken('color.warning.text');
@@ -81,7 +75,6 @@ const $warningTextStrong = ColorToken('color.warning.textStrong');
 // Alert.
 const $alertSurface = ColorToken('color.alert.surface');
 const $alertSurfaceStrong = ColorToken('color.alert.surfaceStrong');
-const $alertBorder = ColorToken('color.alert.border');
 const $alertUi = ColorToken('color.alert.ui');
 const $alertUiHover = ColorToken('color.alert.uiHover');
 const $alertText = ColorToken('color.alert.text');
@@ -90,7 +83,6 @@ const $alertTextStrong = ColorToken('color.alert.textStrong');
 // Info.
 const $infoSurface = ColorToken('color.info.surface');
 const $infoSurfaceStrong = ColorToken('color.info.surfaceStrong');
-const $infoBorder = ColorToken('color.info.border');
 const $infoUi = ColorToken('color.info.ui');
 const $infoUiHover = ColorToken('color.info.uiHover');
 const $infoText = ColorToken('color.info.text');
@@ -99,7 +91,6 @@ const $infoTextStrong = ColorToken('color.info.textStrong');
 // Neutral.
 const $neutralSurface = ColorToken('color.neutral.surface');
 const $neutralSurfaceStrong = ColorToken('color.neutral.surfaceStrong');
-const $neutralBorder = ColorToken('color.neutral.border');
 const $neutralUi = ColorToken('color.neutral.ui');
 const $neutralUiHover = ColorToken('color.neutral.uiHover');
 const $neutralText = ColorToken('color.neutral.text');
@@ -112,93 +103,93 @@ const $neutralTextStrong = ColorToken('color.neutral.textStrong');
 /// [ColorToken] declared in `lib/src/tokens/semantic/colors.dart`.
 final Map<ColorToken, Color> lightColors = <ColorToken, Color>{
   // Base.
-  $transparent: AppColors.transparent,
-  $white: AppColors.white100,
-  $black: AppColors.black100,
+  $transparent: SemColors.baseTransparent,
+  $white: SemColors.baseWhite,
+  $black: SemColors.baseBlack,
 
   // Canvas.
-  $canvasDefault: AppColors.white100,
-  $canvasAlternative: AppColors.neutral050,
+  $canvasDefault: SemColors.canvasDefault,
+  $canvasAlternative: SemColors.canvasAlternative,
 
   // Surface.
-  $surfaceDefault: AppColors.white100,
-  $surfaceAlternative: AppColors.neutral100,
-  $surfaceSunken: AppColors.neutral200,
-  $surfaceInverted: AppColors.indigo500,
+  $surfaceDefault: SemColors.surfaceDefault,
+  $surfaceAlternative: SemColors.surfaceAlternative,
+  $surfaceSunken: SemColors.surfaceSunken,
+  $surfaceInverted: SemColors.surfaceInverted,
 
   // Content.
-  $contentPrimary: AppColors.neutral1200,
-  $contentSecondary: AppColors.neutral900,
-  $contentMuted: AppColors.neutral700,
-  $contentPlaceholder: AppColors.neutral500,
-  $contentOnBrand: AppColors.white100,
-  $contentOnBrandMuted: AppColors.neutral400,
+  $contentPrimary: SemColors.contentPrimary,
+  $contentSecondary: SemColors.contentSecondary,
+  $contentMuted: SemColors.contentMuted,
+  $contentPlaceholder: SemColors.contentPlaceholder,
+  $contentOnBrand: SemColors.contentOnBrand,
+  $contentOnBrandMuted: SemColors.contentOnBrandMuted,
 
   // Border.
-  $borderDefault: AppColors.neutral300,
-  $borderStrong: AppColors.neutral400,
+  $borderDefault: SemColors.borderDefault,
+  $borderStrong: SemColors.borderStrong,
 
   // Brand.
-  $brandSurface: AppColors.indigo050,
-  $brandSurfaceStrong: AppColors.indigo200,
-  $brandUi: AppColors.indigo500,
-  $brandUiHover: AppColors.indigo600,
-  $brandText: AppColors.indigo700,
-  $brandTextStrong: AppColors.indigo800,
+  $brandSurface: SemColors.brandSurface,
+  $brandSurfaceStrong: SemColors.brandSurfaceStrong,
+  $brandUi: SemColors.brandUi,
+  $brandUiHover: SemColors.brandUiHover,
+  $brandText: SemColors.brandText,
+  $brandTextStrong: SemColors.brandTextStrong,
 
   // Accent.
-  $accentSurface: AppColors.tangerine050,
-  $accentSurfaceStrong: AppColors.tangerine200,
-  $accentUi: AppColors.tangerine500,
-  $accentUiHover: AppColors.tangerine600,
-  $accentText: AppColors.tangerine700,
-  $accentTextStrong: AppColors.tangerine800,
+  $accentSurface: SemColors.accentSurface,
+  $accentSurfaceStrong: SemColors.accentSurfaceStrong,
+  $accentUi: SemColors.accentUi,
+  $accentUiHover: SemColors.accentUiHover,
+  $accentText: SemColors.accentText,
+  $accentTextStrong: SemColors.accentTextStrong,
 
   // Positive.
-  $positiveSurface: AppColors.green050,
-  $positiveSurfaceStrong: AppColors.green200,
-  $positiveUi: AppColors.green500,
-  $positiveUiHover: AppColors.green600,
-  $positiveText: AppColors.green700,
-  $positiveTextStrong: AppColors.green800,
+  $positiveSurface: SemColors.positiveSurface,
+  $positiveSurfaceStrong: SemColors.positiveSurfaceStrong,
+  $positiveUi: SemColors.positiveUi,
+  $positiveUiHover: SemColors.positiveUiHover,
+  $positiveText: SemColors.positiveText,
+  $positiveTextStrong: SemColors.positiveTextStrong,
 
   // Negative.
-  $negativeSurface: AppColors.red050,
-  $negativeSurfaceStrong: AppColors.red200,
-  $negativeUi: AppColors.red500,
-  $negativeUiHover: AppColors.red600,
-  $negativeText: AppColors.red700,
-  $negativeTextStrong: AppColors.red800,
+  $negativeSurface: SemColors.negativeSurface,
+  $negativeSurfaceStrong: SemColors.negativeSurfaceStrong,
+  $negativeUi: SemColors.negativeUi,
+  $negativeUiHover: SemColors.negativeUiHover,
+  $negativeText: SemColors.negativeText,
+  $negativeTextStrong: SemColors.negativeTextStrong,
 
   // Warning.
-  $warningSurface: AppColors.orange050,
-  $warningSurfaceStrong: AppColors.orange200,
-  $warningUi: AppColors.orange500,
-  $warningUiHover: AppColors.orange600,
-  $warningText: AppColors.orange700,
-  $warningTextStrong: AppColors.orange800,
+  $warningSurface: SemColors.warningSurface,
+  $warningSurfaceStrong: SemColors.warningSurfaceStrong,
+  $warningUi: SemColors.warningUi,
+  $warningUiHover: SemColors.warningUiHover,
+  $warningText: SemColors.warningText,
+  $warningTextStrong: SemColors.warningTextStrong,
 
   // Alert.
-  $alertSurface: AppColors.orange050,
-  $alertSurfaceStrong: AppColors.orange200,
-  $alertUi: AppColors.orange500,
-  $alertUiHover: AppColors.orange600,
-  $alertText: AppColors.orange700,
-  $alertTextStrong: AppColors.orange800,
+  $alertSurface: SemColors.alertSurface,
+  $alertSurfaceStrong: SemColors.alertSurfaceStrong,
+  $alertUi: SemColors.alertUi,
+  $alertUiHover: SemColors.alertUiHover,
+  $alertText: SemColors.alertText,
+  $alertTextStrong: SemColors.alertTextStrong,
 
   // Info.
-  $infoSurface: AppColors.blue050,
-  $infoSurfaceStrong: AppColors.blue200,
-  $infoUi: AppColors.blue500,
-  $infoUiHover: AppColors.blue600,
-  $infoText: AppColors.blue700,
-  $infoTextStrong: AppColors.blue800,
+  $infoSurface: SemColors.infoSurface,
+  $infoSurfaceStrong: SemColors.infoSurfaceStrong,
+  $infoUi: SemColors.infoUi,
+  $infoUiHover: SemColors.infoUiHover,
+  $infoText: SemColors.infoText,
+  $infoTextStrong: SemColors.infoTextStrong,
 
   // Neutral.
-  $neutralSurface: AppColors.neutral050,
-  $neutralSurfaceStrong: AppColors.neutral200,
-  $neutralUi: AppColors.neutral500,
-  $neutralUiHover: AppColors.neutral600,
-  $neutralText: AppColors.neutral700,
-  $neutralTextStrong: AppColors.neutral800,
+  $neutralSurface: SemColors.neutralSurface,
+  $neutralSurfaceStrong: SemColors.neutralSurfaceStrong,
+  $neutralUi: SemColors.neutralUi,
+  $neutralUiHover: SemColors.neutralUiHover,
+  $neutralText: SemColors.neutralText,
+  $neutralTextStrong: SemColors.neutralTextStrong,
 };

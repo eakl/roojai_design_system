@@ -44,7 +44,7 @@ class ComponentShowcasePage extends StatelessWidget {
         title: Text(spec.title, style: h3),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(AppSpacing.sp016),
+        padding: const EdgeInsets.all(SemSpacing.spacing016),
         children: sections,
       ),
     );
@@ -63,7 +63,7 @@ class _ShowcaseSection extends StatelessWidget {
     final overline = $overline.resolve(context);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: AppSpacing.sp032),
+      padding: const EdgeInsets.only(bottom: SemSpacing.spacing032),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -71,10 +71,10 @@ class _ShowcaseSection extends StatelessWidget {
             label,
             style: overline.copyWith(color: contentMuted),
           ),
-          const SizedBox(height: AppSpacing.sp012),
+          const SizedBox(height: SemSpacing.spacing012),
           Wrap(
-            spacing: AppSpacing.sp012,
-            runSpacing: AppSpacing.sp012,
+            spacing: SemSpacing.spacing012,
+            runSpacing: SemSpacing.spacing012,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: widgets,
           ),

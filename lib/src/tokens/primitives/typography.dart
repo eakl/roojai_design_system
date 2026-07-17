@@ -2,33 +2,30 @@
 
 import 'package:flutter/widgets.dart';
 
-/// Raw font-size/weight/line-height/letter-spacing values. Semantic
-/// typography tokens (`lib/src/tokens/semantic/typography.dart`) compose
-/// these into named `TextStyle`s.
-class PrimTypeScale {
-  AppTypeScale._();
+class PrimTypography {
+  PrimTypography._();
 
-  static const String ffIos = 'SF Pro';
-  static const String ffAndroid = 'Roboto';
-  static const String ffWeb = 'Inter';
+  static const String fontFamilyIOS = 'SF Pro';
+  static const String fontFamilyANDROID = 'Roboto';
+  static const String fontFamilyWEB = 'Inter';
 
-  static const double fs48 = 48;
-  static const double fs40 = 40;
-  static const double fs32 = 32;
-  static const double fs24 = 24;
-  static const double fs20 = 20;
-  static const double fs18 = 18;
-  static const double fs16 = 16;
-  static const double fs14 = 14;
-  static const double fs12 = 12;
-  static const double fs11 = 11;
+  static const double fontSize48 = 48;
+  static const double fontSize40 = 40;
+  static const double fontSize32 = 32;
+  static const double fontSize24 = 24;
+  static const double fontSize20 = 20;
+  static const double fontSize18 = 18;
+  static const double fontSize16 = 16;
+  static const double fontSize14 = 14;
+  static const double fontSize12 = 12;
+  static const double fontSize11 = 11;
 
-  static const FontWeight fwRegular = FontWeight.w400;
-  static const FontWeight fwMedium = FontWeight.w500;
-  static const FontWeight fwSemibold = FontWeight.w600;
-  static const FontWeight fwBold = FontWeight.w700;
+  static const FontWeight fontWeightRegular = FontWeight.w400;
+  static const FontWeight fontWeightMedium = FontWeight.w500;
+  static const FontWeight fontWeightSemibold = FontWeight.w600;
+  static const FontWeight fontWeightBold = FontWeight.w700;
 
-  static const double lhTight = 1.2;
-  static const double lhNormal = 1.4;
-  static const double lhRelaxed = 1.6;
+  static const double lineHeightTight = 1.2;
+  static const double lineHeightNormal = 1.4;
+  static const double lineHeightRelaxed = 1.6;
 }

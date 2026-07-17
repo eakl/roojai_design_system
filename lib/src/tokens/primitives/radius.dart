@@ -2,12 +2,12 @@
 
 /// Fixed, value-named radius scale. Same rationale as [AppSpacing].
 class PrimRadius {
-  AppRadius._();
+  PrimRadius._();
 
-  static const double rd000 = 0;
-  static const double rd004 = 4;
-  static const double rd008 = 8;
-  static const double rd012 = 12;
-  static const double rd016 = 16;
-  static const double rdFull = 9999;
+  static const double radius000 = 0;
+  static const double radius004 = 4;
+  static const double radius008 = 8;
+  static const double radius012 = 12;
+  static const double radius016 = 16;
+  static const double radiusFull = 9999;
 }

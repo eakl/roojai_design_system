@@ -28,10 +28,10 @@ class _InvertedSwatch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.sp012),
+      padding: const EdgeInsets.all(SemSpacing.spacing012),
       decoration: BoxDecoration(
         color: $surfaceInverted.resolve(context),
-        borderRadius: BorderRadius.circular(AppRadius.rd008),
+        borderRadius: BorderRadius.circular(SemRadius.radius008),
       ),
       child: child,
     );
