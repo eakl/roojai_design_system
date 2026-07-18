@@ -6,6 +6,7 @@ part of 'callout_2.dart';
 /// are static content, not interactive controls).
 RemixCalloutStyler resolveDsCalloutStyle({
   required DsCalloutVariant variant,
+  required DsCalloutTone tone,
   required DsCalloutSize size,
 }) {
   final baseStyle = RemixCalloutStyler().borderRadiusAll($radius008());
@@ -24,40 +25,66 @@ RemixCalloutStyler resolveDsCalloutStyle({
           .spacing($spacing008())
           .iconSize(20),
     DsCalloutSize.lg =>
-      RemixCalloutStyler(text: TextStyler(style: $bodyLg.mix()))
+      RemixCalloutStyler(text: TextStyler(style: $bodyMd.mix()))
           .paddingX($spacing020())
           .paddingY($spacing016())
           .spacing($spacing012())
           .iconSize(24),
   };
 
-  // Each variant pairs a semantic `*Surface` background with the matching
-  // `*Text` foreground (shared across the icon and text via
-  // `.foregroundColor()`), the same surface/text token pairing
-  // `DsIconVariant` uses for its own neutral/brand/positive/negative/warning
-  // set — kept in lockstep so an icon dropped into a callout with a matching
-  // `DsIconVariant` looks consistent.
-  final variantStyle = switch (variant) {
-    DsCalloutVariant.neutral =>
-      RemixCalloutStyler()
-          .backgroundColor($neutralSurface())
-          .foregroundColor($neutralText()),
-    DsCalloutVariant.brand =>
-      RemixCalloutStyler()
-          .backgroundColor($brandSurface())
-          .foregroundColor($brandText()),
-    DsCalloutVariant.positive =>
-      RemixCalloutStyler()
-          .backgroundColor($positiveSurface())
-          .foregroundColor($positiveText()),
-    DsCalloutVariant.negative =>
-      RemixCalloutStyler()
-          .backgroundColor($negativeSurface())
-          .foregroundColor($negativeText()),
-    DsCalloutVariant.warning =>
-      RemixCalloutStyler()
-          .backgroundColor($warningSurface())
-          .foregroundColor($warningText()),
+  // Each variant pairs a semantic background with a matching foreground
+  // (shared across the icon and text via `.foregroundColor()`). `soft` uses
+  // `*Surface`/`*Text` — the same pairing `DsIconVariant` uses for its own
+  // neutral/brand/positive/negative/warning set, kept in lockstep so an
+  // icon dropped into a callout with a matching `DsIconVariant` looks
+  // consistent. `solid` uses the saturated `*Ui` token with
+  // `$contentOnBrand()` (white) text, the same soft/solid pairing
+  // `DsAvatarVariant` already establishes.
+  final variantStyle = switch (tone) {
+    DsCalloutTone.soft => switch (variant) {
+      DsCalloutVariant.neutral =>
+        RemixCalloutStyler()
+            .backgroundColor($neutralSurface())
+            .foregroundColor($neutralText()),
+      DsCalloutVariant.brand =>
+        RemixCalloutStyler()
+            .backgroundColor($brandSurface())
+            .foregroundColor($brandText()),
+      DsCalloutVariant.positive =>
+        RemixCalloutStyler()
+            .backgroundColor($positiveSurface())
+            .foregroundColor($positiveText()),
+      DsCalloutVariant.negative =>
+        RemixCalloutStyler()
+            .backgroundColor($negativeSurface())
+            .foregroundColor($negativeText()),
+      DsCalloutVariant.warning =>
+        RemixCalloutStyler()
+            .backgroundColor($warningSurface())
+            .foregroundColor($warningText()),
+    },
+    DsCalloutTone.solid => switch (variant) {
+      DsCalloutVariant.neutral =>
+        RemixCalloutStyler()
+            .backgroundColor($neutralUi())
+            .foregroundColor($contentOnBrand()),
+      DsCalloutVariant.brand =>
+        RemixCalloutStyler()
+            .backgroundColor($brandUi())
+            .foregroundColor($contentOnBrand()),
+      DsCalloutVariant.positive =>
+        RemixCalloutStyler()
+            .backgroundColor($positiveUi())
+            .foregroundColor($contentOnBrand()),
+      DsCalloutVariant.negative =>
+        RemixCalloutStyler()
+            .backgroundColor($negativeUi())
+            .foregroundColor($contentOnBrand()),
+      DsCalloutVariant.warning =>
+        RemixCalloutStyler()
+            .backgroundColor($warningUi())
+            .foregroundColor($contentOnBrand()),
+    },
   };
 
   return baseStyle.merge(sizeStyle).merge(variantStyle);

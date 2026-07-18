@@ -1,25 +1,16 @@
 import 'package:flutter/widgets.dart';
 import 'package:remix/remix.dart';
 
-import '../../tokens/semantic/colors.dart';
-import '../../tokens/semantic/radius.dart';
-import '../../tokens/semantic/spacing.dart';
-import '../../tokens/semantic/typography.dart';
+import '../../theme/light/colors.dart';
+import '../../theme/light/radius.dart';
+import '../../theme/light/spacing.dart';
+import '../../theme/light/typography.dart';
 import 'callout_2_variants.dart';
 
-// The `resolveDsCalloutStyle` function consumed by `build()` below lives in
-// callout_2_style_resolver.dart, split out as `part of` this library (not a
-// separate import) so it stays private to DsCallout while living in its own
-// file — same split as `DsButton`'s `button_2_style_resolver.dart`.
 part 'callout_2_style_resolver.dart';
 
-/// A prominent, non-interactive message component built on top of the
-/// `remix` package's [RemixCallout], styled through the design system's Mix
-/// semantic tokens.
-///
-/// Unlike [DsButton]/[DsInput], [DsCallout] has no interaction states
-/// (hover/press/focus/disabled) to resolve — it only varies along [variant]
-/// (semantic color treatment) and [size].
+// TODO: Check Spacing on different size, Icon sizes
+
 class DsCallout extends StatelessWidget {
   /// Creates a callout with optional [text] or [child]. At least one of
   /// [text] or [child] must be provided — mirrors [RemixCallout]'s own
@@ -30,6 +21,7 @@ class DsCallout extends StatelessWidget {
     this.icon,
     this.child,
     this.variant = DsCalloutVariant.neutral,
+    this.tone = DsCalloutTone.soft,
     this.size = DsCalloutSize.md,
     this.style = const RemixCalloutStyler.create(),
     this.styleSpec,
@@ -53,6 +45,9 @@ class DsCallout extends StatelessWidget {
   /// Semantic color treatment — see [DsCalloutVariant].
   final DsCalloutVariant variant;
 
+  /// Emphasis level — see [DsCalloutTone].
+  final DsCalloutTone tone;
+
   /// Physical size — see [DsCalloutSize].
   final DsCalloutSize size;
 
@@ -68,6 +63,7 @@ class DsCallout extends StatelessWidget {
   Widget build(BuildContext context) {
     final resolvedStyle = resolveDsCalloutStyle(
       variant: variant,
+      tone: tone,
       size: size,
     ).merge(style);
 
