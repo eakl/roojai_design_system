@@ -19,13 +19,14 @@ part 'card_2_style_resolver.dart';
 /// Unlike [DsButton]/[DsInput], there is no legacy hand-rolled `Card` this
 /// replaces — this is a new component, same situation as [DsDialog]. It has
 /// no interaction states (hover/press/focus/disabled) to resolve — it only
-/// varies along [variant] (semantic surface treatment) and [size]
-/// (padding).
+/// varies along [variant] (semantic surface treatment), [tone] (background
+/// color when filled), and [size] (padding).
 class DsCard extends StatelessWidget {
   const DsCard({
     super.key,
     this.child,
-    this.variant = DsCardVariant.surface,
+    this.variant = DsCardVariant.filled,
+    this.tone = DsCardTone.base,
     this.size = DsCardSize.md,
     this.style = const RemixCardStyler.create(),
     this.styleSpec,
@@ -37,6 +38,11 @@ class DsCard extends StatelessWidget {
 
   /// Visual treatment — see [DsCardVariant].
   final DsCardVariant variant;
+
+  /// Background tone, only meaningful when [variant] is
+  /// [DsCardVariant.filled] — see [DsCardTone]. Ignored for
+  /// [DsCardVariant.elevated] and [DsCardVariant.bordered].
+  final DsCardTone tone;
 
   /// Physical size — see [DsCardSize]. Controls padding only; unlike
   /// [DsButton]/[DsInput], a card has no intrinsic height to vary.
@@ -54,6 +60,7 @@ class DsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final resolvedStyle = resolveDsCardStyle(
       variant: variant,
+      tone: tone,
       size: size,
     ).merge(style);
 
