@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart' hide Icon;
 import 'package:mix/mix.dart';
 
 import '../../theme/light/colors.dart';
@@ -6,6 +6,7 @@ import '../../theme/light/radius.dart';
 import '../../theme/light/spacing.dart';
 import '../../theme/light/typography.dart';
 import '../../tokens/semantic/spacing.dart';
+import '../icon_2/icon.dart';
 import 'notification_2_variants.dart';
 
 // The `resolveDsNotification*` functions consumed by `build()` below live
@@ -38,6 +39,7 @@ class DsNotification extends StatelessWidget {
     required this.text,
     this.actions,
     this.variant = DsNotificationVariant.neutral,
+    this.tone = DsNotificationTone.soft,
     this.size = DsNotificationSize.md,
     this.style,
     this.titleStyle,
@@ -63,6 +65,9 @@ class DsNotification extends StatelessWidget {
   /// Semantic color treatment — see [DsNotificationVariant].
   final DsNotificationVariant variant;
 
+  /// Emphasis level — see [DsNotificationTone].
+  final DsNotificationTone tone;
+
   /// Physical size — see [DsNotificationSize].
   final DsNotificationSize size;
 
@@ -79,30 +84,54 @@ class DsNotification extends StatelessWidget {
   Widget build(BuildContext context) {
     final resolvedContainerStyle = resolveDsNotificationContainerStyle(
       variant: variant,
+      tone: tone,
       size: size,
     ).merge(style);
 
     final resolvedTitleStyle = resolveDsNotificationTitleStyle(
       variant: variant,
+      tone: tone,
       size: size,
     ).merge(titleStyle);
 
     final resolvedTextStyle = resolveDsNotificationTextStyle(
       variant: variant,
+      tone: tone,
       size: size,
     ).merge(textStyle);
 
     final gap = resolveDsNotificationGap(context, size);
     final hasActions = actions != null && actions!.isNotEmpty;
+    final leadingColor = _resolveDsNotificationTextColor(variant, tone);
 
+    // DS `Icon` always resolves an explicit color from its own `variant`
+    // (defaulting to neutral), so it never picks up an ambient `IconTheme`
+    // — force it to match the body text color directly. Other widgets
+    // (e.g. a plain Flutter `Icon`) fall back to the `IconTheme.merge`
+    // below.
+    var resolvedLeading = leading;
+    final leadingWidget = leading;
+    if (leadingWidget is Icon) {
+      resolvedLeading = Icon(
+        leadingWidget.glyph,
+        key: leadingWidget.key,
+        size: leadingWidget.size,
+        style: IconStyler().color(leadingColor).merge(leadingWidget.style),
+      );
+    }
+
+    // TODO: control the Icon size. Also the icon padding and the the line height of the text make them look not top aligned
     return Box(
       style: resolvedContainerStyle,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (leading != null) ...[
-            leading!,
-            SizedBox(width: SemSpacing.spacing020),
+          if (resolvedLeading != null) ...[
+            IconTheme.merge(
+              data: IconThemeData(color: leadingColor),
+              child: resolvedLeading,
+            ),
+            SizedBox(width: SemSpacing.spacing012),
           ],
           Expanded(
             child: Column(
@@ -110,14 +139,14 @@ class DsNotification extends StatelessWidget {
               children: [
                 if (title != null) ...[
                   StyledText(title!, style: resolvedTitleStyle),
-                  SizedBox(height: gap), // ERROR: doesn't work
+                  SizedBox(height: SemSpacing.spacing004), // ERROR: doesn't work
                 ],
                 StyledText(text, style: resolvedTextStyle),
                 if (hasActions) ...[
-                  SizedBox(height: gap), // ERROR: doesn't work
+                  SizedBox(height: SemSpacing.spacing008), // ERROR: doesn't work
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    spacing: gap, // ERROR: doesn't work
+                    spacing: SemSpacing.spacing008, // ERROR: doesn't work
                     children: actions!,
                   ),
                 ],
