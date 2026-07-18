@@ -14,6 +14,7 @@ final _cardElevatedShadow = BoxShadowMix(
 
 RemixCardStyler resolveDsCardStyle({
   required DsCardVariant variant,
+  required DsCardTone tone,
   required DsCardSize size,
 }) {
   final baseStyle = RemixCardStyler().borderRadiusAll($radius008());
@@ -29,24 +30,28 @@ RemixCardStyler resolveDsCardStyle({
 
   const transparent = Color(0x00000000);
 
-  // `surface` has a background + `$borderDefault` border; `elevated`
-  // trades the border for a shadow (having both would double the edge
-  // treatment); `ghost` has neither, matching Fortal's ghost; `bordered`
-  // has no background but an emphasized `$borderStrong` border.
+  // `elevated` trades a border for a shadow (having both would double the
+  // edge treatment); `bordered` has no background but an emphasized
+  // `$borderStrong` border; `filled` has a background (picked by [tone])
+  // and no border in any tone, matching badge_2's borderless
+  // primary/secondary precedent.
   final variantStyle = switch (variant) {
-    DsCardVariant.surface => RemixCardStyler()
-        .backgroundColor($surfaceDefault())
-        .borderAll(color: $borderDefault(), width: 1),
     DsCardVariant.elevated => RemixCardStyler()
         .backgroundColor($surfaceDefault())
         .shadow(_cardElevatedShadow),
-    DsCardVariant.ghost => RemixCardStyler().backgroundColor(transparent),
-    // Transparent background with an emphasized border — no fill to help
-    // it read visually, so it uses $borderStrong (vs. `surface`'s
-    // $borderDefault) rather than reusing surface's subtler border color.
     DsCardVariant.bordered => RemixCardStyler()
         .backgroundColor(transparent)
         .borderAll(color: $borderStrong(), width: 1),
+    DsCardVariant.filled => RemixCardStyler().backgroundColor(
+        switch (tone) {
+          // `base` reproduces the old `surface` variant's background
+          // exactly, so the new default (filled + base) matches the old
+          // default (surface) look.
+          DsCardTone.base => $surfaceDefault(),
+          DsCardTone.alternative => $surfaceAlternative(),
+          DsCardTone.inverted => $surfaceInverted(),
+        },
+      ),
   };
 
   return baseStyle.merge(sizeStyle).merge(variantStyle);
