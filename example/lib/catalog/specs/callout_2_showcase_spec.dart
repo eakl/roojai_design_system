@@ -7,15 +7,19 @@ import '../component_showcase_spec.dart';
 ComponentShowcaseSpec buildCallout2ShowcaseSpec() {
   return ComponentShowcaseSpec(
     title: 'Callout 2',
-    variantsBuilder: () => DsCalloutVariant.values
-        .map(
-          (variant) => DsCallout(
-            text: variant.name,
+    // Each color has both a soft and solid tone, which collapse into one
+    // `DsCalloutVariant.values` entry — list combinations explicitly
+    // instead of mapping over the enum so solid tones are shown too.
+    variantsBuilder: () => [
+      for (final variant in DsCalloutVariant.values)
+        for (final tone in DsCalloutTone.values)
+          DsCallout(
+            text: '${variant.name} (${tone.name})',
             icon: PhosphorIcons.info(),
             variant: variant,
+            tone: tone,
           ),
-        )
-        .toList(),
+    ],
     sizesBuilder: () => DsCalloutSize.values
         .map(
           (size) => DsCallout(

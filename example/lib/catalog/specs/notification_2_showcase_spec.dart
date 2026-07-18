@@ -1,4 +1,5 @@
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:remix/remix.dart';
 import 'package:ui/ui.dart';
 
 import '../component_showcase_spec.dart';
@@ -6,15 +7,19 @@ import '../component_showcase_spec.dart';
 ComponentShowcaseSpec buildNotification2ShowcaseSpec() {
   return ComponentShowcaseSpec(
     title: 'Notification 2',
-    variantsBuilder: () => DsNotificationVariant.values
-        .map(
-          (variant) => DsNotification(
-            text: variant.name,
+    // Each color has both a soft and solid tone, which collapse into one
+    // `DsNotificationVariant.values` entry — list combinations explicitly
+    // instead of mapping over the enum so solid tones are shown too.
+    variantsBuilder: () => [
+      for (final variant in DsNotificationVariant.values)
+        for (final tone in DsNotificationTone.values)
+          DsNotification(
+            text: '${variant.name} (${tone.name})',
             leading: Icon(PhosphorIcons.info()),
             variant: variant,
+            tone: tone,
           ),
-        )
-        .toList(),
+    ],
     sizesBuilder: () => DsNotificationSize.values
         .map(
           (size) => DsNotification(
@@ -48,8 +53,18 @@ ComponentShowcaseSpec buildNotification2ShowcaseSpec() {
         text: 'with an actions row, bottom-right aligned',
         leading: Icon(PhosphorIcons.info()),
         actions: [
-          DsButton(label: 'Dismiss', variant: DsButtonVariant.ghost, onPressed: () {}),
-          DsButton(label: 'Update', onPressed: () {}),
+          DsButton(
+            label: 'Dismiss',
+            variant: DsButtonVariant.link,
+            style: RemixButtonStyler().labelColor($contentSecondary()).iconColor($contentSecondary()),
+            onPressed: () {},
+          ),
+          DsButton(
+            label: 'Update',
+            variant: DsButtonVariant.link,
+            style: RemixButtonStyler().labelColor($accentText()).iconColor($accentText()),
+            onPressed: () {},
+          ),
         ],
       ),
     ],
