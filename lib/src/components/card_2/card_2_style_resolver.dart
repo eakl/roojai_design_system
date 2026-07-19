@@ -14,7 +14,6 @@ final _cardElevatedShadow = BoxShadowMix(
 
 RemixCardStyler resolveDsCardStyle({
   required DsCardVariant variant,
-  required DsCardTone tone,
   required DsCardSize size,
 }) {
   final baseStyle = RemixCardStyler().borderRadiusAll($radius008());
@@ -30,29 +29,40 @@ RemixCardStyler resolveDsCardStyle({
 
   const transparent = Color(0x00000000);
 
-  // `elevated` trades a border for a shadow (having both would double the
-  // edge treatment); `bordered` has no background but an emphasized
-  // `$borderStrong` border; `filled` has a background (picked by [tone])
-  // and no border in any tone, matching badge_2's borderless
-  // primary/secondary precedent.
+  // `base`/`alternative`/`inverted` only differ by background color;
+  // `elevated` trades a background tint for a shadow (having both would
+  // double the edge treatment); `bordered` has no background, just an
+  // emphasized `$borderStrong` border.
   final variantStyle = switch (variant) {
+    DsCardVariant.base =>
+      RemixCardStyler().backgroundColor($surfaceDefault()),
+    DsCardVariant.alternative =>
+      RemixCardStyler().backgroundColor($surfaceAlternative()),
+    DsCardVariant.inverted =>
+      RemixCardStyler().backgroundColor($surfaceInverted()),
     DsCardVariant.elevated => RemixCardStyler()
         .backgroundColor($surfaceDefault())
         .shadow(_cardElevatedShadow),
     DsCardVariant.bordered => RemixCardStyler()
         .backgroundColor(transparent)
         .borderAll(color: $borderStrong(), width: 1),
-    DsCardVariant.filled => RemixCardStyler().backgroundColor(
-        switch (tone) {
-          // `base` reproduces the old `surface` variant's background
-          // exactly, so the new default (filled + base) matches the old
-          // default (surface) look.
-          DsCardTone.base => $surfaceDefault(),
-          DsCardTone.alternative => $surfaceAlternative(),
-          DsCardTone.inverted => $surfaceInverted(),
-        },
-      ),
   };
 
   return baseStyle.merge(sizeStyle).merge(variantStyle);
+}
+
+/// The child-facing foreground color for each [DsCardVariant] — consumed by
+/// `card_2.dart`'s `build()` to color a `child` that doesn't explicitly set
+/// its own color. Only `inverted` sits on a dark background, so it's the
+/// only variant that needs `$contentOnBrand()` (white); every other variant
+/// sits on a light/transparent background and uses the same
+/// `$contentPrimary()` default body text color.
+Color _resolveDsCardForegroundColor(DsCardVariant variant) {
+  return switch (variant) {
+    DsCardVariant.inverted => $contentOnBrand(),
+    DsCardVariant.base ||
+    DsCardVariant.alternative ||
+    DsCardVariant.elevated ||
+    DsCardVariant.bordered => $contentPrimary(),
+  };
 }
