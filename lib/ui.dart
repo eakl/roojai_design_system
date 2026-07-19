@@ -58,6 +58,8 @@ export 'src/components/icon_container_2/icon_container.dart';
 export 'src/components/icon_container_2/icon_container_variants.dart';
 export 'src/components/input_2/input_2.dart';
 export 'src/components/input_2/input_2_variants.dart';
+export 'src/components/label_2/label_2.dart';
+export 'src/components/label_2/label_2_variants.dart';
 // export 'src/components/input/input.dart';
 // export 'src/components/input/input_interaction_state.dart';
 // export 'src/components/input/input_size.dart';

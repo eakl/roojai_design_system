@@ -10,6 +10,7 @@ import 'specs/icon_2_showcase_spec.dart';
 import 'specs/icon_button_2_showcase_spec.dart';
 import 'specs/icon_container_2_showcase_spec.dart';
 import 'specs/input_2_showcase_spec.dart';
+import 'specs/label_2_showcase_spec.dart';
 import 'specs/notification_2_showcase_spec.dart';
 import 'specs/popover_2_showcase_spec.dart';
 import 'specs/progress_2_showcase_spec.dart';
@@ -46,6 +47,7 @@ final Map<String, ComponentShowcaseSpec Function()> componentRegistry = {
   'Icon Button 2': buildIconButton2ShowcaseSpec,
   'Icon Container 2': buildIconContainer2ShowcaseSpec,
   'Input 2': buildInput2ShowcaseSpec,
+  'Label 2': buildLabel2ShowcaseSpec,
   'Notification 2': buildNotification2ShowcaseSpec,
   'Popover 2': buildPopover2ShowcaseSpec,
   'Progress 2': buildProgress2ShowcaseSpec,
