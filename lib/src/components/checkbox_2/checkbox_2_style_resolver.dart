@@ -49,11 +49,11 @@ RemixCheckboxStyler resolveDsCheckboxStyle({required DsCheckboxSize size}) {
   // glyph through a `StyledIcon`.
   final sizeStyle = switch (size) {
     DsCheckboxSize.sm =>
-      RemixCheckboxStyler().size(16, 16).icon(IconStyler().size(12)),
+      RemixCheckboxStyler().size(16, 16).icon(IconStyler().size(10)),
     DsCheckboxSize.md =>
-      RemixCheckboxStyler().size(20, 20).icon(IconStyler().size(16)),
+      RemixCheckboxStyler().size(20, 20).icon(IconStyler().size(14)),
     DsCheckboxSize.lg =>
-      RemixCheckboxStyler().size(24, 24).icon(IconStyler().size(20)),
+      RemixCheckboxStyler().size(24, 24).icon(IconStyler().size(18)),
   };
 
   return baseStyle.merge(sizeStyle);

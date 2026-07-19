@@ -227,8 +227,8 @@ resolveDsListItemStyle({
 
   final interactiveStyle = interactive
       ? BoxStyler()
-            .onHovered(BoxStyler().backgroundColor($neutralUiHover()))
-            .onPressed(BoxStyler().backgroundColor($neutralUiHover()))
+            .onHovered(BoxStyler().color($neutralUiHover()))
+            .onPressed(BoxStyler().color($neutralUiHover()))
       : BoxStyler();
 
   final titleToken = switch (size) {

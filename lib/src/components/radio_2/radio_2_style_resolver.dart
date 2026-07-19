@@ -20,7 +20,7 @@ RemixRadioStyler resolveDsRadioStyle({required DsRadioSize size}) {
   final baseStyle = RemixRadioStyler()
       .borderRadiusAll($radiusFull())
       .alignment(Alignment.center)
-      .fillColor(const Color(0x00000000))
+      .fillColor($transparent())
       .borderAll(color: $borderStrong(), width: 1.5)
       .indicator(
         BoxStyler().color($surfaceInverted()).borderRadiusAll($radiusFull()),
@@ -49,15 +49,15 @@ RemixRadioStyler resolveDsRadioStyle({required DsRadioSize size}) {
   final sizeStyle = switch (size) {
     DsRadioSize.sm => RemixRadioStyler(
         container: BoxStyler().width(16).height(16),
-        indicator: BoxStyler().size(6, 6),
+        indicator: BoxStyler().size(8, 8),
       ),
     DsRadioSize.md => RemixRadioStyler(
         container: BoxStyler().width(20).height(20),
-        indicator: BoxStyler().size(8, 8),
+        indicator: BoxStyler().size(10, 10),
       ),
     DsRadioSize.lg => RemixRadioStyler(
         container: BoxStyler().width(24).height(24),
-        indicator: BoxStyler().size(10, 10),
+        indicator: BoxStyler().size(12, 12),
       ),
   };
 

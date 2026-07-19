@@ -7,24 +7,39 @@ Avatar:
 - If no image is supplied, show fallback only
 - In props: Fallback always required, image optional
 
-Badge:
-- Remove leading and trailing props (for icon)
-
-Buton:
-- onPress color is wrong (should have opacity 20%)
-- outline and ghost variant have a flickering background color onPress with two colors: gray first then blue
 
 Callout:
 - Icon and text should be top aligned
 
+----
 
-always show fallback letter while loading the image
-- [ ] Check private vs. public resolvers
-- [ ] Slider, add external control state in catalog
-- [ ] Skeleton add 200x100
-- [ ] Input: trailing widget
-- [ ] Error state
-- [ ] Icon Button loading must be disabled (with opacity)
+Progress / Slider
+- label min, label max
+- Label and value
+- label and value: min and max
+- Slider, add external control state in catalog
 
+Input
+- Remove label and helper text from the props of the input. Those will be controlled from outside with Label and Error Form Component
+- Is the height of the cursor equal to line height?
+- Reduce tickness of the cursor
+- trailing clear button or passpowrd reveal button
+
+Textarea
+- Use input with multiline
+
+Radio
+- Inverse color on selected (no border, fill bg, indicator in white)
+
+
+Select
+- gap between text and caret
+
+
+
+Toggle
+- gost, fill, outline, (follow button)
+
+Toggle Group
 - [ ] Multiselect / select group
 - [ ] Single select

@@ -141,7 +141,11 @@ class DsIconButton extends StatelessWidget {
     final resolvedStyle = resolveDsIconButtonStyle(
       variant: variant,
       size: size,
-      disabled: !enabled,
+      // Loading suppresses taps the same way a disabled button does (see
+      // `RemixIconButton._isEnabled`), so it gets the same dimmed
+      // treatment — otherwise a loading button reads as interactive while
+      // it silently ignores taps. Same as `DsButton`.
+      disabled: !enabled || loading,
       loading: loading,
     ).merge(style);
 

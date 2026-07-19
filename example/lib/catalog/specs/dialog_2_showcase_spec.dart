@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:remix/remix.dart';
 import 'package:ui/ui.dart';
 
 import '../component_showcase_spec.dart';
@@ -64,6 +65,31 @@ ComponentShowcaseSpec buildDialog2ShowcaseSpec() {
                   onPressed: () => Navigator.pop(context),
                 ),
               ],
+            ),
+          ),
+        ),
+      ),
+      Builder(
+        builder: (context) => DsButton(
+          label: 'fixed size',
+          onPressed: () => showDsDialog<void>(
+            context: context,
+            builder: (context) => Center(
+              child: DsDialog(
+                style: const RemixDialogStyler.create().size(400, 240),
+                title: 'Fixed-size dialog',
+                description:
+                    'RemixDialog has no size/variant axis by default, so it '
+                    'fills the route unless constrained — this demonstrates '
+                    'the .size() style escape hatch plus wrapping the '
+                    'builder in a Center to position it.',
+                actions: [
+                  DsButton(
+                    label: 'Close',
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

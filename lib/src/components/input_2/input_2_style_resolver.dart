@@ -10,7 +10,7 @@ RemixTextFieldStyler resolveDsInputStyle({
       .backgroundColor($surfaceDefault())
       .color($contentPrimary())
       .hintColor($contentPlaceholder())
-      .cursorColor($surfaceInverted())
+      .cursorColor($contentPrimary())
       .onFocused(
         RemixTextFieldStyler().borderAll(color: $surfaceInverted(), width: 1),
       )
@@ -58,7 +58,12 @@ RemixTextFieldStyler resolveDsInputStyle({
   // `RemixTextField.error` directly. See the design spec's "Style
   // resolver" section for the full rationale.
   final stateStyle = error
-      ? RemixTextFieldStyler().borderAll(color: $negativeUi(), width: 1) // SHould also be red when focused
+      ? RemixTextFieldStyler()
+          .backgroundColor($negativeSurface())
+          .borderAll(color: $negativeUi(), width: 1)
+          .onFocused(
+            RemixTextFieldStyler().borderAll(color: $negativeUi(), width: 1),
+          )
       : RemixTextFieldStyler();
 
   return baseStyle.merge(sizeStyle).merge(stateStyle);

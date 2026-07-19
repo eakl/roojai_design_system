@@ -1,7 +1,11 @@
 part of 'icon_button_2.dart';
 
-Color _iconButtonPressedBackground(ColorToken token, {int amount = 15}) {
+Color _iconButtonPressedBackground(ColorToken token, {int amount = 5}) {
   return ColorRef(token().directives([DarkenColorDirective(amount)]));
+}
+
+Color _opacity(ColorToken token, double opacity) {
+  return ColorRef(token().directives([OpacityColorDirective(opacity)]));
 }
 
 RemixIconButtonStyler resolveDsIconButtonStyle({
@@ -44,8 +48,6 @@ RemixIconButtonStyler resolveDsIconButtonStyle({
           .spinner(RemixSpinnerStyler().size(24)),
   };
 
-  const transparent = Color(0x00000000);
-
   // Same rationale as `button_2_style_resolver.dart`'s `variantStyle`:
   // pressed feedback is a background-color change (darken for solid
   // fills, a light brand-tinted fill for transparent-background variants)
@@ -73,16 +75,20 @@ RemixIconButtonStyler resolveDsIconButtonStyle({
     DsIconButtonVariant.outline =>
       RemixIconButtonStyler()
           .borderAll(color: $brandUi(), width: 1)
-          .backgroundColor(transparent)
+          .backgroundColor(_opacity($canvasAlternative, 0))
           .foregroundColor($brandText())
           .spinner(RemixSpinnerStyler().indicatorColor($brandText()))
-          .onPressed(RemixIconButtonStyler().backgroundColor($brandSurface())),
+          .onPressed(
+            RemixIconButtonStyler().backgroundColor(_opacity($canvasAlternative, 1)),
+          ),
     DsIconButtonVariant.ghost =>
       RemixIconButtonStyler()
-          .backgroundColor(transparent)
+          .backgroundColor(_opacity($canvasAlternative, 0))
           .foregroundColor($brandText())
           .spinner(RemixSpinnerStyler().indicatorColor($brandText()))
-          .onPressed(RemixIconButtonStyler().backgroundColor($brandSurface())),
+          .onPressed(
+            RemixIconButtonStyler().backgroundColor(_opacity($canvasAlternative, 1)),
+          ),
     DsIconButtonVariant.destructive =>
       RemixIconButtonStyler()
           .backgroundColor($negativeSurface())

@@ -62,6 +62,7 @@ export 'src/components/label_2/label_2.dart';
 export 'src/components/label_2/label_2_variants.dart';
 export 'src/components/list_2/list_2.dart';
 export 'src/components/list_2/list_2_variants.dart';
+export 'src/components/list_2/list_item_2.dart';
 // export 'src/components/input/input.dart';
 // export 'src/components/input/input_interaction_state.dart';
 // export 'src/components/input/input_size.dart';

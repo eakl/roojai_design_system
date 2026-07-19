@@ -1,1 +1,1 @@
-enum DsListSize { sm, md, lg }
+enum DsListSize { none, sm, md, lg }
